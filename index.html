@@ -3,115 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoo Store</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Pet Shop</title>
 </head>
 <body>
-
-    <header>
-        <nav class="header-nav">
-            <a href="#">Home</a>
-            <a href="#">About us</a>
-            <a href="#">Contact us</a>
-            <a href="#">FAQ</a>
-        </nav>
-
-        <h1>Welcome to, PetSmart</h1>
-        <p class="header-text">At PetSmart, we ensure our customers, that they will receive the best equipment and food for their beloved pets. </p>
-        <a href="#" class="go-to-action">Learn more</a>
-    </header>
-
-    <section class="benefits">
-        <div>
-            <i class="fa-solid fa-truck-fast"></i>
-            <p>Fast delivery</p>
+    <nav class="navbar">
+        <div class="logo">PetShop</div>
+        <div class="nav-links">
+            <a href="#">Dogs</a>
+            <a href="#">Cats</a>
+            <a href="#">Birds</a>
+            <a href="#">Fish</a>
         </div>
-
-        <div>
-            <i class="fa-regular fa-credit-card"></i>
-            <p>Secure payment</p>
+        <div class="nav-buttons">
+            <button>Register / Log In</button>
         </div>
-
-        <div>
-            <i class="fa-sharp fa-solid fa-tags"></i>
-            <p>Many discounts</p>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-star"></i>
-            <p>Happy customers</p>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-circle-check"></i>
-            <p>Certified products</p>
-        </div>
+    </nav>
+    
+    <section class="section hero">
+        <h1>New Look, Same Naturally Tasty Goodness</h1>
+        <p>Your one-stop shop for all pet needs.</p>
+        <button class="learn-more" id="learnMoreBtn">Learn More</button>
+    </section>
+    
+    <section class="section about" id="about">
+        <h2>About Our Store</h2>
+        <p>We provide high-quality products for dogs, cats, birds, and fish to ensure your pets stay happy and healthy.</p>
     </section>
 
-    <main>
-        <h2 class="main-h2">Top offers</h2>
+    <section class="section why-choose">
+        <h2>Why Choose Us?</h2>
+        <p>✔ Premium Quality Products</p>
+        <p>✔ Affordable Prices</p>
+        <p>✔ Fast & Reliable Delivery</p>
+    </section>
 
-        <div class="main-cards">
+    <section class="section top-sellers">
+        <h2>Top Sellers</h2>
+        <p>Discover our best-selling pet products that customers love.</p>
+    </section>
 
-            <div class="card-1">
-                <img src="images/bed.png" alt="bed">
-                <p class="description">Cat Bed</p>
-                <p class="price">17.50$</p>
-            </div>
+    <section class="section food-section">
+        <h2>Wet, Dry & Treats</h2>
+        <p>Explore a variety of nutritious food options for your pets.</p>
+    </section>
 
-            <div class="card-2">
-                <img src="images/house.png" alt="house">
-                <p class="description">Dog House</p>
-                <p class="price">18.90$</p>
-            </div>
-
-            <div class="card-3">
-                <img src="images/spiral.png" alt="spiral">
-                <p class="description">Bird Toy</p>
-                <p class="price">18.90$</p>
-            </div>
-
-            <div class="card-4">
-                <img src="images/fish-food.png" alt="fish-food">
-                <p class="description">Fish Food</p>
-                <p class="price">18.90$</p>
-            </div>
-
-
-        </div>
-    </main>
-
-    <footer style="background-color: #f1e3e3 ; padding: 30px 0; text-align: center; font-family: Arial, sans-serif;">
-        <div style="margin-bottom: 20px;">
-        <a href="https://www.facebook.com/YourStoreName" target="_blan`k">
-            <i class="fa-brands fa-facebook footer-sicials"></i>
-        </a>
-        <a href="https://www.instagram.com/YourStoreName" target="_blank">
-            <i class="fa-brands fa-instagram footer-sicials"></i>
-        </a>
-        <a href="https://twitter.com/YourStoreName" target="_blank">
-            <i class="fa-brands fa-twitter footer-sicials"></i>
-        </a>
-        </div>
-        <div style="margin-bottom: 20px;">
-        <p><i class="fa-solid fa-envelope footer-icons"></i> <a href="mailto:support@yourstore.com" style="color: #333; text-decoration: none;">PetSmart@gmail.com</a></p>
-        <p><i class="fa-solid fa-phone footer-icons"></i> (123) 456-7890</p>
-        <p><i class="fa-solid fa-location-dot footer-icons"></i> 3 Lambo Paskov, Varna, Bulgaria</p>
-        </div>
-    
-        <div style="margin-bottom: 20px;">
-        <a href="#" style="margin-right: 15px; text-decoration: none; color: #333;">Shop</a>
-        <a href="#" style="margin-right: 15px; text-decoration: none; color: #333;">About Us</a>
-        <a href="#" style="margin-right: 15px; text-decoration: none; color: #333;">FAQs</a>
-        <a href="#" style="margin-right: 15px; text-decoration: none; color: #333;">Returns & Exchanges</a>
-        <a href="#" style="margin-right: 15px; text-decoration: none; color: #333;">Privacy Policy</a>
-        <a href="#" style="margin-right: 15px; text-decoration: none; color: #333;">Shipping Information</a>
-        </div>
-    
-        <p style="font-size: 14px; color: #333;">&copy; 2024 PetSmart. All Rights Reserved.</p>
+    <footer class="footer">
+        <p>Follow us on Social Media:</p>
+        <p>
+            <a href="#">Facebook</a> | 
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a>
+        </p>
+        <p>&copy; 2025 Pet Shop. All Rights Reserved.</p>
     </footer>
-    
+
+    <script src="script.js"></script>
+
 
 </body>
 </html>
