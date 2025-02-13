@@ -3,63 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Pet Shop</title>
+    <title>PetShop - Your Epic One-Stop Shop for Pet Needs</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">PetShop</div>
-        <div class="nav-links">
-            <a href="#">Dogs</a>
-            <a href="#">Cats</a>
-            <a href="#">Birds</a>
-            <a href="#">Fish</a>
-        </div>
-        <div class="nav-buttons">
-            <button>Register / Log In</button>
+        <div class="container navbar-content">
+            <a href="#" class="logo">PetShop</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#why-choose-us">Why Choose Us</a>
+                <a href="#pets">Pets</a>
+                <a href="#top-sellers">Top Sellers</a>
+                <a href="#food-section">Food</a>
+            </div>
+            <div class="nav-actions">
+                <div class="cart-icon">
+                    <span class="material-icons">shopping_cart</span>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="nav-button" id="loginBtn">Register / Log In</button>
+            </div>
         </div>
     </nav>
-    
-    <section class="section hero">
-        <h1>New Look, Same Naturally Tasty Goodness</h1>
-        <p>Your one-stop shop for all pet needs.</p>
-        <button class="learn-more" id="learnMoreBtn">Learn More</button>
-    </section>
-    
-    <section class="section about" id="about">
-        <h2>About Our Store</h2>
-        <p>We provide high-quality products for dogs, cats, birds, and fish to ensure your pets stay happy and healthy.</p>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>New Look, Same Naturally Tasty Goodness</h1>
+            <p>Your one-stop shop for all pet needs.</p>
+            <button class="cta-button" id="learnMoreBtn">Learn More</button>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Our Store</h2>
+            <p>Welcome to PetShop, your trusted partner in pet care since 2010. We're passionate about providing the best products and services for your furry, feathery, and scaly friends. Our team of animal lovers is dedicated to ensuring that every pet receives the care and attention they deserve.</p>
+            <p>At PetShop, we carefully curate our selection of products to offer only the highest quality items for dogs, cats, birds, and fish. From nutritious food to engaging toys and comfortable accessories, we've got everything your pet needs to thrive. Our commitment to animal welfare extends beyond our store - we regularly partner with local shelters and rescue organizations to support pets in need.</p>
+        </div>
     </section>
 
-    <section class="section why-choose">
-        <h2>Why Choose Us?</h2>
-        <p>✔ Premium Quality Products</p>
-        <p>✔ Affordable Prices</p>
-        <p>✔ Fast & Reliable Delivery</p>
+    <section id="why-choose-us" class="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="reasons">
+                <div class="reason">
+                    <h3>✔ Premium Quality Products</h3>
+                    <p>We source only the best products for your beloved pets.</p>
+                </div>
+                <div class="reason">
+                    <h3>✔ Affordable Prices</h3>
+                    <p>Quality doesn't have to break the bank. We offer competitive prices.</p>
+                </div>
+                <div class="reason">
+                    <h3>✔ Fast & Reliable Delivery</h3>
+                    <p>Get your pet supplies delivered right to your doorstep, hassle-free.</p>
+                </div>
+                <div class="reason">
+                    <h3>✔ Expert Pet Advice</h3>
+                    <p>Our knowledgeable staff is always ready to assist you with any pet-related questions.</p>
+                </div>
+                <div class="reason">
+                    <h3>✔ Wide Product Selection</h3>
+                    <p>From food to toys, we have everything your pet needs under one roof.</p>
+                </div>
+                <div class="reason">
+                    <h3>✔ Excellent Customer Service</h3>
+                    <p>Your satisfaction is our top priority. We're here to help!</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="section top-sellers">
-        <h2>Top Sellers</h2>
-        <p>Discover our best-selling pet products that customers love.</p>
+    <section id="pets" class="pets-section">
+        <div class="container">
+            <h2>Choose Your Perfect Pet</h2>
+            <div class="pets-grid">
+                <div class="pet-card fade-in-up delay-1" data-pet="cat">
+                    <img src="https://source.unsplash.com/random/400x300/?cat" alt="Cat">
+                    <div class="pet-info">
+                        <h3>Cat</h3>
+                        <p>Elegant and independent companions</p>
+                    </div>
+                </div>
+                <div class="pet-card fade-in-up delay-2" data-pet="dog">
+                    <img src="https://source.unsplash.com/random/400x300/?dog" alt="Dog">
+                    <div class="pet-info">
+                        <h3>Dog</h3>
+                        <p>Loyal and playful friends</p>
+                    </div>
+                </div>
+                <div class="pet-card fade-in-up delay-3" data-pet="bird">
+                    <img src="https://source.unsplash.com/random/400x300/?bird" alt="Bird">
+                    <div class="pet-info">
+                        <h3>Bird</h3>
+                        <p>Colorful and melodious companions</p>
+                    </div>
+                </div>
+                <div class="pet-card fade-in-up delay-4" data-pet="fish">
+                    <img src="https://source.unsplash.com/random/400x300/?fish" alt="Fish">
+                    <div class="pet-info">
+                        <h3>Fish</h3>
+                        <p>Peaceful and low-maintenance pets</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="section food-section">
-        <h2>Wet, Dry & Treats</h2>
-        <p>Explore a variety of nutritious food options for your pets.</p>
+    <section id="top-sellers" class="top-sellers">
+        <div class="container">
+            <h2>Top Sellers</h2>
+            <div class="products">
+                <div class="product">
+                    <img src="https://source.unsplash.com/random/300x200/?dog+food" alt="Premium Dog Food">
+                    <div class="product-info">
+                        <h3>Premium Dog Food</h3>
+                        <p>High-quality nutrition for your canine companion</p>
+                        <button class="cta-button add-to-cart" data-product="Premium Dog Food" data-price="29.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="https://source.unsplash.com/random/300x200/?cat+toy" alt="Interactive Cat Toy">
+                    <div class="product-info">
+                        <h3>Interactive Cat Toy</h3>
+                        <p>Keep your feline friend entertained for hours</p>
+                        <button class="cta-button add-to-cart" data-product="Interactive Cat Toy" data-price="14.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="https://source.unsplash.com/random/300x200/?bird+perch" alt="Colorful Bird Perch">
+                    <div class="product-info">
+                        <h3>Colorful Bird Perch</h3>
+                        <p>A comfortable and stylish perch for your feathered friend</p>
+                        <button class="cta-button add-to-cart" data-product="Colorful Bird Perch" data-price="19.99">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product">
+                    <img src="https://source.unsplash.com/random/300x200/?aquarium" alt="Aquarium Starter Kit">
+                    <div class="product-info">
+                        <h3>Aquarium Starter Kit</h3>
+                        <p>Everything you need to start your own underwater world</p>
+                        <button class="cta-button add-to-cart" data-product="Aquarium Starter Kit" data-price="49.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer class="footer">
-        <p>Follow us on Social Media:</p>
-        <p>
-            <a href="#">Facebook</a> | 
-            <a href="#">Instagram</a> | 
-            <a href="#">Twitter</a>
-        </p>
-        <p>&copy; 2025 Pet Shop. All Rights Reserved.</p>
+    <section id="food-section" class="food-section">
+        <div class="container">
+            <h2>Wet, Dry & Treats</h2>
+            <div class="food-categories">
+                <div class="food-category">
+                    <h3>Wet Food</h3>
+                    <p>Explore our range of nutritious wet food options for your pets.</p>
+                    <button classnutritious wet food options for your pets.</p>
+                    <button class="cta-button">Shop Now</button>
+                </div>
+                <div class="food-category">
+                    <h3>Dry Food</h3>
+                    <p>Discover our selection of high-quality dry food for all pet types.</p>
+                    <button class="cta-button">Shop Now</button>
+                </div>
+                <div class="food-category">
+                    <h3>Treats</h3>
+                    <p>Reward your pets with our delicious and healthy treat options.</p>
+                    <button class="cta-button">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Follow us on Social Media:</p>
+            <div class="social-links">
+                <a href="#" class="social-icon">Facebook</a>
+                <a href="#" class="social-icon">Instagram</a>
+                <a href="#" class="social-icon">Twitter</a>
+            </div>
+            <p>&copy; 2023 Pet Shop. All Rights Reserved.</p>
+        </div>
     </footer>
 
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-form">
+            <span class="close-auth" id="closeAuth">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="register">Register</button>
+            </div>
+            <form id="loginForm" class="auth-content active">
+                <h2>Login</h2>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+                <a href="#" class="forgot-link" id="forgotPassword">Forgot Password?</a>
+            </form>
+            <form id="registerForm" class="auth-content">
+                <h2>Register</h2>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <form id="forgotForm" class="auth-content">
+                <h2>Forgot Password</h2>
+                <input type="email" placeholder="Email" required>
+                <button type="submit">Reset Password</button>
+                <a href="#" class="back-to-login" id="backToLogin">Back to Login</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="cart-popup">
+        <h3>Your Cart</h3>
+        <div class="cart-items"></div>
+        <div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
+        <button class="cta-button" id="checkoutBtn">Checkout</button>
+    </div>
+
     <script src="script.js"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 </body>
 </html>
+
