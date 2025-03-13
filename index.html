@@ -3,231 +3,1255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop - Your Epic One-Stop Shop for Pet Needs</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <title>PurrfectPets - Premium Pet Supplies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="container navbar-content">
-            <a href="#" class="logo">PetShop</a>
+            <a href="#" class="logo"><i class="fas fa-paw"></i>PurrfectPets</a>
             <div class="nav-links">
                 <a href="#about">About</a>
-                <a href="#why-choose-us">Why Choose Us</a>
-                <a href="#pets">Pets</a>
-                <a href="#top-sellers">Top Sellers</a>
-                <a href="#food-section">Food</a>
+                <a href="#services">Services</a>
+                <a href="#categories">Pet Types</a>
+                <a href="#products">Products</a>
+                <a href="#testimonials">Testimonials</a>
             </div>
             <div class="nav-actions">
-                <div class="cart-icon">
-                    <span class="material-icons">shopping_cart</span>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
-                <button class="nav-button" id="loginBtn">Register / Log In</button>
+                <button class="nav-button" id="loginBtn">
+                    <i class="fas fa-user"></i> Sign In / Register
+                </button>
             </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>New Look, Same Naturally Tasty Goodness</h1>
-            <p>Your one-stop shop for all pet needs.</p>
-            <button class="cta-button" id="learnMoreBtn">Learn More</button>
-        </div>
-    </header>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Our Store</h2>
-            <p>Welcome to PetShop, your trusted partner in pet care since 2010. We're passionate about providing the best products and services for your furry, feathery, and scaly friends. Our team of animal lovers is dedicated to ensuring that every pet receives the care and attention they deserve.</p>
-            <p>At PetShop, we carefully curate our selection of products to offer only the highest quality items for dogs, cats, birds, and fish. From nutritious food to engaging toys and comfortable accessories, we've got everything your pet needs to thrive. Our commitment to animal welfare extends beyond our store - we regularly partner with local shelters and rescue organizations to support pets in need.</p>
-        </div>
-    </section>
-
-    <section id="why-choose-us" class="why-choose-us">
-        <div class="container">
-            <h2>Why Choose Us?</h2>
-            <div class="reasons">
-                <div class="reason">
-                    <h3>✔ Premium Quality Products</h3>
-                    <p>We source only the best products for your beloved pets.</p>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Premium Care for Your Beloved Companions</h1>
+                <p class="hero-subtitle">Discover our curated collection of luxury pet products, designed to enhance the wellbeing and happiness of your furry, feathered, and finned friends.</p>
+                <div>
+                    <button class="cta-button" id="shopNowBtn">Shop Collection <i class="fas fa-arrow-right"></i></button>
+                    <button class="secondary-button" id="learnMoreBtn">Learn More <i class="fas fa-info-circle"></i></button>
                 </div>
-                <div class="reason">
-                    <h3>✔ Affordable Prices</h3>
-                    <p>Quality doesn't have to break the bank. We offer competitive prices.</p>
-                </div>
-                <div class="reason">
-                    <h3>✔ Fast & Reliable Delivery</h3>
-                    <p>Get your pet supplies delivered right to your doorstep, hassle-free.</p>
-                </div>
-                <div class="reason">
-                    <h3>✔ Expert Pet Advice</h3>
-                    <p>Our knowledgeable staff is always ready to assist you with any pet-related questions.</p>
-                </div>
-                <div class="reason">
-                    <h3>✔ Wide Product Selection</h3>
-                    <p>From food to toys, we have everything your pet needs under one roof.</p>
-                </div>
-                <div class="reason">
-                    <h3>✔ Excellent Customer Service</h3>
-                    <p>Your satisfaction is our top priority. We're here to help!</p>
-                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/pets.jpg" alt="Luxury Pet Products">
             </div>
         </div>
     </section>
 
-    <section id="pets" class="pets-section">
+    <section id="about" class="about-section">
         <div class="container">
-            <h2>Choose Your Perfect Pet</h2>
-            <div class="pets-grid">
-                <div class="pet-card fade-in-up delay-1" data-pet="cat">
-                    <img src="https://source.unsplash.com/random/400x300/?cat" alt="Cat">
-                    <div class="pet-info">
-                        <h3>Cat</h3>
-                        <p>Elegant and independent companions</p>
-                    </div>
+            <div class="about-content">
+                <div class="about-image slide-up">
+                    <img src="https://source.unsplash.com/random/600x400/?pet,boutique" alt="PurrfectPets Boutique">
                 </div>
-                <div class="pet-card fade-in-up delay-2" data-pet="dog">
-                    <img src="https://source.unsplash.com/random/400x300/?dog" alt="Dog">
-                    <div class="pet-info">
-                        <h3>Dog</h3>
-                        <p>Loyal and playful friends</p>
-                    </div>
-                </div>
-                <div class="pet-card fade-in-up delay-3" data-pet="bird">
-                    <img src="https://source.unsplash.com/random/400x300/?bird" alt="Bird">
-                    <div class="pet-info">
-                        <h3>Bird</h3>
-                        <p>Colorful and melodious companions</p>
-                    </div>
-                </div>
-                <div class="pet-card fade-in-up delay-4" data-pet="fish">
-                    <img src="https://source.unsplash.com/random/400x300/?fish" alt="Fish">
-                    <div class="pet-info">
-                        <h3>Fish</h3>
-                        <p>Peaceful and low-maintenance pets</p>
+                <div class="about-text slide-up">
+                    <h2 class="section-title">Our Boutique Story</h2>
+                    <p>Welcome to PurrfectPets, your premier destination for premium pet care since 2010. We are passionate about providing the finest products and services for all your beloved animal companions.</p>
+                    <p>Our team of dedicated pet enthusiasts ensures that every furry, feathered, or finned friend receives the utmost care and attention they deserve. We meticulously curate our selection to offer only the most exquisite items for cats, dogs, birds, and fish.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Premium Quality</h4>
+                                <p>Only the finest products for your pets</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Pet-Centered Approach</h4>
+                                <p>Your pet's happiness is our priority</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Fast Delivery</h4>
+                                <p>Quick shipping to your doorstep</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Expert Advice</h4>
+                                <p>Personalized recommendations</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="top-sellers" class="top-sellers">
+    <section id="services" class="services-section">
         <div class="container">
-            <h2>Top Sellers</h2>
-            <div class="products">
-                <div class="product">
-                    <img src="https://source.unsplash.com/random/300x200/?dog+food" alt="Premium Dog Food">
+            <div class="text-center">
+                <h2 class="section-title">The PurrfectPets Experience</h2>
+                <p class="section-subtitle">Discover why pet owners trust us for all their companion's needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="service-title">Exclusive Selection</h3>
+                    <p class="service-description">Discover unique, luxury items you won't find elsewhere, specially curated for discerning pet parents who want only the best for their companions.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="service-title">Premium Delivery</h3>
+                    <p class="service-description">Experience our white-glove delivery service, with most orders shipped within 24 hours and carefully packaged to ensure perfect condition.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="service-title">VIP Customer Care</h3>
+                    <p class="service-description">Enjoy dedicated support and exclusive perks for our valued clients and their animal companions, including personalized shopping assistance.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3 class="service-title">Pet Spa Services</h3>
+                    <p class="service-description">Treat your pet to our luxurious grooming and spa treatments, designed to pamper and rejuvenate your beloved companions.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="service-title">Satisfaction Guarantee</h3>
+                    <p class="service-description">If your pet isn't completely satisfied with any product, we offer hassle-free returns and exchanges because your pet's happiness matters most.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="service-title">Expert Consultation</h3>
+                    <p class="service-description">Our knowledgeable staff offers personalized recommendations for all your pet care needs, from nutrition to accessories and wellness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Animal Friends</h2>
+                <p class="section-subtitle">Explore our specialized collections for every type of pet</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card slide-up cat-theme">
+                    <div class="category-image">
+                        <img src="images/cat.jpg" alt="Feline Friends">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Cats</h3>
+                        <p class="category-count">120+ Products</p>
+                        <a href="cats.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up dog-theme">
+                    <div class="category-image">
+                        <img src="images/dog.avif" alt="Canine Companions">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Dogs</h3>
+                        <p class="category-count">150+ Products</p>
+                        <a href="dogs.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up bird-theme">
+                    <div class="category-image">
+                        <img src="images/parrot.jpg" alt="Feathered Friends">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Birds</h3>
+                        <p class="category-count">80+ Products</p>
+                        <a href="birds.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up fish-theme">
+                    <div class="category-image">
+                        <img src="images/fish.webp" alt="Aquatic Wonders">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Fish</h3>
+                        <p class="category-count">90+ Products</p>
+                        <a href="fish.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <div>
+                    <h2 class="section-title">Bestselling Products</h2>
+                    <p class="section-subtitle">Our most popular premium pet essentials</p>
+                </div>
+                <a href="#" class="view-all">View All Products <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="products-grid">
+                <div class="product-card slide-up">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?cat,food" alt="Premium Cat Food">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
                     <div class="product-info">
-                        <h3>Premium Dog Food</h3>
-                        <p>High-quality nutrition for your canine companion</p>
-                        <button class="cta-button add-to-cart" data-product="Premium Dog Food" data-price="29.99">Add to Cart</button>
+                        <div class="product-category">Cat Food</div>
+                        <h3 class="product-title">Gourmet Cat Cuisine</h3>
+                        <p>Premium nutrition for the discerning feline, made with organic ingredients.</p>
+                        <div class="product-price">
+                            <span class="current-price">$49.95</span>
+                            <span class="old-price">$59.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
                     </div>
                 </div>
-                <div class="product">
-                    <img src="https://source.unsplash.com/random/300x200/?cat+toy" alt="Interactive Cat Toy">
+                <div class="product-card slide-up">
+                    <div class="product-badge">Popular</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?dog,toy" alt="Dog Toy">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
                     <div class="product-info">
-                        <h3>Interactive Cat Toy</h3>
-                        <p>Keep your feline friend entertained for hours</p>
-                        <button class="cta-button add-to-cart" data-product="Interactive Cat Toy" data-price="14.99">Add to Cart</button>
+                        <div class="product-category">Dog Toys</div>
+                        <h3 class="product-title">Durable Dog Chew Toy</h3>
+                        <p>Long-lasting fun for energetic pups, designed for durability and safety.</p>
+                        <div class="product-price">
+                            <span class="current-price">$24.95</span>
+                            <span class="old-price">$29.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Durable Dog Chew Toy" data-price="24.95" data-image="https://source.unsplash.com/random/300x300/?dog,toy">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
                     </div>
                 </div>
-                <div class="product">
-                    <img src="https://source.unsplash.com/random/300x200/?bird+perch" alt="Colorful Bird Perch">
+                <div class="product-card slide-up">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?bird,cage" alt="Bird Cage">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
                     <div class="product-info">
-                        <h3>Colorful Bird Perch</h3>
-                        <p>A comfortable and stylish perch for your feathered friend</p>
-                        <button class="cta-button add-to-cart" data-product="Colorful Bird Perch" data-price="19.99">Add to Cart</button>
+                        <div class="product-category">Bird Habitats</div>
+                        <h3 class="product-title">Deluxe Bird Habitat</h3>
+                        <p>Spacious and stylish home for your feathered friends with premium features.</p>
+                        <div class="product-price">
+                            <span class="current-price">$89.95</span>
+                            <span class="old-price">$109.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Deluxe Bird Habitat" data-price="89.95" data-image="https://source.unsplash.com/random/300x300/?bird,cage">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
                     </div>
                 </div>
-                <div class="product">
-                    <img src="https://source.unsplash.com/random/300x200/?aquarium" alt="Aquarium Starter Kit">
+                <div class="product-card slide-up">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?fish,aquarium" alt="Aquarium Kit">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
                     <div class="product-info">
-                        <h3>Aquarium Starter Kit</h3>
-                        <p>Everything you need to start your own underwater world</p>
-                        <button class="cta-button add-to-cart" data-product="Aquarium Starter Kit" data-price="49.99">Add to Cart</button>
+                        <div class="product-category">Aquatic Supplies</div>
+                        <h3 class="product-title">Complete Aquarium Set</h3>
+                        <p>Everything needed for a thriving underwater paradise with smart features.</p>
+                        <div class="product-price">
+                            <span class="current-price">$129.95</span>
+                            <span class="old-price">$149.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Complete Aquarium Set" data-price="129.95" data-image="https://source.unsplash.com/random/300x300/?fish,aquarium">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-badge">Sale</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?pet,bed" alt="Luxury Pet Bed">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pet Furniture</div>
+                        <h3 class="product-title">Luxury Memory Foam Pet Bed</h3>
+                        <p>Ultra-comfortable orthopedic bed with premium materials for restful sleep.</p>
+                        <div class="product-price">
+                            <span class="current-price">$79.95</span>
+                            <span class="old-price">$99.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Luxury Memory Foam Pet Bed" data-price="79.95" data-image="https://source.unsplash.com/random/300x300/?pet,bed">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-badge">Limited</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?pet,collar" alt="Designer Pet Collar">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pet Accessories</div>
+                        <h3 class="product-title">Designer Pet Collar & Leash Set</h3>
+                        <p>Handcrafted Italian leather with premium hardware for stylish walks.</p>
+                        <div class="product-price">
+                            <span class="current-price">$64.95</span>
+                            <span class="old-price">$84.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Designer Pet Collar & Leash Set" data-price="64.95" data-image="https://source.unsplash.com/random/300x300/?pet,collar">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="food-section" class="food-section">
+    <section id="testimonials" class="testimonials-section">
         <div class="container">
-            <h2>Wet, Dry & Treats</h2>
-            <div class="food-categories">
-                <div class="food-category">
-                    <h3>Wet Food</h3>
-                    <p>Explore our range of nutritious wet food options for your pets.</p>
-                    <button classnutritious wet food options for your pets.</p>
-                    <button class="cta-button">Shop Now</button>
+            <div class="text-center">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Hear from pet parents who trust PurrfectPets</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card slide-up">
+                    <div class="testimonial-content">
+                        "My cat absolutely loves the Gourmet Cat Cuisine! The quality is exceptional, and I love knowing she's getting the best nutrition. The customer service at PurrfectPets is also outstanding - they helped me find the perfect products for my picky eater."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?woman" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Cat Parent</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                 </div>
-                <div class="food-category">
-                    <h3>Dry Food</h3>
-                    <p>Discover our selection of high-quality dry food for all pet types.</p>
-                    <button class="cta-button">Shop Now</button>
-                </div>
-                <div class="food-category">
-                    <h3>Treats</h3>
-                    <p>Reward your pets with our delicious and healthy treat options.</p>
-                    <button class="cta-button">Shop Now</button>
+                <div class="testimonial-card slide-up">
+                    <div class="testimonial-content">
+                        "The Deluxe Bird Habitat is a game-changer for my parakeets. It's spacious, beautifully designed, and my birds are noticeably happier. PurrfectPets has the best selection of premium pet products I've found anywhere, and their delivery is always prompt."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?man" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Bird Enthusiast</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Join Our Pet-Loving Community</h2>
+            <p class="newsletter-description">Subscribe to receive exclusive offers, pet care tips, and be the first to know about new premium products.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
         <div class="container">
-            <p>Follow us on Social Media:</p>
-            <div class="social-links">
-                <a href="#" class="social-icon">Facebook</a>
-                <a href="#" class="social-icon">Instagram</a>
-                <a href="#" class="social-icon">Twitter</a>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo"><i class="fas fa-paw"></i> PurrfectPets</a>
+                    <p class="footer-description">Your premier destination for premium pet essentials. Since 2010, we've been catering to discerning pet owners with our curated selection of quality products.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> Our Story</a></li>
+                        <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+                        <li><a href="#products"><i class="fas fa-angle-right"></i> Shop</a></li>
+                        <li><a href="#categories"><i class="fas fa-angle-right"></i> Pet Types</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-angle-right"></i> Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Pet Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Small Pets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            123 Pet Avenue, Animal City<br>
+                            AC 12345, United States
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            (555) 123-4567<br>
+                            Mon-Fri: 9am-6pm
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            info@purrfectpets.com<br>
+                            support@purrfectpets.com
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p>&copy; 2023 Pet Shop. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2023 PurrfectPets. All Rights Reserved. Premium Pet Products.</p>
+            </div>
         </div>
     </footer>
 
-    <div class="auth-overlay" id="authOverlay">
-        <div class="auth-form">
-            <span class="close-auth" id="closeAuth">&times;</span>
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-tab="login">Login</button>
-                <button class="auth-tab" data-tab="register">Register</button>
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <div class="login-container">
+                <div class="login-tabs">
+                    <div class="login-tab active" data-tab="login">Sign In</div>
+                    <div class="login-tab" data-tab="register">Register</div>
+                </div>
+                
+                <div class="login-form active" id="loginForm">
+                    <div class="login-header">
+                        <h2>Sign In to PurrfectPets</h2>
+                        <p>Access your account to manage orders and view personalized recommendations</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="button" class="login-button" id="loginButton">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                    <div class="social-login">
+                        <p>Or sign in with</p>
+                        <div class="social-login-buttons">
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                            <button type="button" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="login-form" id="registerForm">
+                    <div class="login-header">
+                        <h2>Create an Account</h2>
+                        <p>Join PurrfectPets to shop our premium pet products and receive exclusive offers</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="registerPassword" name="password" placeholder="Create a password" required>
+                            <button type="button" class="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                            <button type="button" class="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="remember-me">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+                    </div>
+                    <button type="button" class="login-button" id="registerButton">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </div>
             </div>
-            <form id="loginForm" class="auth-content active">
-                <h2>Login</h2>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Log In</button>
-                <a href="#" class="forgot-link" id="forgotPassword">Forgot Password?</a>
-            </form>
-            <form id="registerForm" class="auth-content">
-                <h2>Register</h2>
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <input type="password" placeholder="Confirm Password" required>
-                <button type="submit">Register</button>
-            </form>
-            <form id="forgotForm" class="auth-content">
-                <h2>Forgot Password</h2>
-                <input type="email" placeholder="Email" required>
-                <button type="submit">Reset Password</button>
-                <a href="#" class="back-to-login" id="backToLogin">Back to Login</a>
-            </form>
         </div>
     </div>
 
-    <div class="cart-popup">
-        <h3>Your Cart</h3>
-        <div class="cart-items"></div>
-        <div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
-        <button class="cta-button" id="checkoutBtn">Checkout</button>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3 class="cart-title">Your Shopping Cart</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <a href="#products" class="continue-shopping">Continue Shopping</a>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <!-- Checkout Page (Hidden by default) -->
+    <section class="checkout-section" id="checkoutPage" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Checkout</h2>
+            <p class="section-subtitle">Complete your order</p>
+            
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <h3 class="checkout-title">Billing Details</h3>
+                    
+                    <div class="form-section">
+                        <h4 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="checkoutEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="form-section-title"><i class="fas fa-map-marker-alt"></i> Shipping Address</h4>
+                        <div class="form-group">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Province</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">Zip/Postal Code</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="form-section-title"><i class="fas fa-credit-card"></i> Payment Information</h4>
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" name="cardName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expDate">Expiration Date</label>
+                                <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="checkout-summary">
+                    <h3 class="checkout-title">Order Summary</h3>
+                    <div id="checkoutItems">
+                        <!-- Order items will be dynamically added here -->
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">$0.00</span>
+                    </div>
+                    <button class="place-order-btn" id="placeOrderBtn">
+                        <i class="fas fa-check-circle"></i> Place Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elements
+            const navbar = document.querySelector('.navbar');
+            const loginBtn = document.getElementById('loginBtn');
+            const loginModal = document.getElementById('loginModal');
+            const closeLoginModal = document.getElementById('closeLoginModal');
+            const loginTabs = document.querySelectorAll('.login-tab');
+            const loginForms = document.querySelectorAll('.login-form');
+            const togglePasswordBtns = document.querySelectorAll('.toggle-password');
+            const cartIcon = document.getElementById('cartIcon');
+            const cartModal = document.getElementById('cartModal');
+            const closeCart = document.getElementById('closeCart');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const checkoutPage = document.getElementById('checkoutPage');
+            const checkoutItems = document.getElementById('checkoutItems');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const loginButton = document.getElementById('loginButton');
+            const registerButton = document.getElementById('registerButton');
+            
+            // State
+            let cart = [];
+            let isLoggedIn = false;
+            let currentUser = null;
+            
+            // Check if user is logged in from localStorage
+            function checkLoginStatus() {
+                const user = localStorage.getItem('currentUser');
+                if (user) {
+                    currentUser = JSON.parse(user);
+                    isLoggedIn = true;
+                    updateUIForLoggedInUser();
+                }
+            }
+            
+            // Update UI for logged in user
+            function updateUIForLoggedInUser() {
+                if (isLoggedIn && currentUser) {
+                    loginBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${currentUser.name.split(' ')[0]}`;
+                    
+                    // Enable add to cart buttons
+                    addToCartButtons.forEach(button => {
+                        button.classList.remove('disabled');
+                        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    });
+                } else {
+                    loginBtn.innerHTML = '<i class="fas fa-user"></i> Sign In / Register';
+                    
+                    // Disable add to cart buttons
+                    addToCartButtons.forEach(button => {
+                        button.classList.add('disabled');
+                        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Sign in to Add to Cart';
+                    });
+                }
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Reveal elements on scroll
+                revealElements();
+            });
+            
+            // Reveal elements on scroll
+            function revealElements() {
+                const elements = document.querySelectorAll('.slide-up');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+            
+            // Initial reveal check
+            revealElements();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+            
+            // Login Modal Functionality
+            if (loginBtn && loginModal && closeLoginModal) {
+                loginBtn.addEventListener('click', () => {
+                    if (isLoggedIn) {
+                        // If logged in, go to checkout page
+                        document.body.scrollTop = 0; // For Safari
+                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                        document.querySelectorAll('section').forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        checkoutPage.style.display = 'block';
+                        updateCheckoutSummary();
+                    } else {
+                        // If not logged in, show login modal
+                        loginModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+                
+                closeLoginModal.addEventListener('click', () => {
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+                
+                window.addEventListener('click', (e) => {
+                    if (e.target === loginModal) {
+                        loginModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // Login Tabs
+            loginTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    loginTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Show corresponding form
+                    loginForms.forEach(form => form.classList.remove('active'));
+                    document.getElementById(`${tabId}Form`).classList.add('active');
+                });
+            });
+            
+            // Toggle password visibility
+            togglePasswordBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const passwordInput = btn.parentElement.querySelector('input');
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    btn.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+                });
+            });
+            
+            // Login functionality
+            if (loginButton) {
+                loginButton.addEventListener('click', () => {
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    
+                    if (!email || !password) {
+                        showToast('Please fill in all fields');
+                        return;
+                    }
+                    
+                    // For demo purposes, we'll just simulate a successful login
+                    currentUser = { name: 'Demo User', email: email };
+                    isLoggedIn = true;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    showToast('Login successful! Welcome back.');
+                    
+                    updateUIForLoggedInUser();
+                });
+            }
+            
+            // Register functionality
+            if (registerButton) {
+                registerButton.addEventListener('click', () => {
+                    const name = document.getElementById('registerName').value;
+                    const email = document.getElementById('registerEmail').value;
+                    const password = document.getElementById('registerPassword').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    const termsChecked = document.getElementById('terms').checked;
+                    
+                    if (!name || !email || !password || !confirmPassword) {
+                        showToast('Please fill in all fields');
+                        return;
+                    }
+                    
+                    if (password !== confirmPassword) {
+                        showToast('Passwords do not match');
+                        return;
+                    }
+                    
+                    if (!termsChecked) {
+                        showToast('Please agree to the Terms of Service');
+                        return;
+                    }
+                    
+                    // For demo purposes, we'll just simulate a successful registration
+                    currentUser = { name: name, email: email };
+                    isLoggedIn = true;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    showToast('Registration successful! Welcome to PurrfectPets.');
+                    
+                    updateUIForLoggedInUser();
+                });
+            }
+            
+            // Cart Modal Functionality
+            if (cartIcon && cartModal && closeCart) {
+                cartIcon.addEventListener('click', () => {
+                    updateCartDisplay();
+                    cartModal.classList.add('active');
+                });
+                
+                closeCart.addEventListener('click', () => {
+                    cartModal.classList.remove('active');
+                });
+                
+                window.addEventListener('click', (e) => {
+                    if (e.target === cartModal) {
+                        cartModal.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Add to cart functionality
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (!isLoggedIn) {
+                        loginModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        return;
+                    }
+                    
+                    const product = button.getAttribute('data-product');
+                    const price = parseFloat(button.getAttribute('data-price'));
+                    const image = button.getAttribute('data-image');
+                    
+                    // Check if product is already in cart
+                    const existingItem = cart.find(item => item.product === product);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ product, price, image, quantity: 1 });
+                    }
+                    
+                    updateCartCount();
+                    
+                    // Button animation
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+                    button.style.backgroundColor = 'var(--primary-dark)';
+                    
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                        button.style.backgroundColor = '';
+                    }, 1500);
+                    
+                    showToast(`${product} added to your cart!`);
+                });
+            });
+            
+            // Update cart count
+            function updateCartCount() {
+                const cartCountElement = document.querySelector('.cart-count');
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = totalItems;
+                cartCountElement.style.transform = 'scale(1.5)';
+                setTimeout(() => {
+                    cartCountElement.style.transform = 'scale(1)';
+                }, 300);
+            }
+            
+            // Update cart display
+            function updateCartDisplay() {
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                            <a href="#products" class="continue-shopping">Continue Shopping</a>
+                        </div>
+                    `;
+                    cartTotal.textContent = '$0.00';
+                    return;
+                }
+                
+                let cartHTML = '';
+                let total = 0;
+                
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    cartHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-image">
+                                <img src="${item.image}" alt="${item.product}">
+                            </div>
+                            <div class="cart-item-details">
+                                <h4 class="cart-item-title">${item.product}</h4>
+                                <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+                                <div class="cart-item-quantity">
+                                    <button class="quantity-btn decrease-quantity" data-index="${index}">-</button>
+                                    <span class="quantity-value">${item.quantity}</span>
+                                    <button class="quantity-btn increase-quantity" data-index="${index}">+</button>
+                                </div>
+                            </div>
+                            <button class="remove-item" data-index="${index}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+                
+                cartItems.innerHTML = cartHTML;
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+                
+                // Add event listeners for quantity buttons and remove buttons
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = parseInt(button.getAttribute('data-index'));
+                        cart[index].quantity += 1;
+                        updateCartDisplay();
+                        updateCartCount();
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = parseInt(button.getAttribute('data-index'));
+                        if (cart[index].quantity > 1) {
+                            cart[index].quantity -= 1;
+                        } else {
+                            cart.splice(index, 1);
+                        }
+                        updateCartDisplay();
+                        updateCartCount();
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = parseInt(button.getAttribute('data-index'));
+                        cart.splice(index, 1);
+                        updateCartDisplay();
+                        updateCartCount();
+                    });
+                });
+            }
+            
+            // Update checkout summary
+            function updateCheckoutSummary() {
+                if (cart.length === 0) {
+                    checkoutItems.innerHTML = '<p>Your cart is empty</p>';
+                    checkoutTotal.textContent = '$0.00';
+                    return;
+                }
+                
+                let checkoutHTML = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    checkoutHTML += `
+                        <div class="summary-item">
+                            <span>${item.product} x ${item.quantity}</span>
+                            <span>$${itemTotal.toFixed(2)}</span>
+                        </div>
+                    `;
+                });
+                
+                checkoutItems.innerHTML = checkoutHTML;
+                checkoutTotal.textContent = `$${total.toFixed(2)}`;
+            }
+            
+            // Checkout functionality
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', () => {
+                    if (cart.length === 0) {
+                        showToast('Your cart is empty');
+                        return;
+                    }
+                    
+                    cartModal.classList.remove('active');
+                    document.body.scrollTop = 0; // For Safari
+                    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                    document.querySelectorAll('section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    checkoutPage.style.display = 'block';
+                    updateCheckoutSummary();
+                });
+            }
+            
+            // Place order functionality
+            if (placeOrderBtn) {
+                placeOrderBtn.addEventListener('click', () => {
+                    // Simulate order placement
+                    showToast('Order placed successfully! Thank you for shopping with us.');
+                    cart = [];
+                    updateCartCount();
+                    
+                    // Redirect back to home page
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                });
+            }
+            
+            // Show toast notification
+            function showToast(message) {
+                // Create toast if it doesn't exist
+                let toast = document.querySelector('.toast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.className = 'toast';
+                    toast.style.position = 'fixed';
+                    toast.style.bottom = '20px';
+                    toast.style.right = '20px';
+                    toast.style.backgroundColor = 'white';
+                    toast.style.color = 'var(--text-color)';
+                    toast.style.padding = '15px 25px';
+                    toast.style.borderRadius = 'var(--border-radius-sm)';
+                    toast.style.boxShadow = 'var(--shadow-md)';
+                    toast.style.zIndex = '1000';
+                    toast.style.transform = 'translateY(100px)';
+                    toast.style.opacity = '0';
+                    toast.style.transition = 'all 0.3s ease';
+                    toast.style.borderLeft = '4px solid var(--primary-color)';
+                    document.body.appendChild(toast);
+                }
+                
+                // Update toast content and show
+                toast.innerHTML = `<i class="fas fa-check-circle" style="color: var(--primary-color); margin-right: 10px;"></i> ${message}`;
+                toast.style.transform = 'translateY(0)';
+                toast.style.opacity = '1';
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(100px)';
+                    toast.style.opacity = '0';
+                }, 3000);
+            }
+            
+            // Button functionality
+            const shopNowBtn = document.getElementById('shopNowBtn');
+            if (shopNowBtn) {
+                shopNowBtn.addEventListener('click', () => {
+                    document.getElementById('products').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+            
+            const learnMoreBtn = document.getElementById('learnMoreBtn');
+            if (learnMoreBtn) {
+                learnMoreBtn.addEventListener('click', () => {
+                    document.getElementById('about').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+            
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const emailInput = newsletterForm.querySelector('input[type="email"]');
+                    const email = emailInput.value;
+                    
+                    if (email) {
+                        showToast(`Thank you for subscribing with ${email}!`);
+                        emailInput.value = '';
+                    }
+                });
+            }
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    // If we're in checkout page, go back to main page first
+                    if (checkoutPage.style.display === 'block') {
+                        checkoutPage.style.display = 'none';
+                        document.querySelectorAll('section').forEach(section => {
+                            if (section.id !== 'checkoutPage') {
+                                section.style.display = 'block';
+                            }
+                        });
+                    }
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth < 992) {
+                            navLinks.style.display = 'none';
+                        }
+                        
+                        // Close cart modal if open
+                        cartModal.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Initialize
+            checkLoginStatus();
+        });
+    </script>
 </body>
 </html>
-
