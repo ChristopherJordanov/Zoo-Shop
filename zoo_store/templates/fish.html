@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaticWonders - Premium Fish Supplies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/fish.css">
+</head>
+<body>
+    <!-- Fish-themed decorative elements -->
+    <div class="fish" style="top: 20%; left: 5%;"></div>
+    <div class="fish" style="top: 40%; right: 8%;"></div>
+    <div class="coral" style="bottom: 30%; left: 10%;"></div>
+    <div class="coral" style="top: 25%; right: 15%;"></div>
+    <div class="seaweed" style="bottom: 20%; right: 10%;"></div>
+    <div class="seaweed" style="top: 35%; left: 15%;"></div>
+    
+    <!-- Bubbles -->
+    <div class="bubble" style="top: 60%; left: 20%;"></div>
+    <div class="bubble" style="top: 65%; left: 25%;"></div>
+    <div class="bubble" style="top: 70%; left: 30%;"></div>
+    <div class="bubble" style="top: 75%; left: 35%;"></div>
+    <div class="bubble" style="top: 60%; right: 20%;"></div>
+    <div class="bubble" style="top: 65%; right: 25%;"></div>
+    <div class="bubble" style="top: 70%; right: 30%;"></div>
+
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="index.html" class="logo"><i class="fas fa-fish"></i>AquaticWonders</a>
+            <div class="nav-links">
+                <a href="#food">Food</a>
+                <a href="#aquariums">Aquariums</a>
+                <a href="#filters">Filters</a>
+                <a href="#decorations">Decorations</a>
+                <a href="#treatments">Treatments</a>
+            </div>
+            <div class="nav-actions">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="nav-button" id="authBtn">Sign In / Register</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Premium Fish Products for Your Aquatic Friends</h1>
+            <p class="hero-subtitle">Discover our curated collection of high-quality fish food, aquariums, filters, and accessories designed for the discerning aquarium enthusiast.</p>
+            <a href="#food" class="cta-button">Shop Collection <i class="fas fa-water"></i></a>
+        </div>
+    </section>
+
+    <section id="food" class="category-section bg-light">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Premium Nutrition</span>
+                <h2 class="category-title">Fish Food</h2>
+                <p class="category-description">Nourish your aquatic companions with our selection of premium, nutrient-rich foods crafted from the finest ingredients.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?fish,food" alt="Premium Flake Food">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Flake Food</div>
+                        <h3 class="product-title">Premium Color Enhancing Flakes</h3>
+                        <p class="product-description">High-protein formula with natural color enhancers to bring out the vibrant colors of your tropical fish.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$19.95</span>
+                            <span class="old-price">$24.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Premium Color Enhancing Flakes" data-price="19.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?fish,pellet" alt="Sinking Pellets">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pellet Food</div>
+                        <h3 class="product-title">Slow-Sinking Pellet Mix</h3>
+                        <p class="product-description">Balanced nutrition for bottom-feeding fish with a slow-sinking formula that prevents water contamination.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$22.95</span>
+                            <span class="old-price">$27.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Slow-Sinking Pellet Mix" data-price="22.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?fish,frozen" alt="Frozen Food">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Frozen Food</div>
+                        <h3 class="product-title">Frozen Brine Shrimp Cubes</h3>
+                        <p class="product-description">Nutrient-rich frozen brine shrimp that stimulate natural feeding behaviors and provide essential proteins.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$15.95</span>
+                            <span class="old-price">$18.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Frozen Brine Shrimp Cubes" data-price="15.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-divider"></div>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Why Choose Us</span>
+                <h2 class="category-title">The AquaticWonders Experience</h2>
+                <p class="category-description">We're committed to providing the best for your aquatic companions with premium products and exceptional service.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="feature-title">Premium Quality</h3>
+                    <p class="feature-description">We source only the finest materials and ingredients for all our products, ensuring exceptional quality for your beloved fish.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="feature-title">Free Shipping</h3>
+                    <p class="feature-description">Enjoy free shipping on all orders over $50, with fast and reliable delivery right to your doorstep.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="feature-title">Satisfaction Guarantee</h3>
+                    <p class="feature-description">If you aren't completely satisfied with any product, we offer hassle-free returns and exchanges within 30 days.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-divider" style="transform: rotate(180deg);"></div>
+
+    <section id="aquariums" class="category-section bg-accent">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Home & Habitat</span>
+                <h2 class="category-title">Aquariums</h2>
+                <p class="category-description">Create the perfect underwater environment with our selection of premium aquariums designed for beauty and functionality.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium" alt="Modern Aquarium">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Complete Setups</div>
+                        <h3 class="product-title">Modern Curved Glass Aquarium</h3>
+                        <p class="product-description">Sleek 30-gallon aquarium with curved glass, built-in filtration system, and LED lighting for a stunning display.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$249.95</span>
+                            <span class="old-price">$299.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Modern Curved Glass Aquarium" data-price="249.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?nano,aquarium" alt="Nano Aquarium">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Nano Tanks</div>
+                        <h3 class="product-title">Desktop Nano Ecosystem</h3>
+                        <p class="product-description">Compact 5-gallon ecosystem perfect for small spaces with integrated filter and energy-efficient lighting.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$89.95</span>
+                            <span class="old-price">$109.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Desktop Nano Ecosystem" data-price="89.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?large,aquarium" alt="Large Aquarium">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Large Tanks</div>
+                        <h3 class="product-title">Premium 75-Gallon Aquarium</h3>
+                        <p class="product-description">Spacious 75-gallon tank with high-clarity glass, reinforced seams, and customizable cabinet stand.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$399.95</span>
+                            <span class="old-price">$459.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Premium 75-Gallon Aquarium" data-price="399.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Customer Reviews</span>
+                <h2 class="category-title">What Fish Enthusiasts Say</h2>
+                <p class="category-description">Hear from our satisfied customers about their experiences with our premium aquatic products.</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The Modern Curved Glass Aquarium transformed my living room. The built-in filtration is whisper-quiet, and the LED lighting makes my tropical fish look absolutely stunning. Best investment I've made for my hobby!</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?man" alt="Michael Stevens">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Stevens</h4>
+                            <p>Tropical Fish Enthusiast</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The Premium Color Enhancing Flakes have made such a difference for my tetras and guppies. Their colors are more vibrant than ever, and they seem much more active and healthy. I'll never use another brand again!</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?woman" alt="Emily Rodriguez">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Community Tank Owner</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">The customer service at AquaticWonders is exceptional! When I needed advice on setting up my first saltwater tank, they provided detailed guidance and recommended the perfect products for a beginner like me.</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?man,portrait" alt="David Kim">
+                        </div>
+                        <div class="author-info">
+                            <h4>David Kim</h4>
+                            <p>Saltwater Aquarium Beginner</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filters" class="category-section bg-light">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Water Quality</span>
+                <h2 class="category-title">Filters & Pumps</h2>
+                <p class="category-description">Maintain crystal clear water and optimal conditions with our range of high-performance filtration systems.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-badge">Top Rated</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,filter" alt="Canister Filter">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Canister Filters</div>
+                        <h3 class="product-title">Pro Series Canister Filter</h3>
+                        <p class="product-description">Multi-stage filtration system with adjustable flow rate, ideal for tanks up to 100 gallons with minimal noise.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$129.95</span>
+                            <span class="old-price">$159.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Pro Series Canister Filter" data-price="129.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,pump" alt="Water Pump">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Water Pumps</div>
+                        <h3 class="product-title">Quiet Flow Circulation Pump</h3>
+                        <p class="product-description">Energy-efficient pump with 360° rotation and magnetic mounting for optimal water circulation.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$49.95</span>
+                            <span class="old-price">$59.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Quiet Flow Circulation Pump" data-price="49.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,skimmer" alt="Protein Skimmer">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Protein Skimmers</div>
+                        <h3 class="product-title">Marine Pro Protein Skimmer</h3>
+                        <p class="product-description">High-efficiency protein skimmer for saltwater tanks with needle wheel impeller for optimal waste removal.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$179.95</span>
+                            <span class="old-price">$199.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Marine Pro Protein Skimmer" data-price="179.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-container">
+                <h2 class="newsletter-title">Join Our Aquatic Enthusiasts Club</h2>
+                <p class="newsletter-description">Subscribe to receive updates on new arrivals, special offers, and exclusive discounts for your aquatic friends.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="decorations" class="category-section bg-accent">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Aquascaping</span>
+                <h2 class="category-title">Decorations</h2>
+                <p class="category-description">Transform your aquarium into a stunning underwater landscape with our selection of natural and artificial decorations.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-badge">Best Value</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,rock" alt="Aquarium Rocks">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Natural Decor</div>
+                        <h3 class="product-title">Dragon Stone Rock Set</h3>
+                        <p class="product-description">Natural aquascaping stones with unique textures and formations, perfect for creating dramatic landscapes.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$39.95</span>
+                            <span class="old-price">$49.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Dragon Stone Rock Set" data-price="39.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,plant" alt="Aquarium Plants">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Live Plants</div>
+                        <h3 class="product-title">Beginner Plant Collection</h3>
+                        <p class="product-description">Set of 10 easy-care live aquarium plants that provide natural filtration and hiding spots for fish.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$34.95</span>
+                            <span class="old-price">$44.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Beginner Plant Collection" data-price="34.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,ornament" alt="Aquarium Ornament">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Ornaments</div>
+                        <h3 class="product-title">Ancient Temple Ruins</h3>
+                        <p class="product-description">Detailed resin ornament with multiple hiding spots and swim-throughs for fish to explore and play.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$29.95</span>
+                            <span class="old-price">$39.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Ancient Temple Ruins" data-price="29.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="treatments" class="category-section bg-light">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Water Care</span>
+                <h2 class="category-title">Water Treatments</h2>
+                <p class="category-description">Keep your aquarium water balanced and healthy with our range of specialized water treatments and conditioners.</p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,water" alt="Water Conditioner">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Conditioners</div>
+                        <h3 class="product-title">Complete Water Conditioner</h3>
+                        <p class="product-description">All-in-one formula that removes chlorine, neutralizes heavy metals, and adds essential electrolytes.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$19.95</span>
+                            <span class="old-price">$24.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Complete Water Conditioner" data-price="19.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,test" alt="Water Test Kit">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Test Kits</div>
+                        <h3 class="product-title">Master Test Kit</h3>
+                        <p class="product-description">Comprehensive testing kit for pH, ammonia, nitrite, and nitrate with easy-to-read color charts.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$34.95</span>
+                            <span class="old-price">$39.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Master Test Kit" data-price="34.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x800/?aquarium,bacteria" alt="Beneficial Bacteria">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Biological Supplements</div>
+                        <h3 class="product-title">Beneficial Bacteria Starter</h3>
+                        <p class="product-description">Live bacteria culture that instantly cycles new tanks and maintains biological filtration in established aquariums.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$24.95</span>
+                            <span class="old-price">$29.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Beneficial Bacteria Starter" data-price="24.95">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" data-tab="login">Sign In</div>
+                    <div class="auth-tab" data-tab="register">Register</div>
+                </div>
+                
+                <div class="auth-form active" id="loginForm">
+                    <div class="auth-header">
+                        <h2>Sign In to AquaticWonders</h2>
+                        <p>Access your account to manage orders and view personalized recommendations</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="button" class="auth-button" id="loginButton">Sign In</button>
+                    <div class="social-login">
+                        <p>Or sign in with</p>
+                        <div class="social-login-buttons">
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                            <button type="button" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="auth-form" id="registerForm">
+                    <div class="auth-header">
+                        <h2>Create an Account</h2>
+                        <p>Join AquaticWonders to shop our premium fish products and receive exclusive offers</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="registerPassword" name="password" placeholder="Create a password" required>
+                            <button type="button" class="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                            <button type="button" class="toggle-password">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="remember-me">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+                    </div>
+                    <button type="button" class="auth-button" id="registerButton">Create Account</button>
+                    <div class="social-login">
+                        <p>Or register with</p>
+                        <div class="social-login-buttons">
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                            <button type="button" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo"><i class="fas fa-fish"></i> AquaticWonders</a>
+                    <p class="footer-description">Your premier destination for premium aquatic essentials. Since 2010, we've been catering to discerning fish enthusiasts with our curated selection of quality products.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        <li><a href="#food"><i class="fas fa-angle-right"></i> Fish Food</a></li>
+                        <li><a href="#aquariums"><i class="fas fa-angle-right"></i> Aquariums</a></li>
+                        <li><a href="#filters"><i class="fas fa-angle-right"></i> Filters & Pumps</a></li>
+                        <li><a href="#decorations"><i class="fas fa-angle-right"></i> Decorations</a></li>
+                        <li><a href="#treatments"><i class="fas fa-angle-right"></i> Water Treatments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Pet Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            123 Ocean Drive, Coral Bay<br>
+                            CB 12345, United States
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            (555) 123-4567<br>
+                            Mon-Fri: 9am-6pm
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            info@aquaticwonders.com<br>
+                            support@aquaticwonders.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 AquaticWonders. All Rights Reserved. Premium Aquatic Products.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../static/js/fish.js"></script>
+</body>
+</html>

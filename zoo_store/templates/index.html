@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PurrfectPets - Premium Pet Supplies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="#" class="logo"><i class="fas fa-paw"></i>PurrfectPets</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#categories">Pet Types</a>
+                <a href="#products">Products</a>
+                <a href="#testimonials">Testimonials</a>
+            </div>
+            <div class="nav-actions">
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="nav-button">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                {% else %}
+                    <button class="nav-button" id="loginBtn">
+                        <i class="fas fa-user"></i> Sign In / Register
+                    </button>
+                {% endif %}
+            </div>
+            
+            
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Premium Care for Your Beloved Companions</h1>
+                <p class="hero-subtitle">Discover our curated collection of luxury pet products, designed to enhance the wellbeing and happiness of your furry, feathered, and finned friends.</p>
+                <div>
+                    <button class="cta-button" id="shopNowBtn">Shop Collection <i class="fas fa-arrow-right"></i></button>
+                    <button class="secondary-button" id="learnMoreBtn">Learn More <i class="fas fa-info-circle"></i></button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="../static/images/pets.jpg" alt="Luxury Pet Products">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image slide-up">
+                    <img src="https://source.unsplash.com/random/600x400/?pet,boutique" alt="PurrfectPets Boutique">
+                </div>
+                <div class="about-text slide-up">
+                    <h2 class="section-title">Our Boutique Story</h2>
+                    <p>Welcome to PurrfectPets, your premier destination for premium pet care since 2010. We are passionate about providing the finest products and services for all your beloved animal companions.</p>
+                    <p>Our team of dedicated pet enthusiasts ensures that every furry, feathered, or finned friend receives the utmost care and attention they deserve. We meticulously curate our selection to offer only the most exquisite items for cats, dogs, birds, and fish.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Premium Quality</h4>
+                                <p>Only the finest products for your pets</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Pet-Centered Approach</h4>
+                                <p>Your pet's happiness is our priority</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Fast Delivery</h4>
+                                <p>Quick shipping to your doorstep</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Expert Advice</h4>
+                                <p>Personalized recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">The PurrfectPets Experience</h2>
+                <p class="section-subtitle">Discover why pet owners trust us for all their companion's needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="service-title">Exclusive Selection</h3>
+                    <p class="service-description">Discover unique, luxury items you won't find elsewhere, specially curated for discerning pet parents who want only the best for their companions.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="service-title">Premium Delivery</h3>
+                    <p class="service-description">Experience our white-glove delivery service, with most orders shipped within 24 hours and carefully packaged to ensure perfect condition.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="service-title">VIP Customer Care</h3>
+                    <p class="service-description">Enjoy dedicated support and exclusive perks for our valued clients and their animal companions, including personalized shopping assistance.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3 class="service-title">Pet Spa Services</h3>
+                    <p class="service-description">Treat your pet to our luxurious grooming and spa treatments, designed to pamper and rejuvenate your beloved companions.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="service-title">Satisfaction Guarantee</h3>
+                    <p class="service-description">If your pet isn't completely satisfied with any product, we offer hassle-free returns and exchanges because your pet's happiness matters most.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="service-title">Expert Consultation</h3>
+                    <p class="service-description">Our knowledgeable staff offers personalized recommendations for all your pet care needs, from nutrition to accessories and wellness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Our Animal Friends</h2>
+                <p class="section-subtitle">Explore our specialized collections for every type of pet</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card slide-up cat-theme">
+                    <div class="category-image">
+                        <img src="images/cat.jpg" alt="Feline Friends">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Cats</h3>
+                        <p class="category-count">120+ Products</p>
+                        <a href="cats.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up dog-theme">
+                    <div class="category-image">
+                        <img src="images/dog.avif" alt="Canine Companions">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Dogs</h3>
+                        <p class="category-count">150+ Products</p>
+                        <a href="dogs.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up bird-theme">
+                    <div class="category-image">
+                        <img src="images/parrot.jpg" alt="Feathered Friends">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Birds</h3>
+                        <p class="category-count">80+ Products</p>
+                        <a href="birds.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up fish-theme">
+                    <div class="category-image">
+                        <img src="images/fish.webp" alt="Aquatic Wonders">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Fish</h3>
+                        <p class="category-count">90+ Products</p>
+                        <a href="fish.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <div>
+                    <h2 class="section-title">Bestselling Products</h2>
+                    <p class="section-subtitle">Our most popular premium pet essentials</p>
+                </div>
+                <a href="#" class="view-all">View All Products <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="products-grid">
+                <div class="product-card slide-up">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?cat,food" alt="Premium Cat Food">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Cat Food</div>
+                        <h3 class="product-title">Gourmet Cat Cuisine</h3>
+                        <p>Premium nutrition for the discerning feline, made with organic ingredients.</p>
+                        <div class="product-price">
+                            <span class="current-price">$49.95</span>
+                            <span class="old-price">$59.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-badge">Popular</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?dog,toy" alt="Dog Toy">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Dog Toys</div>
+                        <h3 class="product-title">Durable Dog Chew Toy</h3>
+                        <p>Long-lasting fun for energetic pups, designed for durability and safety.</p>
+                        <div class="product-price">
+                            <span class="current-price">$24.95</span>
+                            <span class="old-price">$29.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Durable Dog Chew Toy" data-price="24.95" data-image="https://source.unsplash.com/random/300x300/?dog,toy">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-badge">New</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?bird,cage" alt="Bird Cage">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Bird Habitats</div>
+                        <h3 class="product-title">Deluxe Bird Habitat</h3>
+                        <p>Spacious and stylish home for your feathered friends with premium features.</p>
+                        <div class="product-price">
+                            <span class="current-price">$89.95</span>
+                            <span class="old-price">$109.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Deluxe Bird Habitat" data-price="89.95" data-image="https://source.unsplash.com/random/300x300/?bird,cage">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?fish,aquarium" alt="Aquarium Kit">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Aquatic Supplies</div>
+                        <h3 class="product-title">Complete Aquarium Set</h3>
+                        <p>Everything needed for a thriving underwater paradise with smart features.</p>
+                        <div class="product-price">
+                            <span class="current-price">$129.95</span>
+                            <span class="old-price">$149.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Complete Aquarium Set" data-price="129.95" data-image="https://source.unsplash.com/random/300x300/?fish,aquarium">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-badge">Sale</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?pet,bed" alt="Luxury Pet Bed">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pet Furniture</div>
+                        <h3 class="product-title">Luxury Memory Foam Pet Bed</h3>
+                        <p>Ultra-comfortable orthopedic bed with premium materials for restful sleep.</p>
+                        <div class="product-price">
+                            <span class="current-price">$79.95</span>
+                            <span class="old-price">$99.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Luxury Memory Foam Pet Bed" data-price="79.95" data-image="https://source.unsplash.com/random/300x300/?pet,bed">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card slide-up">
+                    <div class="product-badge">Limited</div>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/300x300/?pet,collar" alt="Designer Pet Collar">
+                        <div class="product-actions">
+                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Pet Accessories</div>
+                        <h3 class="product-title">Designer Pet Collar & Leash Set</h3>
+                        <p>Handcrafted Italian leather with premium hardware for stylish walks.</p>
+                        <div class="product-price">
+                            <span class="current-price">$64.95</span>
+                            <span class="old-price">$84.95</span>
+                        </div>
+                        <button class="add-to-cart-btn disabled" data-product="Designer Pet Collar & Leash Set" data-price="64.95" data-image="https://source.unsplash.com/random/300x300/?pet,collar">
+                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Hear from pet parents who trust PurrfectPets</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card slide-up">
+                    <div class="testimonial-content">
+                        "My cat absolutely loves the Gourmet Cat Cuisine! The quality is exceptional, and I love knowing she's getting the best nutrition. The customer service at PurrfectPets is also outstanding - they helped me find the perfect products for my picky eater."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?woman" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Cat Parent</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card slide-up">
+                    <div class="testimonial-content">
+                        "The Deluxe Bird Habitat is a game-changer for my parakeets. It's spacious, beautifully designed, and my birds are noticeably happier. PurrfectPets has the best selection of premium pet products I've found anywhere, and their delivery is always prompt."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://source.unsplash.com/random/100x100/?man" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Bird Enthusiast</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="text-center contact-form">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Have a question or need assistance? <a href="contact.html" class="contact-form-p">Contact us</a> today</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Join Our Pet-Loving Community</h2>
+            <p class="newsletter-description">Subscribe to receive exclusive offers, pet care tips, and be the first to know about new premium products.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo"><i class="fas fa-paw"></i> PurrfectPets</a>
+                    <p class="footer-description">Your premier destination for premium pet essentials. Since 2010, we've been catering to discerning pet owners with our curated selection of quality products.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> Our Story</a></li>
+                        <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+                        <li><a href="#products"><i class="fas fa-angle-right"></i> Shop</a></li>
+                        <li><a href="#categories"><i class="fas fa-angle-right"></i> Pet Types</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-angle-right"></i> Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Pet Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Small Pets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            123 Pet Avenue, Animal City<br>
+                            AC 12345, United States
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            (555) 123-4567<br>
+                            Mon-Fri: 9am-6pm
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            info@purrfectpets.com<br>
+                            support@purrfectpets.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 PurrfectPets. All Rights Reserved. Premium Pet Products.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <div class="login-container">
+                <div class="login-tabs">
+                    <div class="login-tab active" data-tab="login">Sign In</div>
+                    <div class="login-tab" data-tab="register">Register</div>
+                </div>
+                
+                <div class="login-form active" id="loginForm">
+                    <div class="login-header">
+                        <h2>Sign In to PurrfectPets</h2>
+                        <p>Access your account to manage orders and view personalized recommendations</p>
+                    </div>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="login-button">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                    </form>
+                    
+                </div>
+                
+                <div class="login-form" id="registerForm">
+                    <div class="login-header">
+                        <h2>Create an Account</h2>
+                        <p>Join PurrfectPets to shop our premium pet products and receive exclusive offers</p>
+                    </div>
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" id="registerName" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email Address</label>
+                            <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" name="password" placeholder="Create a password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="login-button">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3 class="cart-title">Your Shopping Cart</h3>
+            <span class="close-cart" id="closeCart">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <a href="#products" class="continue-shopping">Continue Shopping</a>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Page (Hidden by default) -->
+    <section class="checkout-section" id="checkoutPage" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">Checkout</h2>
+            <p class="section-subtitle">Complete your order</p>
+            
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <h3 class="checkout-title">Billing Details</h3>
+                    
+                    <div class="form-section">
+                        <h4 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="checkoutEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="form-section-title"><i class="fas fa-map-marker-alt"></i> Shipping Address</h4>
+                        <div class="form-group">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State/Province</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">Zip/Postal Code</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h4 class="form-section-title"><i class="fas fa-credit-card"></i> Payment Information</h4>
+                        <div class="form-group">
+                            <label for="cardName">Name on Card</label>
+                            <input type="text" id="cardName" name="cardName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expDate">Expiration Date</label>
+                                <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="checkout-summary">
+                    <h3 class="checkout-title">Order Summary</h3>
+                    <div id="checkoutItems">
+                        <!-- Order items will be dynamically added here -->
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">$0.00</span>
+                    </div>
+                    <button class="place-order-btn" id="placeOrderBtn">
+                        <i class="fas fa-check-circle"></i> Place Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../static/js/home.js"></script>
+</body>
+</html>
