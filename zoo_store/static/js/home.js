@@ -530,3 +530,65 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     checkLoginStatus();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener for Add to Cart buttons
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            if (this.classList.contains('disabled')) {
+                // If button is disabled, show the login modal
+                showLoginModal();
+            } else {
+                // Otherwise, handle adding to cart normally
+                let productId = this.dataset.productId;
+
+                fetch("/add_to_cart/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    body: "product_id=" + productId
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        window.location.href = "/login/?next=" + window.location.pathname;
+                    } else {
+                        alert(data.message);
+                    }
+                });
+            }
+        });
+    });
+
+    // Function to show the login modal
+    function showLoginModal() {
+        const loginModal = document.getElementById("loginModal");
+        loginModal.style.display = "block";
+    }
+
+    // Close the modal when the close button is clicked
+    const closeModalBtn = document.getElementById("closeLoginModal");
+    closeModalBtn.addEventListener("click", function () {
+        const loginModal = document.getElementById("loginModal");
+        loginModal.style.display = "none";
+    });
+
+    // Function to get the CSRF token from cookies
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            let cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+

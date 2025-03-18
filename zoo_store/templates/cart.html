@@ -1,0 +1,8 @@
+<h2>Shopping Cart</h2>
+<ul>
+    {% for product_id, quantity in cart.items %}
+        <li>Product ID: {{ product_id }} - Quantity: {{ quantity }}</li>
+    {% empty %}
+        <li>Your cart is empty!</li>
+    {% endfor %}
+</ul>
