@@ -14,17 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
-from zoo_store import views  # Увери се, че import-ваш views правилно
+from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.index, name="index"),  # Главна страница
-    path("register/", views.register, name="register"),  # Регистрация
-    path("login/", views.login_view, name="login"),  # Логин
-    path("logout/", views.logout_view, name="logout"),  # Изход
+    path("", include("zoo_store.urls")),  # Включва URL-ите от zoo_store
 ]
+
 
 
 

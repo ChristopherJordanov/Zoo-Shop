@@ -176,7 +176,7 @@
                     <div class="category-overlay">
                         <h3 class="category-title">Cats</h3>
                         <p class="category-count">120+ Products</p>
-                        <a href="cats.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        <a href="{% url 'cats' %}" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="category-card slide-up dog-theme">
@@ -186,7 +186,7 @@
                     <div class="category-overlay">
                         <h3 class="category-title">Dogs</h3>
                         <p class="category-count">150+ Products</p>
-                        <a href="dogs.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        <a href="{% url 'dogs' %}" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="category-card slide-up bird-theme">
@@ -196,7 +196,7 @@
                     <div class="category-overlay">
                         <h3 class="category-title">Birds</h3>
                         <p class="category-count">80+ Products</p>
-                        <a href="birds.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        <a href="{% url 'birds' %}" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="category-card slide-up fish-theme">
@@ -206,7 +206,7 @@
                     <div class="category-overlay">
                         <h3 class="category-title">Fish</h3>
                         <p class="category-count">90+ Products</p>
-                        <a href="fish.html" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
+                        <a href="{% url 'fish' %}" class="category-link">Explore Collection <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -233,6 +233,7 @@
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+
                     <div class="product-info">
                         <div class="product-category">Cat Food</div>
                         <h3 class="product-title">Gourmet Cat Cuisine</h3>
@@ -241,10 +242,14 @@
                             <span class="current-price">$49.95</span>
                             <span class="old-price">$59.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        {% else %}
+                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
+                        {% endif %}
                     </div>
+
+
                 </div>
                 <div class="product-card slide-up">
                     <div class="product-badge">Popular</div>
@@ -264,9 +269,11 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Durable Dog Chew Toy" data-price="24.95" data-image="https://source.unsplash.com/random/300x300/?dog,toy">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        {% else %}
+                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -287,9 +294,11 @@
                             <span class="current-price">$89.95</span>
                             <span class="old-price">$109.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Deluxe Bird Habitat" data-price="89.95" data-image="https://source.unsplash.com/random/300x300/?bird,cage">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        {% else %}
+                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -309,9 +318,11 @@
                             <span class="current-price">$129.95</span>
                             <span class="old-price">$149.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Complete Aquarium Set" data-price="129.95" data-image="https://source.unsplash.com/random/300x300/?fish,aquarium">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        {% else %}
+                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -332,9 +343,11 @@
                             <span class="current-price">$79.95</span>
                             <span class="old-price">$99.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Luxury Memory Foam Pet Bed" data-price="79.95" data-image="https://source.unsplash.com/random/300x300/?pet,bed">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        {% else %}
+                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -355,9 +368,11 @@
                             <span class="current-price">$64.95</span>
                             <span class="old-price">$84.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Designer Pet Collar & Leash Set" data-price="64.95" data-image="https://source.unsplash.com/random/300x300/?pet,collar">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        {% if user.is_authenticated %}
+                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        {% else %}
+                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -419,7 +434,7 @@
         <div class="container">
             <div class="text-center contact-form">
                 <h2 class="section-title">Get in Touch</h2>
-                <p class="section-subtitle">Have a question or need assistance? <a href="contact.html" class="contact-form-p">Contact us</a> today</p>
+                <p class="section-subtitle">Have a question or need assistance? <a href="{% url 'contact' %}" class="contact-form-p">Contact us</a> today</p>
             </div>
         </div>
     </section>
