@@ -4,3 +4,4 @@
     <a href="{% url 'login' %}">Sign In</a>
     <a href="{% url 'register' %}">Register</a>
 {% endif %}
+<body data-authenticated="{{ request.user.is_authenticated|yesno:'true,false' }}">

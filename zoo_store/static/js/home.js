@@ -532,41 +532,49 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Add event listener for Add to Cart buttons
-    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            if (this.classList.contains('disabled')) {
-                // If button is disabled, show the login modal
-                showLoginModal();
-            } else {
-                // Otherwise, handle adding to cart normally
-                let productId = this.dataset.productId;
+    let isAuthenticated = document.body.dataset.authenticated === "true";
 
-                fetch("/add_to_cart/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                        "X-CSRFToken": getCookie("csrftoken")
-                    },
-                    body: "product_id=" + productId
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        window.location.href = "/login/?next=" + window.location.pathname;
-                    } else {
-                        alert(data.message);
-                    }
-                });
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+        if (isAuthenticated) {
+            button.classList.remove("disabled");
+            button.textContent = "Add to Cart"; // Променя текста обратно
+        }
+
+        button.addEventListener("click", function () {
+            if (!isAuthenticated) {
+                showLoginModal();
+                return;
             }
+
+            let productId = this.dataset.productId;
+            fetch("/add_to_cart/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                body: "product_id=" + productId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showLoginModal();
+                } else {
+                    alert("Item added to cart!");
+                }
+            });
         });
     });
 
-    // Function to show the login modal
     function showLoginModal() {
-        const loginModal = document.getElementById("loginModal");
+        let loginModal = document.getElementById("loginModal");
         loginModal.style.display = "block";
     }
+
+    document.getElementById("closeLoginModal").addEventListener("click", function () {
+        document.getElementById("loginModal").style.display = "none";
+    });
+});
 
     // Close the modal when the close button is clicked
     const closeModalBtn = document.getElementById("closeLoginModal");
