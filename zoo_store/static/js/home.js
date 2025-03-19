@@ -533,69 +533,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener("DOMContentLoaded", function () {
     let isAuthenticated = document.body.dataset.authenticated === "true";
+
     document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-        if (!isAuthenticated) {
-            console.log("Showing login modal because user is not logged in.");
-            showLoginModal();
-            return;
+        if (isAuthenticated) {
+            button.classList.remove("disabled");
+            button.textContent = "Add to Cart"; // Променя текста обратно
         }
 
-        let productId = button.dataset.productId; // Fixed 'this' to 'button'
-        console.log("Adding product to cart, ID:", productId);
-
-        fetch("/add_to_cart/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "X-CSRFToken": getCookie("csrftoken")
-            },
-            body: "product_id=" + productId
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Response from server:", data);
-            if (data.error) {
-                console.log("Error detected:", data.error);
+        button.addEventListener("click", function () {
+            if (!isAuthenticated) {
                 showLoginModal();
-            } else {
-                alert("Item added to cart!");
-                document.getElementById("loginModal").style.display = "none";
+                return;
             }
-        })
-        .catch(error => console.error("Fetch error:", error));
+
+            let productId = this.dataset.productId;
+            fetch("/add_to_cart/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                body: "product_id=" + productId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showLoginModal();
+                } else {
+                    alert("Item added to cart!");
+                }
+            });
+        });
     });
 
     function showLoginModal() {
         let loginModal = document.getElementById("loginModal");
         loginModal.style.display = "block";
-        console.log("Login modal opened.");
     }
 
     document.getElementById("closeLoginModal").addEventListener("click", function () {
         document.getElementById("loginModal").style.display = "none";
-        console.log("Login modal closed.");
     });
 });
 
-// Close the modal when the close button is clicked
-const closeModalBtn = document.getElementById("closeLoginModal");
-closeModalBtn.addEventListener("click", function () {
-    const loginModal = document.getElementById("loginModal");
-    loginModal.style.display = "none";
-});
+    // Close the modal when the close button is clicked
+    const closeModalBtn = document.getElementById("closeLoginModal");
+    closeModalBtn.addEventListener("click", function () {
+        const loginModal = document.getElementById("loginModal");
+        loginModal.style.display = "none";
+    });
 
-// Function to get the CSRF token from cookies
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-        let cookies = document.cookie.split(";");
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + "=")) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+    // Function to get the CSRF token from cookies
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            let cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
         }
+        return cookieValue;
     }
-    return cookieValue;
-}
+
+
