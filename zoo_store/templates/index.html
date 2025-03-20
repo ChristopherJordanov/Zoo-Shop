@@ -18,22 +18,13 @@
                 <a href="#categories">Pet Types</a>
                 <a href="#products">Products</a>
                 <a href="#testimonials">Testimonials</a>
+                <a href="#contact-us">Contact Us</a>
             </div>
             <div class="nav-actions">
                 <div class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
-            
-                {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="nav-button">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                {% else %}
-                    <button class="nav-button" id="loginBtn">
-                        <i class="fas fa-user"></i> Sign In / Register
-                    </button>
-                {% endif %}
             </div>
             
             
@@ -242,11 +233,7 @@
                             <span class="current-price">$49.95</span>
                             <span class="old-price">$59.95</span>
                         </div>
-                        {% if user.is_authenticated %}
                             <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
-                        {% else %}
-                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
-                        {% endif %}
                     </div>
 
 
@@ -269,11 +256,7 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        {% if user.is_authenticated %}
-                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
-                        {% else %}
-                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
-                        {% endif %}
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -294,11 +277,7 @@
                             <span class="current-price">$89.95</span>
                             <span class="old-price">$109.95</span>
                         </div>
-                        {% if user.is_authenticated %}
-                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
-                        {% else %}
-                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
-                        {% endif %}
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -318,11 +297,7 @@
                             <span class="current-price">$129.95</span>
                             <span class="old-price">$149.95</span>
                         </div>
-                        {% if user.is_authenticated %}
-                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
-                        {% else %}
-                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
-                        {% endif %}
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -343,11 +318,7 @@
                             <span class="current-price">$79.95</span>
                             <span class="old-price">$99.95</span>
                         </div>
-                        {% if user.is_authenticated %}
-                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
-                        {% else %}
-                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
-                        {% endif %}
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -368,11 +339,7 @@
                             <span class="current-price">$64.95</span>
                             <span class="old-price">$84.95</span>
                         </div>
-                        {% if user.is_authenticated %}
-                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
-                        {% else %}
-                            <button class="add-to-cart-btn disabled" id="loginRequiredBtn">Sign in to add to cart</button>
-                        {% endif %}
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -431,7 +398,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div id="contact-us" class="container">
             <div class="text-center contact-form">
                 <h2 class="section-title">Get in Touch</h2>
                 <p class="section-subtitle">Have a question or need assistance? <a href="{% url 'contact' %}" class="contact-form-p">Contact us</a> today</p>
@@ -519,71 +486,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Login Modal -->
-    <div class="login-modal" id="loginModal">
-        <div class="login-modal-content">
-            <span class="close-modal" id="closeLoginModal">&times;</span>
-            <div class="login-container">
-                <div class="login-tabs">
-                    <div class="login-tab active" data-tab="login">Sign In</div>
-                    <div class="login-tab" data-tab="register">Register</div>
-                </div>
-                
-                <div class="login-form active" id="loginForm">
-                    <div class="login-header">
-                        <h2>Sign In to PurrfectPets</h2>
-                        <p>Access your account to manage orders and view personalized recommendations</p>
-                    </div>
-                    <form method="post" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        </div>
-                        <button type="submit" class="login-button">
-                            <i class="fas fa-sign-in-alt"></i> Sign In
-                        </button>
-                    </form>
-                    
-                </div>
-                
-                <div class="login-form" id="registerForm">
-                    <div class="login-header">
-                        <h2>Create an Account</h2>
-                        <p>Join PurrfectPets to shop our premium pet products and receive exclusive offers</p>
-                    </div>
-                    <form method="post" action="{% url 'register' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="registerName">Full Name</label>
-                            <input type="text" id="registerName" name="name" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerEmail">Email Address</label>
-                            <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">Password</label>
-                            <input type="password" id="registerPassword" name="password" placeholder="Create a password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-                        </div>
-                        <button type="submit" class="login-button">
-                            <i class="fas fa-user-plus"></i> Create Account
-                        </button>
-                    </form>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">

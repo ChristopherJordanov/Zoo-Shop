@@ -495,11 +495,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+    
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            // If we're in checkout page, go back to main page first
+            if (targetId === '#' || !document.querySelector(targetId)) return;
+    
+            // Ако сме в checkout страницата, връщаме се на основната страница
             if (checkoutPage.style.display === 'block') {
                 checkoutPage.style.display = 'none';
                 document.querySelectorAll('section').forEach(section => {
@@ -508,20 +508,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
-            
+    
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
+                targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    
+                // Ако линкът е към Contact Us, можем да добавим специална логика
+                if (targetId === "#contact-us") {
+                    console.log("Scrolled to Contact Us section in center!");
+                }
+    
+                // Затваряне на мобилното меню, ако е отворено
                 if (window.innerWidth < 992) {
                     navLinks.style.display = 'none';
                 }
-                
-                // Close cart modal if open
+    
+                // Затваряне на cart modal, ако е отворен
                 cartModal.classList.remove('active');
             }
         });
@@ -532,49 +534,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let isAuthenticated = document.body.dataset.authenticated === "true";
-
     document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-        if (isAuthenticated) {
-            button.classList.remove("disabled");
-            button.textContent = "Add to Cart"; // Променя текста обратно
-        }
-
         button.addEventListener("click", function () {
-            if (!isAuthenticated) {
-                showLoginModal();
-                return;
-            }
-
             let productId = this.dataset.productId;
-            fetch("/add_to_cart/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "X-CSRFToken": getCookie("csrftoken")
-                },
-                body: "product_id=" + productId
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    showLoginModal();
-                } else {
-                    alert("Item added to cart!");
-                }
-            });
+            addToCart(productId);
         });
     });
-
-    function showLoginModal() {
-        let loginModal = document.getElementById("loginModal");
-        loginModal.style.display = "block";
-    }
-
-    document.getElementById("closeLoginModal").addEventListener("click", function () {
-        document.getElementById("loginModal").style.display = "none";
-    });
 });
+
 
     // Close the modal when the close button is clicked
     const closeModalBtn = document.getElementById("closeLoginModal");
@@ -598,5 +565,168 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return cookieValue;
     }
+
+ddocument.addEventListener("DOMContentLoaded", () => {
+    // Smooth scrolling for navigation links
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", function (e) {
+            if (this.getAttribute("href").startsWith("#")) {
+                e.preventDefault();
+                const targetId = this.getAttribute("href").substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, // Offset for navbar height
+                        behavior: "smooth"
+                    });
+                }
+            }
+        });
+    });
+
+    // Remove login/register elements if they still exist
+    const loginModal = document.getElementById("loginModal");
+    if (loginModal) loginModal.remove();
+    const loginBtn = document.getElementById("loginBtn");
+    if (loginBtn) loginBtn.remove();
+    
+    // Fix cart buttons if they were disabled
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+        button.classList.remove("disabled");
+        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+    });
+
+    // Fix scrolling issue when cart modal is opened
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCart");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    
+    if (cartModal) {
+        cartModal.addEventListener("click", (e) => {
+            if (e.target === cartModal || e.target === closeCartBtn) {
+                cartModal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        });
+    }
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+            cartModal.style.display = "none";
+            document.getElementById("checkoutPage").style.display = "block";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cartModal = document.getElementById("cartModal");
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartTotalElement = document.getElementById("cartTotal");
+    const cartIcon = document.getElementById("cartIcon");
+    const closeCartBtn = document.getElementById("closeCart");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    updateCartUI();
+
+    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+        button.addEventListener("click", function (e) {
+            let product = {
+                id: this.dataset.productId,
+                name: this.dataset.productName,
+                price: parseFloat(this.dataset.productPrice),
+                image: this.dataset.productImage,
+                quantity: 1
+            };
+            addToCart(product, e);
+        });
+    });
+
+    function addToCart(product, event) {
+        let existingProduct = cart.find(item => item.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push(product);
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartUI();
+        animateAddToCart(event);
+    }
+
+    function updateCartUI() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <a href="#products" class="continue-shopping">Continue Shopping</a>
+                </div>
+            `;
+        } else {
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <p class="cart-item-title">${item.name}</p>
+                            <p class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</p>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                                <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        cartTotalElement.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function animateAddToCart(event) {
+        let productImage = event.target.closest(".product").querySelector("img");
+        let flyingImage = productImage.cloneNode(true);
+        flyingImage.style.position = "fixed";
+        flyingImage.style.width = "50px";
+        flyingImage.style.zIndex = "1000";
+        flyingImage.style.transition = "all 0.7s ease-in-out";
+        let rect = productImage.getBoundingClientRect();
+        flyingImage.style.top = rect.top + "px";
+        flyingImage.style.left = rect.left + "px";
+        document.body.appendChild(flyingImage);
+
+        setTimeout(() => {
+            let cartRect = cartIcon.getBoundingClientRect();
+            flyingImage.style.top = cartRect.top + "px";
+            flyingImage.style.left = cartRect.left + "px";
+            flyingImage.style.opacity = "0";
+        }, 100);
+
+        setTimeout(() => {
+            document.body.removeChild(flyingImage);
+        }, 800);
+    }
+
+    cartModal.addEventListener("click", (e) => {
+        if (e.target === cartModal || e.target === closeCartBtn) {
+            cartModal.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+    });
+
+    cartIcon.addEventListener("click", () => {
+        cartModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    });
+});
+
 
 

@@ -11,63 +11,22 @@ def index(request):
     return render(request, "index.html")
 
 
-def register(request):
+from django.shortcuts import render
+# from .models import Order  # Ще добавим тази таблица после
+
+def checkout(request):
     if request.method == "POST":
-        full_name = request.POST["name"]
+        name = request.POST["name"]
         email = request.POST["email"]
-        password = request.POST["password"]
-        confirm_password = request.POST["confirmPassword"]
+        address = request.POST["address"]
 
-        if password == confirm_password:
-            if User.objects.filter(email=email).exists():
-                messages.error(request, "Email already registered!")
-            else:
-                # Разделяме full_name на първо и фамилно име
-                name_parts = full_name.split()
-                first_name = name_parts[0] if len(name_parts) > 0 else ""
-                last_name = " ".join(name_parts[1:]) if len(name_parts) > 1 else ""
+        # order = Order(name=name, email=email, address=address)
+        # order.save()
 
-                user = User.objects.create_user(
-                    username=full_name,  # Django изисква username
-                    email=email,
-                    password=password,
-                    first_name=first_name,
-                    last_name=last_name
-                )
-                user.save()
-                messages.success(request, "Registration successful! Please log in.")
-                return redirect("index")
-        else:
-            messages.error(request, "Passwords do not match!")
+        return render(request, "order_confirmation.html")
 
-    return redirect("index")
+    return render(request, "checkout.html")
 
-
-def login_view(request):
-    if request.method == "POST":
-        email = request.POST["email"]
-        password = request.POST["password"]
-
-        try:
-            user = User.objects.get(email=email)  # Взимаме потребителя по email
-            user = authenticate(request, username=user.username, password=password)  # Логваме по username
-        except User.DoesNotExist:
-            user = None
-
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Successfully logged in!")
-            return redirect(request.GET.get("next", "index"))
-        else:
-            messages.error(request, "Invalid email or password!")
-            return render(request, "login.html", {"error": "Invalid email or password"})
-
-    return render(request, "login.html")
-
-
-def logout_view(request):
-    logout(request)
-    return redirect("index")
 
 
 def fish_page(request):
