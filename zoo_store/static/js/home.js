@@ -14,6 +14,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const placeOrderBtn = document.getElementById('placeOrderBtn');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
     
+    // Fix product card heights and button alignment
+    function fixProductCardAlignment() {
+        const productCards = document.querySelectorAll('.product-card');
+        let maxInfoHeight = 0;
+        let maxTitleHeight = 0;
+        let maxDescHeight = 0;
+        
+        // First pass: find maximum heights
+        productCards.forEach(card => {
+            const productInfo = card.querySelector('.product-info');
+            const productTitle = card.querySelector('.product-title');
+            const productDesc = productTitle.nextElementSibling;
+            
+            maxInfoHeight = Math.max(maxInfoHeight, productInfo.offsetHeight);
+            maxTitleHeight = Math.max(maxTitleHeight, productTitle.offsetHeight);
+            maxDescHeight = Math.max(maxDescHeight, productDesc.offsetHeight);
+        });
+        
+        // Second pass: apply consistent heights
+        productCards.forEach(card => {
+            const productInfo = card.querySelector('.product-info');
+            const productTitle = card.querySelector('.product-title');
+            const productDesc = productTitle.nextElementSibling;
+            const addToCartBtn = card.querySelector('.add-to-cart-btn');
+            
+            productTitle.style.height = `${maxTitleHeight}px`;
+            productDesc.style.height = `${maxDescHeight}px`;
+            
+            // Ensure consistent button positioning
+            addToCartBtn.style.marginTop = '15px';
+            addToCartBtn.style.position = 'relative';
+            addToCartBtn.style.bottom = '0';
+        });
+    }
+    
+    // Call the function after a slight delay to ensure all elements are rendered
+    setTimeout(fixProductCardAlignment, 100);
+    
+    // Also call it on window resize
+    window.addEventListener('resize', fixProductCardAlignment);
+    
     // State
     let cart = [];
     
@@ -396,13 +437,31 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener("click", function (e) {
             if (this.getAttribute("href").startsWith("#")) {
                 e.preventDefault();
-                const targetId = this.getAttribute("href").substring(1);
-                const targetElement = document.getElementById(targetId);
+                const targetId = this.getAttribute("href");
+                const targetElement = document.querySelector(targetId);
+                
                 if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Offset for navbar height
-                        behavior: "smooth"
-                    });
+                    // Special handling for contact-us which is inside testimonials section
+                    if (targetId === "#contact-us") {
+                        // First scroll to testimonials section to ensure it's visible
+                        document.getElementById("testimonials").scrollIntoView({ 
+                            behavior: "smooth"
+                        });
+                        
+                        // Then scroll to the contact-us div with a slight delay to ensure proper positioning
+                        setTimeout(() => {
+                            targetElement.scrollIntoView({ 
+                                behavior: "smooth",
+                                block: "center"
+                            });
+                        }, 100);
+                    } else {
+                        // Normal scrolling for other sections
+                        targetElement.scrollIntoView({ 
+                            behavior: "smooth",
+                            block: "start" 
+                        });
+                    }
                 }
             }
         });
@@ -441,4 +500,6 @@ document.addEventListener("DOMContentLoaded", function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
+    
+    // No longer need the logo click event listener since it now uses a Django URL
 });

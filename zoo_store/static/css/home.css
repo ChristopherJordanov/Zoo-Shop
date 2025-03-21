@@ -668,17 +668,20 @@ button {
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--card-spacing);
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
 }
 
 .product-card {
-    background-color: white;
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition-medium);
-    border: 1px solid var(--border-light);
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-badge {
@@ -758,7 +761,16 @@ button {
 }
 
 .product-info {
-    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.product-info p {
+    flex-grow: 1;
+    margin-bottom: 15px;
+    min-height: 4rem; /* Ensure consistent height for descriptions */
 }
 
 .product-category {
@@ -771,11 +783,9 @@ button {
 
 .product-title {
     font-size: 1.2rem;
-    color: var(--text-color);
-    margin-bottom: 10px;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    transition: var(--transition-medium);
+    margin-bottom: 10px;
+    min-height: 3rem; /* Ensure consistent height for titles */
 }
 
 .product-card:hover .product-title {
@@ -783,10 +793,7 @@ button {
 }
 
 .product-price {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .current-price {
@@ -803,15 +810,16 @@ button {
 }
 
 .add-to-cart-btn {
-    margin-top: 20px;
     width: 100%;
-    padding: 12px;
-    background-color: var(--primary-color);
+    padding: 12px 20px;
+    background-color: var(--primary-color, #4a6cf7);
     color: white;
-    border-radius: var(--border-radius-sm);
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: var(--transition-medium);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Push button to bottom */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -819,7 +827,7 @@ button {
 }
 
 .add-to-cart-btn:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--primary-dark, #3a5ce5);
 }
 
 .add-to-cart-btn.disabled {

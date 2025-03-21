@@ -7,12 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/home.css">
-    <script src="home.js" defer></script>
+    <script src="../static/js/home.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
         <div class="container navbar-content">
-            <a href="#" class="logo"><i class="fas fa-paw"></i>PurrfectPets</a>
+            <a href="{% url 'index' %}" class="logo" id="logoLink"><i class="fas fa-paw"></i>PurrfectPets</a>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
@@ -27,8 +27,6 @@
                     <span class="cart-count">0</span>
                 </div>
             </div>
-            
-            
         </div>
     </nav>
 
@@ -256,7 +254,7 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                        <button class="add-to-cart-btn" data-product="Durable Dog Chew Toy" data-price="24.95" data-image="https://source.unsplash.com/random/300x300/?dog,toy">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -279,7 +277,7 @@
                             <span class="current-price">$89.95</span>
                             <span class="old-price">$109.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                        <button class="add-to-cart-btn" data-product="Deluxe Bird Habitat" data-price="89.95" data-image="https://source.unsplash.com/random/300x300/?bird,cage">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -301,7 +299,7 @@
                             <span class="current-price">$129.95</span>
                             <span class="old-price">$149.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                        <button class="add-to-cart-btn" data-product="Complete Aquarium Set" data-price="129.95" data-image="https://source.unsplash.com/random/300x300/?fish,aquarium">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -324,7 +322,7 @@
                             <span class="current-price">$79.95</span>
                             <span class="old-price">$99.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                        <button class="add-to-cart-btn" data-product="Luxury Memory Foam Pet Bed" data-price="79.95" data-image="https://source.unsplash.com/random/300x300/?pet,bed">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -347,7 +345,7 @@
                             <span class="current-price">$64.95</span>
                             <span class="old-price">$84.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                        <button class="add-to-cart-btn" data-product="Designer Pet Collar & Leash Set" data-price="64.95" data-image="https://source.unsplash.com/random/300x300/?pet,collar">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -408,6 +406,7 @@
             </div>
         </div>
 
+        <!-- Contact Us section inside testimonials section -->
         <div id="contact-us" class="container">
             <div class="text-center contact-form">
                 <h2 class="section-title">Get in Touch</h2>
@@ -426,76 +425,6 @@
             </form>
         </div>
     </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <a href="#" class="footer-logo"><i class="fas fa-paw"></i> PurrfectPets</a>
-                    <p class="footer-description">Your premier destination for premium pet essentials. Since 2010, we've been catering to discerning pet owners with our curated selection of quality products.</p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about"><i class="fas fa-angle-right"></i> Our Story</a></li>
-                        <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
-                        <li><a href="#products"><i class="fas fa-angle-right"></i> Shop</a></li>
-                        <li><a href="#categories"><i class="fas fa-angle-right"></i> Pet Types</a></li>
-                        <li><a href="#testimonials"><i class="fas fa-angle-right"></i> Testimonials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">Pet Categories</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Small Pets</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">Contact Us</h3>
-                    <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            123 Pet Avenue, Animal City<br>
-                            AC 12345, United States
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            (555) 123-4567<br>
-                            Mon-Fri: 9am-6pm
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc95929a93bc8c898e8e9a999f888c99888fd29f9391">[email&#160;protected]</a><br>
-                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2c2a2f2f302d2b1f2f2a2d2d393a3c2b2f3a2b2c713c3032">[email&#160;protected]</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 PurrfectPets. All Rights Reserved. Premium Pet Products.</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
@@ -628,6 +557,76 @@
         </div>
     </section>
 
-    <script data-cfasync="false" src="../static/js/home.js"></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="{% url 'index' %}" class="footer-logo"><i class="fas fa-paw"></i> PurrfectPets</a>
+                    <p class="footer-description">Your premier destination for premium pet essentials. Since 2010, we've been catering to discerning pet owners with our curated selection of quality products.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> Our Story</a></li>
+                        <li><a href="#services"><i class="fas fa-angle-right"></i> Services</a></li>
+                        <li><a href="#products"><i class="fas fa-angle-right"></i> Shop</a></li>
+                        <li><a href="#categories"><i class="fas fa-angle-right"></i> Pet Types</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-angle-right"></i> Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Pet Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Small Pets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            123 Pet Avenue, Animal City<br>
+                            AC 12345, United States
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            (555) 123-4567<br>
+                            Mon-Fri: 9am-6pm
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6afa8a0a986b6b3b4b4a0a3a5b2b6a3b2b5e8a5a9ab">[email&#160;protected]</a><br>
+                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f5868085859a8781b5858087879390968185908186db969a98">[email&#160;protected]</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 PurrfectPets. All Rights Reserved. Premium Pet Products.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
