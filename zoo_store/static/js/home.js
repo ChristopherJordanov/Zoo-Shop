@@ -1,61 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const navbar = document.querySelector('.navbar');
-    const loginBtn = document.getElementById('loginBtn');
-    const loginModal = document.getElementById('loginModal');
-    const closeLoginModal = document.getElementById('closeLoginModal');
-    const loginTabs = document.querySelectorAll('.login-tab');
-    const loginForms = document.querySelectorAll('.login-form');
-    const togglePasswordBtns = document.querySelectorAll('.toggle-password');
     const cartIcon = document.getElementById('cartIcon');
     const cartModal = document.getElementById('cartModal');
     const closeCart = document.getElementById('closeCart');
     const cartItems = document.getElementById('cartItems');
     const cartTotal = document.getElementById('cartTotal');
+    const cartCountElement = document.querySelector('.cart-count');
     const checkoutBtn = document.getElementById('checkoutBtn');
     const checkoutPage = document.getElementById('checkoutPage');
     const checkoutItems = document.getElementById('checkoutItems');
     const checkoutTotal = document.getElementById('checkoutTotal');
     const placeOrderBtn = document.getElementById('placeOrderBtn');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-    const loginButton = document.getElementById('loginButton');
-    const registerButton = document.getElementById('registerButton');
     
     // State
     let cart = [];
-    let isLoggedIn = false;
-    let currentUser = null;
-    
-    // Check if user is logged in from localStorage
-    function checkLoginStatus() {
-        const user = localStorage.getItem('currentUser');
-        if (user) {
-            currentUser = JSON.parse(user);
-            isLoggedIn = true;
-            updateUIForLoggedInUser();
-        }
-    }
-    
-    // Update UI for logged in user
-    function updateUIForLoggedInUser() {
-        if (isLoggedIn && currentUser) {
-            loginBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${currentUser.name.split(' ')[0]}`;
-            
-            // Enable add to cart buttons
-            addToCartButtons.forEach(button => {
-                button.classList.remove('disabled');
-                button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-            });
-        } else {
-            loginBtn.innerHTML = '<i class="fas fa-user"></i> Sign In / Register';
-            
-            // Disable add to cart buttons
-            addToCartButtons.forEach(button => {
-                button.classList.add('disabled');
-                button.innerHTML = '<i class="fas fa-shopping-cart"></i> Sign in to Add to Cart';
-            });
-        }
-    }
     
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
@@ -96,124 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Login Modal Functionality
-    if (loginBtn && loginModal && closeLoginModal) {
-        loginBtn.addEventListener('click', () => {
-            if (isLoggedIn) {
-                // If logged in, go to checkout page
-                document.body.scrollTop = 0; // For Safari
-                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-                document.querySelectorAll('section').forEach(section => {
-                    section.style.display = 'none';
-                });
-                checkoutPage.style.display = 'block';
-                updateCheckoutSummary();
-            } else {
-                // If not logged in, show login modal
-                loginModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-        
-        closeLoginModal.addEventListener('click', () => {
-            loginModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-    
-    // Login Tabs
-    loginTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabId = tab.getAttribute('data-tab');
-            
-            // Update active tab
-            loginTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            
-            // Show corresponding form
-            loginForms.forEach(form => form.classList.remove('active'));
-            document.getElementById(`${tabId}Form`).classList.add('active');
-        });
-    });
-    
-    // Toggle password visibility
-    togglePasswordBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const passwordInput = btn.parentElement.querySelector('input');
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            btn.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
-        });
-    });
-    
-    // Login functionality
-    if (loginButton) {
-        loginButton.addEventListener('click', () => {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (!email || !password) {
-                showToast('Please fill in all fields');
-                return;
-            }
-            
-            // For demo purposes, we'll just simulate a successful login
-            currentUser = { name: 'Demo User', email: email };
-            isLoggedIn = true;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            loginModal.classList.remove('active');
-            document.body.style.overflow = '';
-            showToast('Login successful! Welcome back.');
-            
-            updateUIForLoggedInUser();
-        });
-    }
-    
-    // Register functionality
-    if (registerButton) {
-        registerButton.addEventListener('click', () => {
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const termsChecked = document.getElementById('terms').checked;
-            
-            if (!name || !email || !password || !confirmPassword) {
-                showToast('Please fill in all fields');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showToast('Passwords do not match');
-                return;
-            }
-            
-            if (!termsChecked) {
-                showToast('Please agree to the Terms of Service');
-                return;
-            }
-            
-            // For demo purposes, we'll just simulate a successful registration
-            currentUser = { name: name, email: email };
-            isLoggedIn = true;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            loginModal.classList.remove('active');
-            document.body.style.overflow = '';
-            showToast('Registration successful! Welcome to PurrfectPets.');
-            
-            updateUIForLoggedInUser();
-        });
-    }
-    
     // Cart Modal Functionality
     if (cartIcon && cartModal && closeCart) {
         cartIcon.addEventListener('click', () => {
@@ -234,45 +76,68 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add to cart functionality
     addToCartButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (!isLoggedIn) {
-                loginModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                return;
-            }
+        button.addEventListener('click', function() {
+            const product = this.getAttribute('data-product');
+            const price = parseFloat(this.getAttribute('data-price'));
+            const image = this.getAttribute('data-image');
             
-            const product = button.getAttribute('data-product');
-            const price = parseFloat(button.getAttribute('data-price'));
-            const image = button.getAttribute('data-image');
+            // Animate image to cart
+            animateToCart(this, image);
             
             // Check if product is already in cart
-            const existingItem = cart.find(item => item.product === product);
+            const existingItemIndex = cart.findIndex(item => item.product === product);
             
-            if (existingItem) {
-                existingItem.quantity += 1;
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity += 1;
             } else {
                 cart.push({ product, price, image, quantity: 1 });
             }
             
             updateCartCount();
+            updateCartDisplay();
             
             // Button animation
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
-            button.style.backgroundColor = 'var(--primary-dark)';
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+            this.style.backgroundColor = 'var(--primary-dark)';
             
             setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
-                button.style.backgroundColor = '';
+                this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                this.style.backgroundColor = '';
             }, 1500);
-            
-            showToast(`${product} added to your cart!`);
         });
     });
     
+    // Animate product to cart
+    function animateToCart(button, imageUrl) {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.style.position = 'absolute';
+        img.style.width = '50px';
+        img.style.height = '50px';
+        img.style.borderRadius = '50%';
+        img.style.zIndex = '1000';
+        img.style.transition = 'transform 0.8s ease-in-out, opacity 0.8s';
+        
+        const rect = button.getBoundingClientRect();
+        img.style.left = `${rect.left + window.scrollX}px`;
+        img.style.top = `${rect.top + window.scrollY}px`;
+        document.body.appendChild(img);
+        
+        const cartIconRect = cartIcon.getBoundingClientRect();
+        
+        setTimeout(() => {
+            img.style.transform = `translate(${cartIconRect.left - rect.left}px, ${cartIconRect.top - rect.top}px) scale(0.5)`;
+            img.style.opacity = '0';
+        }, 10);
+        
+        setTimeout(() => {
+            document.body.removeChild(img);
+        }, 800);
+    }
+    
     // Update cart count
     function updateCartCount() {
-        const cartCountElement = document.querySelector('.cart-count');
         const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
         cartCountElement.textContent = totalItems;
         cartCountElement.style.transform = 'scale(1.5)';
@@ -283,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update cart display
     function updateCartDisplay() {
+        if (!cartItems) return;
+        
         if (cart.length === 0) {
             cartItems.innerHTML = `
                 <div class="empty-cart">
@@ -327,45 +194,41 @@ document.addEventListener('DOMContentLoaded', () => {
         cartTotal.textContent = `$${total.toFixed(2)}`;
         
         // Add event listeners for quantity buttons and remove buttons
-        document.querySelectorAll('.increase-quantity').forEach(button => {
-            button.addEventListener('click', () => {
-                const index = parseInt(button.getAttribute('data-index'));
-                cart[index].quantity += 1;
-                updateCartDisplay();
-                updateCartCount();
-            });
-        });
-        
         document.querySelectorAll('.decrease-quantity').forEach(button => {
-            button.addEventListener('click', () => {
-                const index = parseInt(button.getAttribute('data-index'));
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
                 if (cart[index].quantity > 1) {
                     cart[index].quantity -= 1;
                 } else {
                     cart.splice(index, 1);
                 }
-                updateCartDisplay();
                 updateCartCount();
+                updateCartDisplay();
+            });
+        });
+        
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                cart[index].quantity += 1;
+                updateCartCount();
+                updateCartDisplay();
             });
         });
         
         document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', () => {
-                const index = parseInt(button.getAttribute('data-index'));
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
                 cart.splice(index, 1);
-                updateCartDisplay();
                 updateCartCount();
+                updateCartDisplay();
             });
         });
     }
     
     // Update checkout summary
     function updateCheckoutSummary() {
-        if (cart.length === 0) {
-            checkoutItems.innerHTML = '<p>Your cart is empty</p>';
-            checkoutTotal.textContent = '$0.00';
-            return;
-        }
+        if (!checkoutItems || !checkoutTotal) return;
         
         let checkoutHTML = '';
         let total = 0;
@@ -415,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Redirect back to home page
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.reload();
             }, 2000);
         });
     }
@@ -499,8 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = this.getAttribute('href');
             if (targetId === '#' || !document.querySelector(targetId)) return;
     
-            // Ако сме в checkout страницата, връщаме се на основната страница
-            if (checkoutPage.style.display === 'block') {
+            // If we're in checkout page, return to main page
+            if (checkoutPage && checkoutPage.style.display === 'block') {
                 checkoutPage.style.display = 'none';
                 document.querySelectorAll('section').forEach(section => {
                     if (section.id !== 'checkoutPage') {
@@ -513,60 +376,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
     
-                // Ако линкът е към Contact Us, можем да добавим специална логика
-                if (targetId === "#contact-us") {
-                    console.log("Scrolled to Contact Us section in center!");
-                }
-    
-                // Затваряне на мобилното меню, ако е отворено
-                if (window.innerWidth < 992) {
+                // Close mobile menu if open
+                if (window.innerWidth < 992 && navLinks) {
                     navLinks.style.display = 'none';
                 }
     
-                // Затваряне на cart modal, ако е отворен
-                cartModal.classList.remove('active');
+                // Close cart modal if open
+                if (cartModal) {
+                    cartModal.classList.remove('active');
+                }
             }
         });
     });
-    
-    // Initialize
-    checkLoginStatus();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            let productId = this.dataset.productId;
-            addToCart(productId);
-        });
-    });
-});
-
-
-    // Close the modal when the close button is clicked
-    const closeModalBtn = document.getElementById("closeLoginModal");
-    closeModalBtn.addEventListener("click", function () {
-        const loginModal = document.getElementById("loginModal");
-        loginModal.style.display = "none";
-    });
-
-    // Function to get the CSRF token from cookies
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== "") {
-            let cookies = document.cookie.split(";");
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + "=")) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-ddocument.addEventListener("DOMContentLoaded", () => {
     // Smooth scrolling for navigation links
     document.querySelectorAll(".nav-links a").forEach(link => {
         link.addEventListener("click", function (e) {
@@ -618,115 +442,3 @@ ddocument.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-    const cartModal = document.getElementById("cartModal");
-    const cartItemsContainer = document.getElementById("cartItems");
-    const cartTotalElement = document.getElementById("cartTotal");
-    const cartIcon = document.getElementById("cartIcon");
-    const closeCartBtn = document.getElementById("closeCart");
-    const checkoutBtn = document.getElementById("checkoutBtn");
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    updateCartUI();
-
-    document.querySelectorAll(".add-to-cart-btn").forEach(button => {
-        button.addEventListener("click", function (e) {
-            let product = {
-                id: this.dataset.productId,
-                name: this.dataset.productName,
-                price: parseFloat(this.dataset.productPrice),
-                image: this.dataset.productImage,
-                quantity: 1
-            };
-            addToCart(product, e);
-        });
-    });
-
-    function addToCart(product, event) {
-        let existingProduct = cart.find(item => item.id === product.id);
-        if (existingProduct) {
-            existingProduct.quantity += 1;
-        } else {
-            cart.push(product);
-        }
-        localStorage.setItem("cart", JSON.stringify(cart));
-        updateCartUI();
-        animateAddToCart(event);
-    }
-
-    function updateCartUI() {
-        cartItemsContainer.innerHTML = "";
-        let total = 0;
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = `
-                <div class="empty-cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <p>Your cart is empty</p>
-                    <a href="#products" class="continue-shopping">Continue Shopping</a>
-                </div>
-            `;
-        } else {
-            cart.forEach(item => {
-                total += item.price * item.quantity;
-                cartItemsContainer.innerHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-image">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-details">
-                            <p class="cart-item-title">${item.name}</p>
-                            <p class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</p>
-                            <div class="cart-item-quantity">
-                                <button class="quantity-btn decrease" data-id="${item.id}">-</button>
-                                <span class="quantity-value">${item.quantity}</span>
-                                <button class="quantity-btn increase" data-id="${item.id}">+</button>
-                                <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        cartTotalElement.textContent = `$${total.toFixed(2)}`;
-    }
-
-    function animateAddToCart(event) {
-        let productImage = event.target.closest(".product").querySelector("img");
-        let flyingImage = productImage.cloneNode(true);
-        flyingImage.style.position = "fixed";
-        flyingImage.style.width = "50px";
-        flyingImage.style.zIndex = "1000";
-        flyingImage.style.transition = "all 0.7s ease-in-out";
-        let rect = productImage.getBoundingClientRect();
-        flyingImage.style.top = rect.top + "px";
-        flyingImage.style.left = rect.left + "px";
-        document.body.appendChild(flyingImage);
-
-        setTimeout(() => {
-            let cartRect = cartIcon.getBoundingClientRect();
-            flyingImage.style.top = cartRect.top + "px";
-            flyingImage.style.left = cartRect.left + "px";
-            flyingImage.style.opacity = "0";
-        }, 100);
-
-        setTimeout(() => {
-            document.body.removeChild(flyingImage);
-        }, 800);
-    }
-
-    cartModal.addEventListener("click", (e) => {
-        if (e.target === cartModal || e.target === closeCartBtn) {
-            cartModal.classList.remove("active");
-            document.body.style.overflow = "auto";
-        }
-    });
-
-    cartIcon.addEventListener("click", () => {
-        cartModal.classList.add("active");
-        document.body.style.overflow = "hidden";
-    });
-});
-
-
-

@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/home.css">
+    <script src="home.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
@@ -224,7 +225,6 @@
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
-
                     <div class="product-info">
                         <div class="product-category">Cat Food</div>
                         <h3 class="product-title">Gourmet Cat Cuisine</h3>
@@ -233,10 +233,10 @@
                             <span class="current-price">$49.95</span>
                             <span class="old-price">$59.95</span>
                         </div>
-                            <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
-
-
                 </div>
                 <div class="product-card slide-up">
                     <div class="product-badge">Popular</div>
@@ -256,7 +256,9 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -277,7 +279,9 @@
                             <span class="current-price">$89.95</span>
                             <span class="old-price">$109.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -297,7 +301,9 @@
                             <span class="current-price">$129.95</span>
                             <span class="old-price">$149.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -318,7 +324,9 @@
                             <span class="current-price">$79.95</span>
                             <span class="old-price">$99.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
                 </div>
                 <div class="product-card slide-up">
@@ -339,7 +347,9 @@
                             <span class="current-price">$64.95</span>
                             <span class="old-price">$84.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food" data-product-id="{{ product.id }}">Add to Cart</button>
+                        <button class="add-to-cart-btn" data-product="Gourmet Cat Cuisine" data-price="49.95" data-image="https://source.unsplash.com/random/300x300/?cat,food">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
@@ -475,8 +485,8 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
-                            info@purrfectpets.com<br>
-                            support@purrfectpets.com
+                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc95929a93bc8c898e8e9a999f888c99888fd29f9391">[email&#160;protected]</a><br>
+                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2c2a2f2f302d2b1f2f2a2d2d393a3c2b2f3a2b2c713c3032">[email&#160;protected]</a>
                         </div>
                     </div>
                 </div>
@@ -618,6 +628,6 @@
         </div>
     </section>
 
-    <script src="../static/js/home.js"></script>
+    <script data-cfasync="false" src="../static/js/home.js"></script>
 </body>
 </html>
