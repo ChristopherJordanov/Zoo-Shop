@@ -1,49 +1,217 @@
-// Add this JavaScript to your birds.js file or include it in a <script> tag at the end of the page
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Cart elements
-    const cartIcon = document.getElementById('cartIcon');
-    const cartModal = document.getElementById('cartModal');
-    const closeCart = document.getElementById('closeCart');
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    // Elements
+    const authBtn = document.getElementById('authBtn');
+    const closeAuthModal = document.getElementById('closeAuthModal');
+    const authModal = document.getElementById('authModal');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const authForms = document.querySelectorAll('.auth-form');
+    const togglePasswordBtns = document.querySelectorAll('.toggle-password');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const cartCount = document.querySelector('.cart-count');
+    const loginButton = document.getElementById('loginButton');
+    const registerButton = document.getElementById('registerButton');
     
-    // Initialize cart from localStorage if available
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // State
+    let cart = [];
+    let isLoggedIn = false;
+    let currentUser = null;
     
-    // Update cart count on load
-    function initializeCart() {
-        updateCartCount();
-        updateCartDisplay();
+    // Check if user is logged in from localStorage
+    function checkLoginStatus() {
+        const user = localStorage.getItem('currentUser');
+        if (user) {
+            currentUser = JSON.parse(user);
+            isLoggedIn = true;
+            updateUIForLoggedInUser();
+        }
     }
     
-    // Toggle cart modal
-    cartIcon.addEventListener('click', () => {
-        cartModal.classList.toggle('active');
-        document.body.style.overflow = cartModal.classList.contains('active') ? 'hidden' : '';
-        updateCartDisplay();
-    });
+    // Update UI for logged in user
+    function updateUIForLoggedInUser() {
+        if (isLoggedIn && currentUser) {
+            authBtn.textContent = `Hi, ${currentUser.name.split(' ')[0]}`;
+            
+            // Enable add to cart buttons
+            addToCartButtons.forEach(button => {
+                button.classList.remove('disabled');
+                button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+            });
+        } else {
+            authBtn.textContent = 'Sign In / Register';
+            
+            // Disable add to cart buttons
+            addToCartButtons.forEach(button => {
+                button.classList.add('disabled');
+                button.innerHTML = '<i class="fas fa-shopping-cart"></i> Sign in to Add to Cart';
+            });
+        }
+    }
     
-    // Close cart when clicking the X
-    closeCart.addEventListener('click', () => {
-        cartModal.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-    
-    // Close cart when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === cartModal) {
-            cartModal.classList.remove('active');
-            document.body.style.overflow = '';
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
     });
     
-    // Add to cart functionality for bird products
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    // Mobile menu toggle
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    }
+    
+    // Auth modal
+    if (authBtn && authModal && closeAuthModal) {
+        authBtn.addEventListener('click', () => {
+            if (isLoggedIn) {
+                // Show user menu or logout option
+                logout();
+            } else {
+                authModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+        
+        closeAuthModal.addEventListener('click', () => {
+            authModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Auth tabs
+    authTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+            
+            // Update active tab
+            authTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Show corresponding form
+            authForms.forEach(form => form.classList.remove('active'));
+            document.getElementById(`${tabId}Form`).classList.add('active');
+        });
+    });
+    
+    // Toggle password visibility
+    togglePasswordBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const passwordInput = btn.parentElement.querySelector('input');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            btn.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+    });
+    
+    // Login functionality
+    if (loginButton) {
+        loginButton.addEventListener('click', () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            // Check if user exists in localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                // Login successful
+                currentUser = user;
+                isLoggedIn = true;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                
+                authModal.classList.remove('active');
+                document.body.style.overflow = '';
+                showToast('Login successful! Welcome back.');
+                
+                updateUIForLoggedInUser();
+            } else {
+                showToast('Invalid email or password');
+            }
+        });
+    }
+    
+    // Register functionality
+    if (registerButton) {
+        registerButton.addEventListener('click', () => {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsChecked = document.getElementById('terms').checked;
+            
+            if (!name || !email || !password || !confirmPassword) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match');
+                return;
+            }
+            
+            if (!termsChecked) {
+                showToast('Please agree to the Terms of Service');
+                return;
+            }
+            
+            // Check if email already exists
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.some(u => u.email === email)) {
+                showToast('Email already registered');
+                return;
+            }
+            
+            // Register new user
+            const newUser = { name, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Auto login after registration
+            currentUser = newUser;
+            isLoggedIn = true;
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            
+            authModal.classList.remove('active');
+            document.body.style.overflow = '';
+            showToast('Registration successful! Welcome to FeatheredFriends.');
+            
+            updateUIForLoggedInUser();
+        });
+    }
+    
+    // Logout functionality
+    function logout() {
+        localStorage.removeItem('currentUser');
+        isLoggedIn = false;
+        currentUser = null;
+        updateUIForLoggedInUser();
+        showToast('You have been logged out');
+    }
+    
+    // Add to cart functionality
+    addToCartButtons.forEach(button => {
         button.addEventListener('click', () => {
-            if (button.classList.contains('disabled')) {
+            if (!isLoggedIn) {
                 authModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 return;
@@ -51,9 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const product = button.getAttribute('data-product');
             const price = parseFloat(button.getAttribute('data-price'));
-            const image = button.getAttribute('data-image');
             
-            addToCart(product, price, image);
+            cart.push({ product, price });
+            updateCartCount();
             
             // Button animation
             const originalText = button.innerHTML;
@@ -64,159 +232,82 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
                 button.style.backgroundColor = '';
             }, 1500);
+            
+            showToast(`${product} added to your cart!`);
         });
     });
     
-    // Add item to cart
-    function addToCart(product, price, image) {
-        // Check if product already exists in cart
-        const existingItemIndex = cart.findIndex(item => item.product === product);
-        
-        if (existingItemIndex > -1) {
-            // Increment quantity if product already in cart
-            cart[existingItemIndex].quantity += 1;
-        } else {
-            // Add new item to cart
-            cart.push({
-                product: product,
-                price: price,
-                image: image,
-                quantity: 1
-            });
-        }
-        
-        // Save cart to localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-        
-        // Update UI
-        updateCartCount();
-        updateCartDisplay();
-        showToast(`${product} added to your cart!`);
-    }
-    
-    // Update cart count in the navbar
     function updateCartCount() {
-        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-        document.querySelector('.cart-count').textContent = totalItems;
-        
-        // Animation effect
-        const cartCount = document.querySelector('.cart-count');
+        cartCount.textContent = cart.length;
         cartCount.style.transform = 'scale(1.5)';
         setTimeout(() => {
             cartCount.style.transform = 'scale(1)';
         }, 300);
     }
     
-    // Update cart display in modal
-    function updateCartDisplay() {
-        // Calculate total
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartTotal.textContent = `$${total.toFixed(2)}`;
+    function showToast(message) {
+        toastMessage.textContent = message;
+        toast.classList.add('show');
         
-        // Clear current items
-        while (cartItems.firstChild) {
-            cartItems.removeChild(cartItems.firstChild);
-        }
-        
-        // Show empty cart message if needed
-        if (cart.length === 0) {
-            cartItems.appendChild(emptyCartMessage);
-            return;
-        }
-        
-        // Add each item to cart display
-        cart.forEach((item, index) => {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {z
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('.newsletter-input');
             
-            cartItem.innerHTML = `
-                <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.product}">
-                </div>
-                <div class="cart-item-details">
-                    <h4 class="cart-item-title">${item.product}</h4>
-                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn decrease" data-index="${index}">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="quantity-btn increase" data-index="${index}">+</button>
-                    </div>
-                </div>
-                <button class="remove-item" data-index="${index}">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            `;
+            if (emailInput.value.trim()) {
+                showToast('Thank you for subscribing to our newsletter!');
+                emailInput.value = '';
+            }
+        });
+    }
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            cartItems.appendChild(cartItem);
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
         });
-        
-        // Add event listeners for quantity buttons and remove buttons
-        document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const index = parseInt(btn.getAttribute('data-index'));
-                decreaseQuantity(index);
-            });
-        });
-        
-        document.querySelectorAll('.quantity-btn.increase').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const index = parseInt(btn.getAttribute('data-index'));
-                increaseQuantity(index);
-            });
-        });
-        
-        document.querySelectorAll('.remove-item').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const index = parseInt(btn.getAttribute('data-index'));
-                removeFromCart(index);
-            });
-        });
-    }
-    
-    // Increase item quantity
-    function increaseQuantity(index) {
-        cart[index].quantity += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        updateCartDisplay();
-    }
-    
-    // Decrease item quantity
-    function decreaseQuantity(index) {
-        if (cart[index].quantity > 1) {
-            cart[index].quantity -= 1;
-        } else {
-            removeFromCart(index);
-            return;
-        }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        updateCartDisplay();
-    }
-    
-    // Remove item from cart
-    function removeFromCart(index) {
-        const removedItem = cart[index];
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        updateCartDisplay();
-        showToast(`${removedItem.product} removed from cart`);
-    }
-    
-    // Checkout button
-    checkoutBtn.addEventListener('click', () => {
-        if (cart.length === 0) {
-            showToast('Your cart is empty');
-            return;
-        }
-        
-        // Redirect to checkout page or show checkout section
-        // You can customize this based on your checkout flow
-        window.location.href = 'checkout.html';
     });
     
-    // Initialize cart on page load
-    initializeCart();
+    // Add random feathers
+    function addRandomFeathers() {
+        const container = document.body;
+        const featherCount = 15;
+        
+        for (let i = 0; i < featherCount; i++) {
+            const feather = document.createElement('div');
+            feather.classList.add('feather');
+            
+            // Random position
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            
+            feather.style.top = `${top}%`;
+            feather.style.left = `${left}%`;
+            feather.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            container.appendChild(feather);
+        }
+    }
+    
+    // Initialize
+    checkLoginStatus();
+    addRandomFeathers();
 });
