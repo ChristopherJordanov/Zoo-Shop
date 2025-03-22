@@ -539,29 +539,19 @@ function getCSRFToken() {
     return token;
 }
 
-fetch('/checkout/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCSRFToken()  // Add CSRF token here
-    },
-    body: JSON.stringify({
-        first_name: 'John',
-        last_name: 'Doe',
-        email: 'johndoe@example.com',
-        phone_num: '123456789',
-        street_address: '123 Main St',
-        city: 'City',
-        state: 'State',
-        zip_code: '12345',
-        country_reference: 'US',
-        name_on_card: 'John Doe',
-        payment_token: '1234123412341234',
-        expiration_date: '12/26',
-        cvv: '123'
-    })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
+// CSRF helper function
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 

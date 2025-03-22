@@ -3,7 +3,6 @@ from .views import index, fish_page, dog_page, cat_page, contact_page, bird_page
     add_to_cart, cart_page, checkout
 
 urlpatterns = [
-    path("checkout/", checkout, name="checkout"),
     path("", index, name="index"),
     path("fish/", fish_page, name="fish"),
     path("dogs/", dog_page, name="dogs"),
@@ -13,4 +12,5 @@ urlpatterns = [
     path("add_to_cart/", add_to_cart, name="add_to_cart"),
     path("cart/", cart_page, name="cart"),
     path('add_to_cart/', add_to_cart, name='add_to_cart'),
+    path("checkout/", checkout, name="checkout"),
 ]
