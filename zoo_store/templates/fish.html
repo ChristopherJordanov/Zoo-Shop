@@ -465,19 +465,6 @@
         </div>
     </section>
 
-    <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-container">
-                <h2 class="newsletter-title">Join Our Aquatic Enthusiasts Club</h2>
-                <p class="newsletter-description">Subscribe to receive updates on new arrivals, special offers, and exclusive discounts for your aquatic friends.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <section id="decorations" class="category-section bg-accent">
         <div class="container">
             <div class="category-header">
@@ -789,6 +776,19 @@
         <span id="toastMessage">Item added to cart!</span>
     </div>
 
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-container">
+                <h2 class="newsletter-title">Join Our Aquatic Enthusiasts Club</h2>
+                <p class="newsletter-description">Subscribe to receive updates on new arrivals, special offers, and exclusive discounts for your aquatic friends.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -816,10 +816,10 @@
                 <div class="footer-column">
                     <h3 class="footer-title">Pet Categories</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">

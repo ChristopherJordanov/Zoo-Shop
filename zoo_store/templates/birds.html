@@ -87,11 +87,12 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Premium Seed Blend" data-price="24.95">
-                            <i class="fas fa-shopping-cart"></i>Add to Cart
+                        <button class="add-to-cart-btn" data-product="Premium Seed Blend" data-price="24.95" data-image="https://source.unsplash.com/random/600x800/?bird,seed">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
+            
                 <div class="product-card">
                     <div class="product-image">
                         <img src="https://source.unsplash.com/random/600x800/?bird,pellet" alt="Organic Pellets">
@@ -116,11 +117,12 @@
                             <span class="current-price">$32.95</span>
                             <span class="old-price">$37.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Organic Nutrient Pellets" data-price="32.95">
+                        <button class="add-to-cart-btn" data-product="Organic Nutrient Pellets" data-price="32.95" data-image="https://source.unsplash.com/random/600x800/?bird,pellet">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
+            
                 <div class="product-card">
                     <div class="product-badge">New</div>
                     <div class="product-image">
@@ -146,12 +148,12 @@
                             <span class="current-price">$18.95</span>
                             <span class="old-price">$22.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Tropical Fruit Medley" data-price="18.95">
+                        <button class="add-to-cart-btn" data-product="Tropical Fruit Medley" data-price="18.95" data-image="https://source.unsplash.com/random/600x800/?bird,treat">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </section>
 
@@ -712,10 +714,10 @@
                 <div class="footer-column">
                     <h3 class="footer-title">Pet Categories</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Birds</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Cats</a></li>
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">

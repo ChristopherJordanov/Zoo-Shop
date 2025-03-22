@@ -500,6 +500,68 @@ document.addEventListener("DOMContentLoaded", function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-    
-    // No longer need the logo click event listener since it now uses a Django URL
 });
+
+const data = {
+    first_name: document.getElementById("firstName").value,
+    last_name: document.getElementById("lastName").value,
+    email: document.getElementById("checkoutEmail").value,
+    phone_num: document.getElementById("phone").value,
+    street_address: document.getElementById("address").value,
+    city: document.getElementById("city").value,
+    state: document.getElementById("state").value,
+    zip_code: document.getElementById("zip").value,
+    country_reference: document.getElementById("US").value,
+    name_on_card: document.getElementById("cardName").value,
+    payment_token: document.getElementById("cardNumber").value,
+    expiration_date: document.getElementById("expDate").value,
+    cvv: document.getElementById("cvv").value
+};
+
+
+// Send data to Django
+fetch('/checkout/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+});
+
+function getCSRFToken() {
+    let token = null;
+    const cookies = document.cookie.split(';');
+    cookies.forEach(cookie => {
+        if (cookie.trim().startsWith('csrftoken=')) {
+            token = cookie.split('=')[1];
+        }
+    });
+    return token;
+}
+
+fetch('/checkout/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCSRFToken()  // Add CSRF token here
+    },
+    body: JSON.stringify({
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'johndoe@example.com',
+        phone_num: '123456789',
+        street_address: '123 Main St',
+        city: 'City',
+        state: 'State',
+        zip_code: '12345',
+        country_reference: 'US',
+        name_on_card: 'John Doe',
+        payment_token: '1234123412341234',
+        expiration_date: '12/26',
+        cvv: '123'
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+

@@ -1,10 +1,17 @@
+import json
+
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+
+from zoo_store.models import CheckoutInfo
 
 
 def index(request):
@@ -54,7 +61,6 @@ def cart_page(request):
     return render(request, "cart.html", {"cart": cart})
 
 
-@login_required
 @csrf_exempt
 def add_to_cart(request):
     if not request.user.is_authenticated:
@@ -76,3 +82,37 @@ def add_to_cart(request):
     request.session.modified = True
 
     return JsonResponse({"message": "Product added to cart!", "cart": cart})
+
+
+@csrf_exempt  # Temporarily disable CSRF for testing
+@require_POST  # Ensure the method is POST
+def checkout_view(request):
+    try:
+        # Parse the incoming JSON request
+        data = json.loads(request.body)
+
+        # Ensure the data looks correct
+        print("Django received data:", data)
+
+        # Create the checkout info entry in the database
+        checkout_info = CheckoutInfo.objects.create(
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            email=data['email'],
+            phone_num=data['phone_num'],
+            street_address=data['street_address'],
+            city=data['city'],
+            state=data['state'],
+            zip_code=data['zip_code'],
+            country=data['country_reference'],  # Directly save the country reference
+            name_on_card=data['name_on_card'],
+            payment_token=data['payment_token'],
+            expiration_date=data['expiration_date'],
+            cvv=data['cvv']
+        )
+
+        return JsonResponse({'message': 'Checkout successful!'}, status=201)
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return JsonResponse({'error': str(e)}, status=400)

@@ -1,14 +1,6 @@
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
-
-
-class Country(models.Model):
-    name = models.CharField(max_length=100)
-    code = models.CharField(max_length=3)  # Example: 'US', 'CA', 'GB'
-    currency = models.CharField(max_length=3)
-
-    def __str__(self):
-        return f"{self.name} ({self.code})"
+from django.utils import timezone
 
 
 class CheckoutInfo(models.Model):
@@ -32,15 +24,15 @@ class CheckoutInfo(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     zip_code = models.CharField(max_length=30)
-    country_reference = models.ForeignKey(
-        Country,
-        on_delete=models.CASCADE,
-        related_name='checkouts'
+    country = models.CharField(
+        max_length=2,
+        choices=CountryChoices.choices
     )
     name_on_card = models.CharField(max_length=100)
     payment_token = models.CharField(max_length=255)
     expiration_date = models.CharField(max_length=6)
     cvv = models.CharField(max_length=5)
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.email}"
@@ -59,4 +51,3 @@ class Products(models.Model):
     in_stock = models.SmallIntegerField(
         validators=[MinValueValidator(0)]
     )
-
