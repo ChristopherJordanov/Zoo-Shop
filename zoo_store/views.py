@@ -2,6 +2,7 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -13,6 +14,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
 from zoo_store.models import CheckoutInfo
+from django.utils import timezone
 
 
 def index(request):
@@ -31,7 +33,40 @@ def cat_page(request):
     return render(request, "cats.html")
 
 
-def contact_page(request):
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        subject = request.POST.get("subject")
+        message = request.POST.get("message")
+
+        full_message = f"""
+        New message from contact form:
+
+        Name: {name}
+        Email: {email}
+        Phone: {phone}
+
+        Subject: {subject}
+
+        Message:
+        {message}
+        """
+
+        send_mail(
+            subject=f"Contact Form: {subject}",
+            message=full_message,
+            from_email="petpalsservice1@gmail.com",  # Must match your actual Gmail
+            recipient_list=["petpalsservice1@gmail.com"],
+            reply_to=[email],
+            fail_silently=False,
+        )
+
+        print("📨 Contact form submitted")
+        messages.success(request, "Message sent successfully!")
+        return redirect("contact")  # or wherever you want to go after
+
     return render(request, "contact.html")
 
 
@@ -39,12 +74,26 @@ def bird_page(request):
     return render(request, "birds.html")
 
 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from .models import CheckoutInfo
+from django.utils import timezone
+
+
+def cart_page(request):
+    cart = request.session.get("cart", {})
+    return render(request, "cart.html", {"cart": cart})
+
+
 def checkout(request):
+    # 🐾 Debug cart at the moment of checkout
+    print("🐾 SESSION CART DURING CHECKOUT:", request.session.get("cart"))
+
     cart = request.session.get("cart", {})
     cart_items = []
     total_price = 0
 
-    # build cart summary for template
+    # Build cart list + total (works for GET and POST)
     for item in cart.values():
         item_total = item["price"] * item["quantity"]
         total_price += item_total
@@ -56,7 +105,6 @@ def checkout(request):
             "total": item_total
         })
 
-    # POST: Save to DB
     if request.method == "POST":
         data = request.POST
 
@@ -71,28 +119,50 @@ def checkout(request):
             zip_code=data.get("zip"),
             country=data.get("country"),
             name_on_card=data.get("cardName"),
-            payment_token=data.get("cardNumber"),  # ⚠️ placeholder, use Stripe/etc. in real app
+            payment_token=data.get("cardNumber"),
             expiration_date=data.get("expDate"),
             cvv=data.get("cvv"),
+            created_at=timezone.now()
         )
 
-        # Optional: clear the cart
+        # Build item list for email
+        item_lines = "\n".join(
+            f"- {item['name']} x{item['quantity']} = ${item['total']:.2f}" for item in cart_items
+        ) if cart_items else "No items found in your cart."
+
+        message_body = f"""Hi {data.get('firstName')},
+
+Thank you for your order! 🐾
+
+Here’s what you purchased:
+
+{item_lines}
+
+Total: ${total_price:.2f}
+
+We'll begin processing your order shortly.
+
+– PetPals Team"""
+
+        send_mail(
+            subject="Your Order Confirmation 🐾",
+            message=message_body,
+            from_email=None,
+            recipient_list=[data.get("email")],
+            fail_silently=False,
+        )
+
+        # Clear the cart
         request.session["cart"] = {}
         request.session.modified = True
 
-        return redirect("index")  # or 'order_success' page
+        return redirect("index")
 
     return render(request, "index.html", {
         "cart_items": cart_items,
         "total_price": total_price,
         "show_checkout": True
     })
-
-
-def cart_page(request):
-    cart = request.session.get("cart", {})
-    return render(request, "cart.html", {"cart": cart})
-
 
 @csrf_exempt
 def add_to_cart(request):
@@ -105,7 +175,7 @@ def add_to_cart(request):
         image = data.get("image")
 
         if not product_id:
-            return JsonResponse({"error": "Missing product_id"}, status=400)
+            return JsonResponse({"error": "Missing product ID"}, status=400)
 
         if "cart" not in request.session:
             request.session["cart"] = {}
@@ -124,8 +194,6 @@ def add_to_cart(request):
 
         request.session.modified = True
 
-        print("CART:", request.session["cart"])  # <--- PRINT THIS
+        return JsonResponse({"message": "Added to cart", "cart": cart})
 
-        return JsonResponse({"message": "Added to cart!", "cart": cart})
-
-
+    return JsonResponse({"error": "POST required"}, status=405)

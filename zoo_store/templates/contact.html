@@ -79,7 +79,9 @@
                     <h2 class="section-title">Send Us a Message</h2>
                     <p class="form-subtitle">Fill out the form below and we'll get back to you as soon as possible.</p>
                     
-                    <form id="contactForm" class="contact-form">
+                    <form  method="POST" action="/contact/" id="contactForm" class="contact-form">
+                        {% csrf_token %}
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Your Name <span class="required">*</span></label>
@@ -306,7 +308,6 @@
         </div>
     </div>
 
-    <script src="../static/js/home.js"></script>
     <script src="../static/js/contact.js"></script>
 </body>
 </html>

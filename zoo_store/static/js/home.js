@@ -511,7 +511,7 @@ const data = {
     city: document.getElementById("city").value,
     state: document.getElementById("state").value,
     zip_code: document.getElementById("zip").value,
-    country_reference: document.getElementById("US").value,
+    country_reference: document.querySelector("select[name='country']").value,
     name_on_card: document.getElementById("cardName").value,
     payment_token: document.getElementById("cardNumber").value,
     expiration_date: document.getElementById("expDate").value,
@@ -539,14 +539,13 @@ function getCSRFToken() {
     return token;
 }
 
-// CSRF helper function
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
             }
@@ -554,4 +553,34 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const productId = this.dataset.id;
+        const name = this.dataset.product;
+        const price = parseFloat(this.dataset.price);
+        const image = this.dataset.image;
+
+        fetch("/add_to_cart/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                name: name,
+                price: price,
+                image: image
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("✅ Added to cart:", data);
+        })
+        .catch(error => {
+            console.error("❌ Add to cart failed:", error);
+        });
+    });
+});
 

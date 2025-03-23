@@ -7,8 +7,9 @@ class CheckoutInfo(models.Model):
     class CountryChoices(models.TextChoices):
         United_States = 'US', 'United States'
         Canada = 'CA', 'Canada'
-        United_Kingdom = 'UK', 'United Kingdom',
+        United_Kingdom = 'UK', 'United Kingdom'
         Australia = 'AU', 'Australia'
+        Bulgaria = 'BG', 'Bulgaria'
 
     first_name = models.CharField(
         max_length=50,
