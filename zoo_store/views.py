@@ -75,6 +75,11 @@ def bird_page(request):
     return render(request, "birds.html")
 
 
+@login_required
+def account_page(request):
+    return render(request, "account.html")
+
+
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from .models import CheckoutInfo

@@ -110,6 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		cartModal.classList.add("active")
 		cartOverlay.classList.add("active")
 		document.body.style.overflow = "hidden"
+
+		// Fix for cart modal positioning - ensure it's visible
+		cartModal.style.right = "0"
 	})
 
 	closeCart.addEventListener("click", () => {
@@ -127,6 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	cartModal.classList.remove("active")
 	cartOverlay.classList.remove("active")
 	document.body.style.overflow = ""
+
+	// Reset cart modal position when closing
+	cartModal.style.right = "-400px"
 	}
 
 	// Save cart to localStorage
@@ -220,12 +226,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (cartKeys.length === 0) {
 		cartItems.innerHTML = `
-				<div class="empty-cart">
-					<i class="fas fa-shopping-cart"></i>
-					<p>Your cart is empty</p>
-					<a href="#products" class="continue-shopping">Continue Shopping</a>
-				</div>
-			`
+		<div class="empty-cart">
+		<i class="fas fa-shopping-cart"></i>
+		<p>Your cart is empty</p>
+		<a href="#products" class="continue-shopping">Continue Shopping</a>
+		</div>
+	`
 		cartTotal.textContent = "$0.00"
 		return
 	}
@@ -239,24 +245,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		total += itemTotal
 
 		cartHTML += `
-				<div class="cart-item">
-					<div class="cart-item-image">
-						<img src="${item.image}" alt="${productName}">
-					</div>
-					<div class="cart-item-details">
-						<h4 class="cart-item-title">${productName}</h4>
-						<p class="cart-item-price">$${item.price.toFixed(2)}</p>
-						<div class="cart-item-quantity">
-							<button class="quantity-btn decrease-quantity" data-product="${productName}">-</button>
-							<span class="quantity-value">${item.quantity}</span>
-							<button class="quantity-btn increase-quantity" data-product="${productName}">+</button>
-						</div>
-					</div>
-					<button class="remove-item" data-product="${productName}">
-						<i class="fas fa-trash-alt"></i>
-					</button>
-				</div>
-			`
+		<div class="cart-item">
+		<div class="cart-item-image">
+			<img src="${item.image}" alt="${productName}">
+		</div>
+		<div class="cart-item-details">
+			<h4 class="cart-item-title">${productName}</h4>
+			<p class="cart-item-price">$${item.price.toFixed(2)}</p>
+			<div class="cart-item-quantity">
+			<button class="quantity-btn decrease-quantity" data-product="${productName}">-</button>
+			<span class="quantity-value">${item.quantity}</span>
+			<button class="quantity-btn increase-quantity" data-product="${productName}">+</button>
+			</div>
+		</div>
+		<button class="remove-item" data-product="${productName}">
+			<i class="fas fa-trash-alt"></i>
+		</button>
+		</div>
+	`
 	})
 
 	cartItems.innerHTML = cartHTML
@@ -311,11 +317,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		total += itemTotal
 
 		checkoutHTML += `
-				<div class="summary-item">
-					<span>${productName} x ${item.quantity}</span>
-					<span>$${itemTotal.toFixed(2)}</span>
-				</div>
-			`
+		<div class="summary-item">
+			<span>${productName} x ${item.quantity}</span>
+			<span>$${itemTotal.toFixed(2)}</span>
+		</div>
+		`
 	})
 
 	checkoutItems.innerHTML = checkoutHTML
@@ -344,6 +350,39 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Place order functionality
 	if (placeOrderBtn) {
 	placeOrderBtn.addEventListener("click", () => {
+		// Get current user
+		const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+
+		if (currentUser) {
+		// Create order object
+		const order = {
+			id: Date.now().toString(),
+			date: new Date().toISOString(),
+			items: { ...cart },
+			total: Object.values(cart).reduce((total, item) => total + item.price * item.quantity, 0),
+		}
+
+		// Get users from localStorage
+		const users = JSON.parse(localStorage.getItem("users")) || []
+
+		// Find current user in users array
+		const userIndex = users.findIndex((u) => u.id === currentUser.id)
+
+		if (userIndex !== -1) {
+			// Add order to user's orders
+			if (!users[userIndex].orders) {
+			users[userIndex].orders = []
+			}
+			users[userIndex].orders.push(order)
+
+			// Update users in localStorage
+			localStorage.setItem("users", JSON.stringify(users))
+
+			// Update current user in localStorage
+			localStorage.setItem("currentUser", JSON.stringify(users[userIndex]))
+		}
+		}
+
 		// Simulate order placement
 		showToast("Order placed successfully! Thank you for shopping with us.")
 		cart = {}
@@ -365,9 +404,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		newToast.className = "toast"
 		newToast.id = "toast"
 		newToast.innerHTML = `
-				<i class="fas fa-check-circle"></i>
-				<span id="toastMessage">${message}</span>
-			`
+		<i class="fas fa-check-circle"></i>
+		<span id="toastMessage">${message}</span>
+		`
 		document.body.appendChild(newToast)
 
 		setTimeout(() => {
@@ -385,9 +424,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	if (!toastMessage) {
 		toast.innerHTML = `
-				<i class="fas fa-check-circle"></i>
-				<span id="toastMessage">${message}</span>
-			`
+		<i class="fas fa-check-circle"></i>
+		<span id="toastMessage">${message}</span>
+		`
 	} else {
 		toastMessage.textContent = message
 	}
@@ -502,5 +541,185 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Initialize cart count on page load
 	updateCartCount()
+
+	// Login Modal Functionality
+	const loginButton = document.getElementById("loginButton")
+	const loginModal = document.getElementById("loginModal")
+	const closeLoginModal = document.getElementById("closeLoginModal")
+	const loginTabs = document.querySelectorAll(".login-tab")
+	const loginForms = document.querySelectorAll(".login-form")
+	const loginForm = document.getElementById("loginForm")
+	const registerForm = document.getElementById("registerForm")
+	const togglePasswordButtons = document.querySelectorAll(".toggle-password")
+
+	// Check if user is logged in
+	function checkLoginStatus() {
+	const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+	if (currentUser) {
+		loginButton.innerHTML = `<i class="fas fa-user"></i> My Account`
+		loginButton.addEventListener("click", () => {
+		})
+	} else {
+		loginButton.innerHTML = `<i class="fas fa-user"></i> Login`
+		loginButton.addEventListener("click", openLoginModal)
+	}
+	}
+
+	// Open login modal
+	function openLoginModal() {
+	loginModal.classList.add("active")
+	document.body.style.overflow = "hidden"
+	}
+
+	// Close login modal
+	function closeLoginModalFunc() {
+	loginModal.classList.remove("active")
+	document.body.style.overflow = ""
+	}
+
+	// Toggle between login and register tabs
+	loginTabs.forEach((tab) => {
+	tab.addEventListener("click", () => {
+		const tabName = tab.getAttribute("data-tab")
+
+		// Update active tab
+		loginTabs.forEach((t) => t.classList.remove("active"))
+		tab.classList.add("active")
+
+		// Show corresponding form
+		loginForms.forEach((form) => form.classList.remove("active"))
+		document.getElementById(`${tabName}Form`).classList.add("active")
+	})
+	})
+
+	// Toggle password visibility
+	togglePasswordButtons.forEach((button) => {
+	button.addEventListener("click", function () {
+		const passwordInput = this.previousElementSibling
+		const type = passwordInput.getAttribute("type")
+
+		if (type === "password") {
+		passwordInput.setAttribute("type", "text")
+		this.innerHTML = '<i class="fas fa-eye-slash"></i>'
+		} else {
+		passwordInput.setAttribute("type", "password")
+		this.innerHTML = '<i class="fas fa-eye"></i>'
+		}
+	})
+	})
+
+	// Handle login form submission
+	if (loginForm) {
+	loginForm.addEventListener("submit", (e) => {
+		e.preventDefault()
+
+		const email = document.getElementById("loginEmail").value
+		const password = document.getElementById("loginPassword").value
+
+		// Get users from localStorage
+		const users = JSON.parse(localStorage.getItem("users")) || []
+
+		// Find user with matching email and password
+		const user = users.find((u) => u.email === email && u.password === password)
+
+		if (user) {
+		// Store current user in localStorage
+		localStorage.setItem("currentUser", JSON.stringify(user))
+
+		// Show success message
+		showToast("Login successful!")
+
+		// Close modal
+		closeLoginModalFunc()
+
+		// Update login button
+		checkLoginStatus()
+
+		// Redirect to account page
+		// Inside login success
+		setTimeout(() => {
+			window.location.href = "/account/";
+		}, 1000);
+		} else {
+		showToast("Invalid email or password", "error")
+		}
+	})
+	}
+
+	// Handle register form submission
+	if (registerForm) {
+	registerForm.addEventListener("submit", (e) => {
+		e.preventDefault()
+
+		const name = document.getElementById("registerName").value
+		const email = document.getElementById("registerEmail").value
+		const password = document.getElementById("registerPassword").value
+		const confirmPassword = document.getElementById("confirmPassword").value
+
+		// Validate passwords match
+		if (password !== confirmPassword) {
+		showToast("Passwords do not match", "error")
+		return
+		}
+
+		// Get existing users from localStorage
+		const users = JSON.parse(localStorage.getItem("users")) || []
+
+		// Check if email already exists
+		if (users.some((user) => user.email === email)) {
+		showToast("Email already registered", "error")
+		return
+		}
+
+		// Create new user
+		const newUser = {
+		id: Date.now().toString(),
+		name,
+		email,
+		password,
+		orders: [],
+		}
+
+		// Add user to users array
+		users.push(newUser)
+
+		// Save users to localStorage
+		localStorage.setItem("users", JSON.stringify(users))
+
+		// Set current user
+		localStorage.setItem("currentUser", JSON.stringify(newUser))
+
+		// Show success message
+		showToast("Registration successful!")
+
+		// Close modal
+		closeLoginModalFunc()
+
+		// Update login button
+		checkLoginStatus()
+
+		// Inside login success
+		setTimeout(() => {
+			window.location.href = "/account/";
+		}, 1000);
+
+	})
+	}
+
+	// Event listeners for login modal
+	if (loginButton && loginModal && closeLoginModal) {
+	loginButton.addEventListener("click", openLoginModal)
+	closeLoginModal.addEventListener("click", closeLoginModalFunc)
+
+	// Close modal when clicking outside
+	window.addEventListener("click", (e) => {
+		if (e.target === loginModal) {
+		closeLoginModalFunc()
+		}
+	})
+	}
+
+	// Check login status on page load
+	checkLoginStatus()
 })
 

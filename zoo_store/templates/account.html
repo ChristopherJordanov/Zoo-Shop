@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - PetZoo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/account.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="{% url 'index'}" class="logo" id="logoLink">
+                <i class="fas fa-paw"></i> PetZoo
+            </a>
+            <div class="nav-links">
+                <a href="{% url 'index'}#hero">Home</a>
+                <a href="{% url 'index'}#about">About</a>
+                <a href="{% url 'index'}#services">Services</a>
+                <a href="{% url 'index'}#products">Products</a>
+                <a href="{% url 'index'}#categories">Categories</a>
+                <a href="{% url 'index'}#testimonials">Testimonials</a>
+            </div>
+            <div class="nav-actions">
+                <button id="loginButton" class="nav-button">
+                    <i class="fas fa-user"></i> My Account
+                </button>
+                <div id="cartIcon" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Account Section -->
+    <section class="account-section">
+        <div class="container">
+            <div class="account-header">
+                <h1 class="section-title">My Account</h1>
+                <p class="section-subtitle">Manage your profile and view your orders</p>
+            </div>
+
+            <div class="account-container">
+                <div class="account-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 id="userName">User Name</h3>
+                        <p id="userEmail">user@example.com</p>
+                    </div>
+                    <div class="account-nav">
+                        <button class="account-nav-item active" data-tab="profile">
+                            <i class="fas fa-user-circle"></i> Profile
+                        </button>
+                        <button class="account-nav-item" data-tab="orders">
+                            <i class="fas fa-shopping-bag"></i> Orders
+                        </button>
+                        <button class="account-nav-item" data-tab="settings">
+                            <i class="fas fa-cog"></i> Settings
+                        </button>
+                        <button id="logoutButton" class="account-nav-item">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <div class="account-content">
+                    <!-- Profile Tab -->
+                    <div id="profileTab" class="account-tab active">
+                        <h2>Profile Information</h2>
+                        <form id="profileForm" class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profileName">Full Name</label>
+                                    <input type="text" id="profileName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" required disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profilePhone">Phone Number</label>
+                                    <input type="tel" id="profilePhone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileAddress">Address</label>
+                                    <input type="text" id="profileAddress">
+                                </div>
+                            </div>
+                            <button type="submit" class="update-profile-btn">
+                                <i class="fas fa-save"></i> Update Profile
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Orders Tab -->
+                    <div id="ordersTab" class="account-tab">
+                        <h2>Order History</h2>
+                        <div id="ordersList" class="orders-list">
+                            <!-- Orders will be populated here -->
+                            <div class="empty-orders">
+                                <i class="fas fa-shopping-bag"></i>
+                                <p>You haven't placed any orders yet</p>
+                                <a href="{% url 'index' %}#products" class="shop-now-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settingsTab" class="account-tab">
+                        <h2>Account Settings</h2>
+                        <form id="passwordForm" class="password-form">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmNewPassword">Confirm New Password</label>
+                                <input type="password" id="confirmNewPassword" required>
+                            </div>
+                            <button type="submit" class="change-password-btn">
+                                <i class="fas fa-lock"></i> Change Password
+                            </button>
+                        </form>
+
+                        <div class="danger-zone">
+                            <h3>Danger Zone</h3>
+                            <button id="deleteAccountBtn" class="delete-account-btn">
+                                <i class="fas fa-trash-alt"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-paw"></i> PetZoo
+                    </a>
+                    <p class="footer-description">
+                        Your one-stop shop for all pet needs. Quality products, expert advice, and a community of pet lovers.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'index' %}#hero"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="{% url 'index' %}#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="{% url 'index' %}#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="{% url 'index' %}#products"><i class="fas fa-chevron-right"></i> Products</a></li>
+                        <li><a href="{% url 'index' %}#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Dogs</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cats</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Birds</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Fish</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Small Pets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details">123 Pet Street, Animal City, AC 12345, Country</div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-details">+1 234 567 8901</div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details">info@petzoo.com</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2023 PetZoo. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-header">
+            <h3 class="cart-title">Your Cart</h3>
+            <span id="closeCart" class="close-cart">&times;</span>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items will be populated here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <a href="#" id="checkoutBtn" class="checkout-btn">
+                <i class="fas fa-shopping-cart"></i> Checkout
+            </a>
+        </div>
+    </div>
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <script src="../static/js/home.js"></script>
+    <script src="../static/js/account.js"></script>
+</body>
+</html>

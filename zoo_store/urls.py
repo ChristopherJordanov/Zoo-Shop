@@ -1,8 +1,9 @@
 from django.urls import path
 from .views import index, fish_page, dog_page, cat_page, contact, bird_page, \
-    add_to_cart, cart_page, checkout, subscribe
+    add_to_cart, cart_page, checkout, subscribe, account_page
 
 urlpatterns = [
+    path("account/", account_page, name="account"),
     path("subscribe/", subscribe, name="subscribe"),
     path("", index, name="index"),
     path("fish/", fish_page, name="fish"),
