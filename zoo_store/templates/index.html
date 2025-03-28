@@ -418,12 +418,30 @@
         <div class="newsletter-container">
             <h2 class="newsletter-title">Join Our Pet-Loving Community</h2>
             <p class="newsletter-description">Subscribe to receive exclusive offers, pet care tips, and be the first to know about new premium products.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <form method="POST" action="/subscribe/" class="newsletter-form">
+                {% csrf_token %}
+                <input type="email" name="email" class="newsletter-input" placeholder="Your email address" required>
                 <button type="submit" class="newsletter-button">Subscribe</button>
             </form>
+            
+            {% if subscribed %}
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>You're In!</h3>
+                    <p>We've added your email and sent a welcome message 🐶</p>
+                </div>
+            {% endif %}
+            
+            {% if subscribed %}
+                <div class="newsletter-confirmation">
+                    <strong>You're subscribed!</strong> Check your email for a welcome message. 🐾
+                </div>
+            {% endif %}
         </div>
     </section>
+
+    <!-- Add cart overlay div right before the cart modal -->
+    <div class="cart-overlay" id="cartOverlay"></div>
 
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
@@ -444,125 +462,11 @@
                 <span>Total:</span>
                 <span id="cartTotal">$0.00</span>
             </div>
-            <button class="checkout-btn" id="checkoutBtn">
+            <a href="{% url 'checkout' %}" class="checkout-btn" id="checkoutBtn">
                 <i class="fas fa-credit-card"></i> Proceed to Checkout
-            </button>            
+            </a>            
         </div>
     </div>
-
-    <section class="checkout-section" id="checkoutPage" style="display: none;">
-        <div class="container">
-            <h2 class="section-title">Checkout</h2>
-            <p class="section-subtitle">Complete your order</p>
-    
-            <form action="{% url 'checkout' %}" method="post">
-                {% csrf_token %}
-                <div class="checkout-container">
-                    <!-- Billing Details -->
-                    <div class="checkout-form">
-                        <h3 class="checkout-title">Billing Details</h3>
-    
-                        <div class="form-section">
-                            <h4 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h4>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" id="lastName" name="lastName" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="checkoutEmail" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                        </div>
-    
-                        <!-- Shipping Address -->
-                        <div class="form-section">
-                            <h4 class="form-section-title"><i class="fas fa-map-marker-alt"></i> Shipping Address</h4>
-                            <div class="form-group">
-                                <label for="address">Street Address</label>
-                                <input type="text" id="address" name="address" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="city">City</label>
-                                    <input type="text" id="city" name="city" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="state">State/Province</label>
-                                    <input type="text" id="state" name="state" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="zip">Zip/Postal Code</label>
-                                    <input type="text" id="zip" name="zip" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Country</label>
-                                    <select id="country" name="country" required>
-                                        <option value="">Select Country</option>
-                                        <option value="BUL">Bulgaria</option>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="AU">Australia</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Payment Info -->
-                        <div class="form-section">
-                            <h4 class="form-section-title"><i class="fas fa-credit-card"></i> Payment Information</h4>
-                            <div class="form-group">
-                                <label for="cardName">Name on Card</label>
-                                <input type="text" id="cardName" name="cardName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cardNumber">Card Number</label>
-                                <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="expDate">Expiration Date</label>
-                                    <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Order Summary -->
-                    <div class="checkout-summary">
-                        <h3 class="checkout-title">Order Summary</h3>
-                        <div id="checkoutItems">
-                            <!-- Order items will be dynamically added here -->
-                        </div>
-                        <div class="summary-total">
-                            <span>Total:</span>
-                            <span id="checkoutTotal">$0.00</span>
-                        </div>
-                        <button class="place-order-btn" id="placeOrderBtn">
-                            <i class="fas fa-check-circle"></i> Place Order
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </section>
-    
 
     <footer class="footer">
         <div class="container">
@@ -636,3 +540,4 @@
     <script src="../static/js/home.js" defer></script>
 </body>
 </html>
+

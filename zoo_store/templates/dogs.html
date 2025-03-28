@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WoofWonders - Premium Dog Supplies</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>WoofWonders - Premium Dog Products</title>
     <link rel="stylesheet" href="../static/css/dogs.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Dog-themed decorative elements -->
-    <div class="dog-silhouette" style="top: 20%; left: 5%; animation: float 8s ease-in-out infinite;"></div>
-    <div class="dog-silhouette" style="top: 40%; right: 8%; animation: float 6s ease-in-out infinite 1s;"></div>
-    <div class="dog-house" style="bottom: 30%; left: 10%; animation: float 7s ease-in-out infinite 0.5s;"></div>
-    <div class="dog-house" style="top: 25%; right: 15%; animation: float 9s ease-in-out infinite 1.5s;"></div>
-    <div class="dog-bone" style="bottom: 20%; right: 10%;"></div>
-    <div class="dog-bone" style="top: 35%; left: 15%;"></div>
-
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="container navbar-content">
-            <a href="{% url 'index' %}" class="logo"><i class="fas fa-dog"></i>WoofWonders</a>
+            <a href="{% url 'index' %}" class="logo">
+                <i class="fas fa-paw"></i>
+                WoofWonders
+            </a>
             <div class="nav-links">
                 <a href="#food">Food</a>
                 <a href="#toys">Toys</a>
@@ -28,55 +24,84 @@
                 <a href="#grooming">Grooming</a>
             </div>
             <div class="nav-actions">
-                <div class="cart-icon">
+                <div class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
+                    <span class="cart-count" id="cartCount">0</span>
                 </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Premium Dog Products for Your Loyal Companion</h1>
-            <p class="hero-subtitle">Discover our curated collection of high-quality dog food, toys, beds, and accessories designed for the discerning dog parent.</p>
-            <a href="#food" class="cta-button">Shop Collection <i class="fas fa-bone"></i></a>
+        <!-- Decorative Elements -->
+        <div class="decorative-elements">
+            <div class="decorative-item dog1">
+                <i class="fas fa-dog"></i>
+            </div>
+            <div class="decorative-item house1">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="decorative-item bone1">
+                <i class="fas fa-bone"></i>
+            </div>
+            <div class="decorative-item paw1">
+                <i class="fas fa-paw"></i>
+            </div>
+            <div class="decorative-item dog2">
+                <i class="fas fa-dog"></i>
+            </div>
+            <div class="decorative-item house2">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="decorative-item bone2">
+                <i class="fas fa-bone"></i>
+            </div>
+            <div class="decorative-item paw2">
+                <i class="fas fa-paw"></i>
+            </div>
         </div>
-        <!-- Paw prints trail -->
-        <div class="paw-print" style="top: 60%; left: 20%;"></div>
-        <div class="paw-print" style="top: 65%; left: 25%;"></div>
-        <div class="paw-print" style="top: 70%; left: 30%;"></div>
-        <div class="paw-print" style="top: 75%; left: 35%;"></div>
-        <div class="paw-print" style="top: 60%; right: 20%;"></div>
-        <div class="paw-print" style="top: 65%; right: 25%;"></div>
-        <div class="paw-print" style="top: 70%; right: 30%;"></div>
+
+        <div class="container hero-content">
+            <h1 class="hero-title">Premium Products for Your Furry Friends</h1>
+            <p class="hero-subtitle">Discover high-quality food, toys, and accessories that your dogs will love.</p>
+            <a href="#food" class="cta-button">
+                Shop Now
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
 
-    <section id="food" class="category-section bg-light">
+    <!-- Food Section -->
+    <section class="category-section bg-light" id="food">
         <div class="container">
             <div class="category-header">
-                <span class="category-tag">Premium Nutrition</span>
-                <h2 class="category-title">Dog Food</h2>
-                <p class="category-description">Nourish your canine companion with our selection of premium, nutrient-rich foods crafted from the finest ingredients.</p>
+                <span class="category-tag">Nutrition</span>
+                <h2 class="category-title">Premium Dog Food</h2>
+                <p class="category-description">Nutritious and delicious meals made with high-quality ingredients to keep your furry friend healthy and happy.</p>
             </div>
             <div class="product-grid">
+                <!-- Product 1 -->
                 <div class="product-card">
-                    <div class="product-badge">Best Seller</div>
+                    <span class="product-badge">Best Seller</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,food" alt="Premium Dry Dog Food">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,food" alt="Premium Dry Dog Food">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Dry Food</div>
-                        <h3 class="product-title">Premium Dry Dog Food</h3>
-                        <p class="product-description">High-protein formula with real meat, vegetables, and essential nutrients for optimal health and vitality.</p>
+                        <h3 class="product-title">Premium Grain-Free Dry Food</h3>
+                        <p class="product-description">High-protein, grain-free formula with real meat as the first ingredient.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -85,57 +110,33 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$54.95</span>
-                            <span class="old-price">$64.95</span>
+                            <span class="current-price">$49.99</span>
+                            <span class="old-price">$59.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="dog-food-premium" data-product="Premium Dry Dog Food" data-price="54.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="food1" data-product="Premium Grain-Free Dry Food" data-price="49.99" data-image="https://source.unsplash.com/random/600x600/?dog,food">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,food,wet" alt="Gourmet Wet Dog Food">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,treats" alt="Organic Dog Treats">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">Wet Food</div>
-                        <h3 class="product-title">Gourmet Wet Food Collection</h3>
-                        <p class="product-description">Savory stews with tender meat chunks in rich gravy, featuring premium cuts of beef, chicken, and lamb.</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$42.95</span>
-                            <span class="old-price">$49.95</span>
-                        </div>
-                        <button class="add-to-cart-btn " data-id="dog-food-wet" data-image="https://source.unsplash.com/random/600x800/?dog,food"data-product="Gourmet Wet Food Collection" data-price="42.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">New</div>
-                    <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,treats" alt="Organic Dog Treats">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Treats</div>
-                        <h3 class="product-title">Organic Gourmet Dog Treats</h3>
-                        <p class="product-description">Hand-crafted organic treats made with human-grade ingredients and no artificial preservatives.</p>
+                        <h3 class="product-title">Organic Biscuit Treats</h3>
+                        <p class="product-description">Handcrafted organic treats made with human-grade ingredients.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -144,77 +145,109 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$28.95</span>
-                            <span class="old-price">$34.95</span>
+                            <span class="current-price">$14.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="dog-treats" data-image="https://source.unsplash.com/random/600x800/?dog,food"data-product="Organic Gourmet Dog Treats" data-price="28.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="food2" data-product="Organic Biscuit Treats" data-price="14.99" data-image="https://source.unsplash.com/random/600x600/?dog,treats">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <div class="dog-divider"></div>
-
-    <section class="features-section">
-        <div class="container">
-            <div class="category-header">
-                <span class="category-tag">Why Choose Us</span>
-                <h2 class="category-title">The WoofWonders Experience</h2>
-                <p class="category-description">We're committed to providing the best for your canine companions with premium products and exceptional service.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3 class="feature-title">Premium Quality</h3>
-                    <p class="feature-description">We source only the finest materials and ingredients for all our products, ensuring exceptional quality for your beloved dogs.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3 class="feature-title">Free Shipping</h3>
-                    <p class="feature-description">Enjoy free shipping on all orders over $50, with fast and reliable delivery right to your doorstep.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 class="feature-title">Satisfaction Guarantee</h3>
-                    <p class="feature-description">If you or your dog aren't completely satisfied with any product, we offer hassle-free returns and exchanges.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="dog-divider" style="transform: rotate(180deg);"></div>
-
-    <section id="toys" class="category-section bg-accent">
-        <div class="container">
-            <div class="category-header">
-                <span class="category-tag">Playtime Essentials</span>
-                <h2 class="category-title">Dog Toys</h2>
-                <p class="category-description">Engage your dog's natural instincts with our collection of durable toys designed for entertainment and enrichment.</p>
-            </div>
-            <div class="product-grid">
+                <!-- Product 3 -->
                 <div class="product-card">
-                    <div class="product-badge">Best Seller</div>
+                    <span class="product-badge">New</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,toy,ball" alt="Interactive Ball Launcher">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,wet,food" alt="Gourmet Wet Dog Food">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Interactive Toys</div>
-                        <h3 class="product-title">Interactive Ball Launcher</h3>
-                        <p class="product-description">Automatic ball launcher with adjustable distance settings for hours of fetch fun indoors or outdoors.</p>
+                        <div class="product-category">Wet Food</div>
+                        <h3 class="product-title">Gourmet Wet Food Variety Pack</h3>
+                        <p class="product-description">Delicious wet food with real meat chunks in savory gravy.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$24.99</span>
+                            <span class="old-price">$29.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-id="food3" data-product="Gourmet Wet Food Variety Pack" data-price="24.99" data-image="https://source.unsplash.com/random/600x600/?dog,wet,food">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (Why Choose Us) -->
+    <section class="features-section">
+        <div class="container">
+            <div class="category-header text-center">
+                <span class="category-tag">Why Choose Us</span>
+                <h2 class="category-title">The WoofWonders Difference</h2>
+                <p class="category-description">We're committed to providing the highest quality products and exceptional service for you and your furry friends.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-medal feature-icon"></i>
+                    <h3 class="feature-title">Premium Quality</h3>
+                    <p class="feature-description">We carefully select only the highest quality products that meet our strict standards for safety, durability, and performance.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-truck feature-icon"></i>
+                    <h3 class="feature-title">Fast Shipping</h3>
+                    <p class="feature-description">Enjoy free shipping on orders over $50 and quick delivery to your doorstep so your pup doesn't have to wait.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart feature-icon"></i>
+                    <h3 class="feature-title">Satisfaction Guaranteed</h3>
+                    <p class="feature-description">If you or your dog aren't completely satisfied, we offer hassle-free returns within 30 days of purchase.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toys Section -->
+    <section class="category-section bg-accent" id="toys">
+        <div class="container">
+            <div class="category-header">
+                <span class="category-tag">Playtime</span>
+                <h2 class="category-title">Interactive Dog Toys</h2>
+                <p class="category-description">Keep your furry friend entertained and mentally stimulated with our durable and engaging toys.</p>
+            </div>
+            <div class="product-grid">
+                <!-- Toy Product 1 -->
+                <div class="product-card">
+                    <span class="product-badge">Best Seller</span>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,toy,ball" alt="Interactive Treat Ball">
+                        <div class="product-actions">
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Interactive</div>
+                        <h3 class="product-title">Interactive Treat Dispensing Ball</h3>
+                        <p class="product-description">Challenging toy that dispenses treats as your dog plays, providing mental stimulation.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -223,27 +256,33 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$49.95</span>
-                            <span class="old-price">$59.95</span>
+                            <span class="current-price">$19.99</span>
+                            <span class="old-price">$24.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="interactive-toy" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Interactive Ball Launcher" data-price="49.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="toy1" data-product="Interactive Treat Dispensing Ball" data-price="19.99" data-image="https://source.unsplash.com/random/600x600/?dog,toy,ball">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Toy Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,chew,toy" alt="Durable Chew Toy">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,toy,rope" alt="Durable Rope Toy">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Chew Toys</div>
-                        <h3 class="product-title">Indestructible Chew Bone</h3>
-                        <p class="product-description">Ultra-durable nylon bone designed for aggressive chewers with textured surface for dental health.</p>
+                        <h3 class="product-title">Heavy Duty Rope Toy Set</h3>
+                        <p class="product-description">Set of 3 durable rope toys perfect for tugging, tossing, and chewing.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -252,28 +291,33 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$18.95</span>
-                            <span class="old-price">$22.95</span>
+                            <span class="current-price">$16.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="chew-toy" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Indestructible Chew Bone" data-price="18.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="toy2" data-product="Heavy Duty Rope Toy Set" data-price="16.99" data-image="https://source.unsplash.com/random/600x600/?dog,toy,rope">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Toy Product 3 -->
                 <div class="product-card">
-                    <div class="product-badge">New</div>
+                    <span class="product-badge">New</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,puzzle,toy" alt="Interactive Puzzle Toy">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,toy,plush" alt="Plush Squeaky Toy">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Puzzle Toys</div>
-                        <h3 class="product-title">Treat Puzzle Challenge</h3>
-                        <p class="product-description">Stimulate your dog's mind with this interactive puzzle toy with multiple difficulty levels and hidden treat compartments.</p>
+                        <div class="product-category">Plush Toys</div>
+                        <h3 class="product-title">Plush Squeaky Animal Toy</h3>
+                        <p class="product-description">Soft plush toy with multiple squeakers for endless entertainment.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -282,11 +326,12 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$34.95</span>
-                            <span class="old-price">$39.95</span>
+                            <span class="current-price">$12.99</span>
+                            <span class="old-price">$15.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="puzzle-toy" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Treat Puzzle Challenge" data-price="34.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="toy3" data-product="Plush Squeaky Animal Toy" data-price="12.99" data-image="https://source.unsplash.com/random/600x600/?dog,toy,plush">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
@@ -294,97 +339,33 @@
         </div>
     </section>
 
-    <section class="testimonials-section">
+    <!-- Beds Section -->
+    <section class="category-section bg-light" id="beds">
         <div class="container">
             <div class="category-header">
-                <span class="category-tag">Customer Reviews</span>
-                <h2 class="category-title">What Dog Parents Say</h2>
-                <p class="category-description">Hear from our satisfied customers about their experiences with our premium dog products.</p>
-            </div>
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <p class="testimonial-content">My German Shepherd absolutely loves the Premium Dry Dog Food. His coat is shinier than ever, and he has so much more energy during our daily walks. The quality is exceptional!</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://source.unsplash.com/random/100x100/?man" alt="Michael Johnson">
-                        </div>
-                        <div class="author-info">
-                            <h4>Michael Johnson</h4>
-                            <p>German Shepherd Owner</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-content">The Interactive Ball Launcher has been a game-changer! My Border Collie is completely obsessed with it, and it's helped burn off so much of her excess energy. Worth every penny!</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://source.unsplash.com/random/100x100/?woman" alt="Sarah Miller">
-                        </div>
-                        <div class="author-info">
-                            <h4>Sarah Miller</h4>
-                            <p>Border Collie Owner</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-content">The customer service at WoofWonders is amazing! When I had questions about which bed would suit my Great Dane, they provided perfect recommendations. My dog loves his new orthopedic bed!</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://source.unsplash.com/random/100x100/?man,portrait" alt="David Thompson">
-                        </div>
-                        <div class="author-info">
-                            <h4>David Thompson</h4>
-                            <p>Great Dane Owner</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="beds" class="category-section bg-light">
-        <div class="container">
-            <div class="category-header">
-                <span class="category-tag">Comfort & Style</span>
-                <h2 class="category-title">Dog Beds</h2>
-                <p class="category-description">Provide your canine companion with the ultimate comfort and support with our collection of premium dog beds.</p>
+                <span class="category-tag">Comfort</span>
+                <h2 class="category-title">Cozy Dog Beds</h2>
+                <p class="category-description">Give your furry friend the perfect place to rest with our comfortable and stylish dog beds.</p>
             </div>
             <div class="product-grid">
+                <!-- Bed Product 1 -->
                 <div class="product-card">
-                    <div class="product-badge">Top Rated</div>
+                    <span class="product-badge">Premium</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,bed" alt="Orthopedic Dog Bed">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,bed,orthopedic" alt="Orthopedic Dog Bed">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Orthopedic Beds</div>
-                        <h3 class="product-title">Luxury Orthopedic Dog Bed</h3>
-                        <p class="product-description">Memory foam bed with therapeutic support for joints and muscles, perfect for senior dogs or those with arthritis.</p>
+                        <div class="product-category">Orthopedic</div>
+                        <h3 class="product-title">Memory Foam Orthopedic Bed</h3>
+                        <p class="product-description">Premium memory foam bed that provides joint support for senior dogs.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -393,57 +374,33 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$89.95</span>
-                            <span class="old-price">$109.95</span>
+                            <span class="current-price">$89.99</span>
+                            <span class="old-price">$109.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="orthopedic-bed" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Luxury Orthopedic Dog Bed" data-price="89.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="bed1" data-product="Memory Foam Orthopedic Bed" data-price="89.99" data-image="https://source.unsplash.com/random/600x600/?dog,bed,orthopedic">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Bed Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,couch" alt="Sofa Dog Bed">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,bed,cozy" alt="Cozy Donut Bed">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Sofa Beds</div>
-                        <h3 class="product-title">Designer Sofa Bed</h3>
-                        <p class="product-description">Stylish sofa-style bed with bolstered sides for security and comfort, available in multiple designer colors.</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$64.95</span>
-                            <span class="old-price">$74.95</span>
-                        </div>
-                        <button class="add-to-cart-btn " data-id="sofa-bed" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Designer Sofa Bed" data-price="64.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">New</div>
-                    <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,cave" alt="Cave Dog Bed">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">Cave Beds</div>
-                        <h3 class="product-title">Cozy Cave Bed</h3>
-                        <p class="product-description">Hooded cave bed for dogs who love to burrow, with plush interior lining and machine-washable cover.</p>
+                        <div class="product-category">Calming</div>
+                        <h3 class="product-title">Calming Donut Cuddler Bed</h3>
+                        <p class="product-description">Soft, round bed with raised edges that create a sense of security for anxious dogs.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -452,11 +409,47 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$54.95</span>
-                            <span class="old-price">$64.95</span>
+                            <span class="current-price">$59.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="cave-bed" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Cozy Cave Bed" data-price="54.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="bed2" data-product="Calming Donut Cuddler Bed" data-price="59.99" data-image="https://source.unsplash.com/random/600x600/?dog,bed,cozy">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bed Product 3 -->
+                <div class="product-card">
+                    <span class="product-badge">Washable</span>
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,bed,sofa" alt="Dog Sofa Bed">
+                        <div class="product-actions">
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Furniture</div>
+                        <h3 class="product-title">Luxury Dog Sofa Bed</h3>
+                        <p class="product-description">Stylish sofa-style bed with bolstered sides and a waterproof base.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$79.99</span>
+                            <span class="old-price">$94.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-id="bed3" data-product="Luxury Dog Sofa Bed" data-price="79.99" data-image="https://source.unsplash.com/random/600x600/?dog,bed,sofa">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
@@ -464,28 +457,68 @@
         </div>
     </section>
 
-    <section id="leashes" class="category-section bg-accent">
+    <!-- Leashes Section -->
+    <section class="category-section bg-accent" id="leashes">
         <div class="container">
             <div class="category-header">
-                <span class="category-tag">Walking & Training</span>
-                <h2 class="category-title">Leashes & Collars</h2>
-                <p class="category-description">Ensure your dog's safety and comfort with our collection of well-designed leashes, collars, and harnesses.</p>
+                <span class="category-tag">Walking</span>
+                <h2 class="category-title">Durable Leashes & Collars</h2>
+                <p class="category-description">Keep your dog safe and stylish with our collection of high-quality leashes, collars, and harnesses.</p>
             </div>
             <div class="product-grid">
+                <!-- Leash Product 1 -->
                 <div class="product-card">
-                    <div class="product-badge">Best Value</div>
+                    <span class="product-badge">Reflective</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,leash" alt="Reflective Leash">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,leash" alt="Reflective Dog Leash">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Leashes</div>
-                        <h3 class="product-title">Reflective Adventure Leash</h3>
-                        <p class="product-description">Durable nylon leash with reflective stitching for nighttime visibility and padded handle for comfort.</p>
+                        <h3 class="product-title">Reflective Nylon Dog Leash</h3>
+                        <p class="product-description">Strong nylon leash with reflective stitching for nighttime visibility and safety.</p>
+                        <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$24.99</span>
+                            <span class="old-price">$29.99</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-id="leash1" data-product="Reflective Nylon Dog Leash" data-price="24.99" data-image="https://source.unsplash.com/random/600x600/?dog,leash">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leash Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,collar" alt="Leather Dog Collar">
+                        <div class="product-actions">
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Collars</div>
+                        <h3 class="product-title">Premium Leather Dog Collar</h3>
+                        <p class="product-description">Handcrafted genuine leather collar with durable metal hardware and personalized tag.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -494,57 +527,33 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$24.95</span>
-                            <span class="old-price">$29.95</span>
+                            <span class="current-price">$34.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="leashes" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Reflective Adventure Leash" data-price="24.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="leash2" data-product="Premium Leather Dog Collar" data-price="34.99" data-image="https://source.unsplash.com/random/600x600/?dog,collar">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Leash Product 3 -->
                 <div class="product-card">
+                    <span class="product-badge">No-Pull</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,collar" alt="Leather Collar">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,harness" alt="No-Pull Dog Harness">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">Collars</div>
-                        <h3 class="product-title">Premium Leather Collar</h3>
-                        <p class="product-description">Handcrafted genuine leather collar with brass hardware and personalized name plate option.</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="product-price">
-                            <span class="current-price">$39.95</span>
-                            <span class="old-price">$49.95</span>
-                        </div>
-                        <button class="add-to-cart-btn " data-id="leather-collar" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Premium Leather Collar" data-price="39.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-badge">New</div>
-                    <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,harness" alt="No-Pull Harness">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Harnesses</div>
                         <h3 class="product-title">No-Pull Training Harness</h3>
-                        <p class="product-description">Ergonomic design that discourages pulling while providing comfortable control and multiple attachment points.</p>
+                        <p class="product-description">Comfortable harness designed to reduce pulling and provide better control during walks.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -553,11 +562,12 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$44.95</span>
-                            <span class="old-price">$54.95</span>
+                            <span class="current-price">$39.99</span>
+                            <span class="old-price">$45.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="training harness" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="No-Pull Training Harness" data-price="44.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="leash3" data-product="No-Pull Training Harness" data-price="39.99" data-image="https://source.unsplash.com/random/600x600/?dog,harness">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
@@ -565,28 +575,33 @@
         </div>
     </section>
 
-    <section id="grooming" class="category-section bg-light">
+    <!-- Grooming Section -->
+    <section class="category-section bg-light" id="grooming">
         <div class="container">
             <div class="category-header">
-                <span class="category-tag">Pampering Essentials</span>
-                <h2 class="category-title">Dog Grooming</h2>
-                <p class="category-description">Keep your dog looking and feeling their best with our premium grooming products designed for canine comfort.</p>
+                <span class="category-tag">Care</span>
+                <h2 class="category-title">Grooming Essentials</h2>
+                <p class="category-description">Keep your dog looking and feeling their best with our premium grooming products and tools.</p>
             </div>
             <div class="product-grid">
+                <!-- Grooming Product 1 -->
                 <div class="product-card">
-                    <div class="product-badge">Best Seller</div>
+                    <span class="product-badge">Best Seller</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,brush" alt="Dog Brush">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,brush" alt="Dog Brush">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Brushes</div>
                         <h3 class="product-title">Self-Cleaning Slicker Brush</h3>
-                        <p class="product-description">One-touch cleaning brush that removes loose fur and prevents matting with gentle, flexible bristles.</p>
+                        <p class="product-description">Effective brush that removes loose fur and tangles with a self-cleaning button for easy maintenance.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -595,27 +610,33 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$29.95</span>
-                            <span class="old-price">$34.95</span>
+                            <span class="current-price">$22.99</span>
+                            <span class="old-price">$27.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="slicker-brush" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Self-Cleaning Slicker Brush" data-price="29.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="groom1" data-product="Self-Cleaning Slicker Brush" data-price="22.99" data-image="https://source.unsplash.com/random/600x600/?dog,brush">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Grooming Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,shampoo" alt="Dog Shampoo">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,shampoo" alt="Dog Shampoo">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Bath Products</div>
-                        <h3 class="product-title">Oatmeal & Aloe Shampoo</h3>
-                        <p class="product-description">Soothing formula for sensitive skin with natural ingredients that clean, condition, and deodorize.</p>
+                        <div class="product-category">Bath</div>
+                        <h3 class="product-title">Oatmeal & Aloe Dog Shampoo</h3>
+                        <p class="product-description">Gentle, hypoallergenic formula that soothes dry, itchy skin and leaves coat soft and shiny.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -624,28 +645,33 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$22.95</span>
-                            <span class="old-price">$26.95</span>
+                            <span class="current-price">$18.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="aloa-shampoo" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Oatmeal & Aloe Shampoo" data-price="22.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="groom2" data-product="Oatmeal & Aloe Dog Shampoo" data-price="18.99" data-image="https://source.unsplash.com/random/600x600/?dog,shampoo">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
+
+                <!-- Grooming Product 3 -->
                 <div class="product-card">
-                    <div class="product-badge">New</div>
+                    <span class="product-badge">Professional</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?dog,nail" alt="Nail Trimmer">
+                        <img src="https://source.unsplash.com/random/600x600/?dog,clipper" alt="Dog Nail Clippers">
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+                            <button class="product-action-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="product-action-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Nail Care</div>
-                        <h3 class="product-title">Professional Nail Grinder</h3>
-                        <p class="product-description">Quiet, rechargeable nail grinder with multiple speed settings and safety guard for stress-free nail trimming.</p>
+                        <h3 class="product-title">Professional Nail Clippers Set</h3>
+                        <p class="product-description">Sharp, precise clippers with safety guard and nail file for professional-quality nail trims at home.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -654,11 +680,12 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$34.95</span>
-                            <span class="old-price">$39.95</span>
+                            <span class="current-price">$15.99</span>
+                            <span class="old-price">$19.99</span>
                         </div>
-                        <button class="add-to-cart-btn " data-id="nail-grinder" data-image="https://source.unsplash.com/random/600x800/?dog,food" data-product="Professional Nail Grinder" data-price="34.95">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        <button class="add-to-cart-btn" data-id="groom3" data-product="Professional Nail Clippers Set" data-price="15.99" data-image="https://source.unsplash.com/random/600x600/?dog,clipper">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
                         </button>
                     </div>
                 </div>
@@ -666,210 +693,112 @@
         </div>
     </section>
 
-
-    <!-- Toast notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Item added to cart!</span>
-    </div>
-
+    <!-- Newsletter Section -->
     <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-container">
-                <h2 class="newsletter-title">Join Our Dog Lovers Club</h2>
-                <p class="newsletter-description">Subscribe to receive updates on new arrivals, special offers, and exclusive discounts for your canine friends.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
-            </div>
+        <div class="newsletter-container">
+            <h2 class="newsletter-title">Join Our Pack!</h2>
+            <p class="newsletter-description">Subscribe to our newsletter for exclusive offers, new product alerts, and expert tips for caring for your furry friend.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <a href="#" class="footer-logo"><i class="fas fa-dog"></i> WoofWonders</a>
-                    <p class="footer-description">Your premier destination for premium pet essentials. Since 2010, we've been catering to discerning dog owners with our curated selection of quality products.</p>
+                    <a href="#" class="footer-logo">WoofWonders</a>
+                    <p class="footer-description">Premium products for your furry friends. Quality, comfort, and joy for dogs of all sizes and breeds.</p>
                     <div class="footer-social">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3 class="footer-title">Quick Links</h3>
+                    <h3 class="footer-title">Shop</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
-                        <li><a href="#food"><i class="fas fa-angle-right"></i> Dog Food</a></li>
-                        <li><a href="#toys"><i class="fas fa-angle-right"></i> Dog Toys</a></li>
-                        <li><a href="#beds"><i class="fas fa-angle-right"></i> Dog Beds</a></li>
-                        <li><a href="#leashes"><i class="fas fa-angle-right"></i> Leashes & Collars</a></li>
-                        <li><a href="#grooming"><i class="fas fa-angle-right"></i> Dog Grooming</a></li>
+                        <li><a href="#food"><i class="fas fa-chevron-right"></i> Dog Food</a></li>
+                        <li><a href="#toys"><i class="fas fa-chevron-right"></i> Dog Toys</a></li>
+                        <li><a href="#beds"><i class="fas fa-chevron-right"></i> Dog Beds</a></li>
+                        <li><a href="#leashes"><i class="fas fa-chevron-right"></i> Leashes & Collars</a></li>
+                        <li><a href="#grooming"><i class="fas fa-chevron-right"></i> Grooming</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3 class="footer-title">Pet Categories</h3>
+                    <h3 class="footer-title">Company</h3>
                     <ul class="footer-links">
-                        <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
-                        <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                        <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
-                        <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="#{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="#{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="#{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="#{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3 class="footer-title">Contact Us</h3>
+                    <h3 class="footer-title">Contact</h3>
                     <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
                         <div class="contact-details">
-                            123 Canine Avenue, Dogtown<br>
-                            DT 12345, United States
+                            123 Bark Avenue<br>
+                            Dogtown, CA 90210
                         </div>
                     </div>
                     <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
+                        <i class="fas fa-phone-alt contact-icon"></i>
                         <div class="contact-details">
-                            (555) 987-6543<br>
-                            Mon-Fri: 9am-6pm
+                            (800) WOOF-123<br>
+                            Mon-Fri: 9am-5pm
                         </div>
                     </div>
                     <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <i class="fas fa-envelope contact-icon"></i>
                         <div class="contact-details">
-                            info@woofwonders.com<br>
-                            support@woofwonders.com
+                            woof@woofwonders.com
                         </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 WoofWonders. All Rights Reserved. Premium Dog Products.</p>
+                <p>&copy; 2023 WoofWonders. All rights reserved. | Terms & Conditions | Privacy Policy</p>
             </div>
         </div>
     </footer>
 
-    <section class="checkout-section" id="checkoutPage" style="display: none;">
-        <div class="container">
-            <h2 class="section-title">Checkout</h2>
-            <p class="section-subtitle">Complete your order</p>
-    
-            <form action="{% url 'checkout' %}" method="post">
-                {% csrf_token %}
-                <div class="checkout-container">
-                    <!-- Billing Details -->
-                    <div class="checkout-form">
-                        <h3 class="checkout-title">Billing Details</h3>
-    
-                        <div class="form-section">
-                            <h4 class="form-section-title"><i class="fas fa-user"></i> Personal Information</h4>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" id="lastName" name="lastName" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="checkoutEmail" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                        </div>
-    
-                        <!-- Shipping Address -->
-                        <div class="form-section">
-                            <h4 class="form-section-title"><i class="fas fa-map-marker-alt"></i> Shipping Address</h4>
-                            <div class="form-group">
-                                <label for="address">Street Address</label>
-                                <input type="text" id="address" name="address" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="city">City</label>
-                                    <input type="text" id="city" name="city" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="state">State/Province</label>
-                                    <input type="text" id="state" name="state" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="zip">Zip/Postal Code</label>
-                                    <input type="text" id="zip" name="zip" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Country</label>
-                                    <select id="country" name="country" required>
-                                        <option value="">Select Country</option>
-                                        <option value="BUL">Bulgaria</option>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="AU">Australia</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <!-- Payment Info -->
-                        <div class="form-section">
-                            <h4 class="form-section-title"><i class="fas fa-credit-card"></i> Payment Information</h4>
-                            <div class="form-group">
-                                <label for="cardName">Name on Card</label>
-                                <input type="text" id="cardName" name="cardName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cardNumber">Card Number</label>
-                                <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="expDate">Expiration Date</label>
-                                    <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Order Summary -->
-                    <div class="checkout-summary">
-                        <h3 class="checkout-title">Order Summary</h3>
-                        <div id="checkoutItems">
-                            <!-- Order items will be dynamically added here -->
-                        </div>
-                        <div class="summary-total">
-                            <span>Total:</span>
-                            <span id="checkoutTotal">$0.00</span>
-                        </div>
-                        <button class="place-order-btn" id="placeOrderBtn">
-                            <i class="fas fa-check-circle"></i> Place Order
-                        </button>
-                    </div>
-                </div>
-            </form>
+<!-- Cart Modal -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-modal-content">
+        <div class="cart-modal-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
         </div>
-    </section>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <div class="cart-actions">
+                <a href="{% url 'checkout' %}" class="checkout-btn" id="checkoutBtn">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart overlay for background dimming -->
+<div class="cart-overlay"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
 
     <script src="../static/js/dogs.js"></script>
-
 </body>
 </html>

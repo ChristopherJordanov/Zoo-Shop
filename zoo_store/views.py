@@ -9,7 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.utils.html import format_html
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
@@ -54,18 +55,18 @@ def contact(request):
         {message}
         """
 
-        send_mail(
+        email_message = EmailMessage(
             subject=f"Contact Form: {subject}",
-            message=full_message,
-            from_email="petpalsservice1@gmail.com",  # Must match your actual Gmail
-            recipient_list=["petpalsservice1@gmail.com"],
+            body=full_message,
+            from_email="petpalsservice1@gmail.com",
+            to=["petpalsservice1@gmail.com"],
             reply_to=[email],
-            fail_silently=False,
         )
 
-        print("📨 Contact form submitted")
+        email_message.send(fail_silently=False)
+
         messages.success(request, "Message sent successfully!")
-        return redirect("contact")  # or wherever you want to go after
+        return render(request, "index.html")
 
     return render(request, "contact.html")
 
@@ -86,14 +87,12 @@ def cart_page(request):
 
 
 def checkout(request):
-    # 🐾 Debug cart at the moment of checkout
     print("🐾 SESSION CART DURING CHECKOUT:", request.session.get("cart"))
 
     cart = request.session.get("cart", {})
     cart_items = []
     total_price = 0
 
-    # Build cart list + total (works for GET and POST)
     for item in cart.values():
         item_total = item["price"] * item["quantity"]
         total_price += item_total
@@ -125,24 +124,23 @@ def checkout(request):
             created_at=timezone.now()
         )
 
-        # Build item list for email
         item_lines = "\n".join(
             f"- {item['name']} x{item['quantity']} = ${item['total']:.2f}" for item in cart_items
         ) if cart_items else "No items found in your cart."
 
         message_body = f"""Hi {data.get('firstName')},
 
-Thank you for your order! 🐾
+    Thank you for your order! 🐾
 
-Here’s what you purchased:
+    Here’s what you purchased:
 
-{item_lines}
+    {item_lines}
 
-Total: ${total_price:.2f}
+    Total: ${total_price:.2f}
 
-We'll begin processing your order shortly.
+    We'll begin processing your order shortly.
 
-– PetPals Team"""
+    – PetPals Team"""
 
         send_mail(
             subject="Your Order Confirmation 🐾",
@@ -152,17 +150,16 @@ We'll begin processing your order shortly.
             fail_silently=False,
         )
 
-        # Clear the cart
         request.session["cart"] = {}
         request.session.modified = True
 
         return redirect("index")
 
-    return render(request, "index.html", {
+    return render(request, "checkout.html", {
         "cart_items": cart_items,
-        "total_price": total_price,
-        "show_checkout": True
+        "total_price": total_price
     })
+
 
 @csrf_exempt
 def add_to_cart(request):
@@ -197,3 +194,23 @@ def add_to_cart(request):
         return JsonResponse({"message": "Added to cart", "cart": cart})
 
     return JsonResponse({"error": "POST required"}, status=405)
+
+
+@csrf_protect
+def subscribe(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+
+        print("✅ Subscribed with:", email)  # DEBUG CHECK
+
+        send_mail(
+            subject="🐾 Welcome to the PetPals Newsletter!",
+            message="Thanks for joining! You'll now receive pet care tips, offers, and more 🐕‍🦺",
+            from_email="petpalsservice1@gmail.com",
+            recipient_list=[email],
+            fail_silently=False
+        )
+
+        return render(request, "index.html", {"subscribed": True})
+
+    return render(request, "index.html")
