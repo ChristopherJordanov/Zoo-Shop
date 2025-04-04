@@ -112,55 +112,106 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="services-section">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-title slide-up">Our Services</h2>
-                <p class="section-subtitle slide-up">Comprehensive care solutions for your beloved pets</p>
+                <h2 class="section-title">The PurrfectPets Experience</h2>
+                <p class="section-subtitle">Discover why pet owners trust us for all their companion's needs</p>
             </div>
             <div class="services-grid">
-                <div class="service-card slide-up">
+                <div class="service-card slide-up active">
                     <div class="service-icon">
-                        <i class="fas fa-bone"></i>
+                        <i class="fas fa-gift"></i>
                     </div>
-                    <h3 class="service-title">Premium Pet Food</h3>
-                    <p class="service-description">Nutritionally balanced, high-quality food options tailored to your pet's specific needs and dietary requirements.</p>
+                    <h3 class="service-title">Exclusive Selection</h3>
+                    <p class="service-description">Discover unique, luxury items you won't find elsewhere, specially curated for discerning pet parents who want only the best for their companions.</p>
                 </div>
-                <div class="service-card slide-up">
+                <div class="service-card slide-up active">
                     <div class="service-icon">
-                        <i class="fas fa-cut"></i>
+                        <i class="fas fa-truck"></i>
                     </div>
-                    <h3 class="service-title">Grooming Services</h3>
-                    <p class="service-description">Professional grooming services to keep your pet clean, healthy, and looking their best all year round.</p>
+                    <h3 class="service-title">Premium Delivery</h3>
+                    <p class="service-description">Experience our white-glove delivery service, with most orders shipped within 24 hours and carefully packaged to ensure perfect condition.</p>
                 </div>
-                <div class="service-card slide-up">
+                <div class="service-card slide-up active">
                     <div class="service-icon">
-                        <i class="fas fa-home"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h3 class="service-title">Pet Boarding</h3>
-                    <p class="service-description">Safe and comfortable boarding facilities where your pets receive care and attention while you're away.</p>
+                    <h3 class="service-title">VIP Customer Care</h3>
+                    <p class="service-description">Enjoy dedicated support and exclusive perks for our valued clients and their animal companions, including personalized shopping assistance.</p>
                 </div>
-                <div class="service-card slide-up">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="service-title">Training Programs</h3>
-                    <p class="service-description">Effective training programs designed to develop good behavior and strengthen the bond with your pet.</p>
-                </div>
-                <div class="service-card slide-up">
-                    <div class="service-icon">
-                        <i class="fas fa-stethoscope"></i>
-                    </div>
-                    <h3 class="service-title">Veterinary Care</h3>
-                    <p class="service-description">Comprehensive veterinary services including check-ups, vaccinations, and specialized treatments.</p>
-                </div>
-                <div class="service-card slide-up">
+                <div class="service-card slide-up active">
                     <div class="service-icon">
                         <i class="fas fa-paw"></i>
                     </div>
-                    <h3 class="service-title">Pet Adoption</h3>
-                    <p class="service-description">Assistance in finding the perfect pet for your family through our network of shelters and rescue organizations.</p>
+                    <h3 class="service-title">Pet Spa Services</h3>
+                    <p class="service-description">Treat your pet to our luxurious grooming and spa treatments, designed to pamper and rejuvenate your beloved companions.</p>
+                </div>
+                <div class="service-card slide-up active">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="service-title">Satisfaction Guarantee</h3>
+                    <p class="service-description">If your pet isn't completely satisfied with any product, we offer hassle-free returns and exchanges because your pet's happiness matters most.</p>
+                </div>
+                <div class="service-card slide-up active">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="service-title">Expert Consultation</h3>
+                    <p class="service-description">Our knowledgeable staff offers personalized recommendations for all your pet care needs, from nutrition to accessories and wellness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title slide-up">Shop by Pet</h2>
+                <p class="section-subtitle slide-up">Find the perfect products for your furry, feathery, or scaly friends</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card dog-theme slide-up">
+                    <div class="category-image">
+                        <img src="https://source.unsplash.com/random/400x500/?dog" alt="Dogs">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Dogs</h3>
+                        <p class="category-count">120+ Products</p>
+                        <a href="{% url 'dogs' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card cat-theme slide-up">
+                    <div class="category-image">
+                        <img src="https://source.unsplash.com/random/400x500/?cat" alt="Cats">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Cats</h3>
+                        <p class="category-count">95+ Products</p>
+                        <a href="{% url 'cats' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card bird-theme slide-up">
+                    <div class="category-image">
+                        <img src="https://source.unsplash.com/random/400x500/?bird,pet" alt="Birds">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Birds</h3>
+                        <p class="category-count">60+ Products</p>
+                        <a href="{% url 'birds' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card slide-up">
+                    <div class="category-image">
+                        <img src="https://source.unsplash.com/random/400x500/?fish,aquarium" alt="Fish">
+                    </div>
+                    <div class="category-overlay">
+                        <h3 class="category-title">Fish</h3>
+                        <p class="category-count">45+ Products</p>
+                        <a href="{% url 'fish' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -314,58 +365,6 @@
                         <button class="add-to-cart-btn" data-product="Professional Grooming Kit" data-price="39.99" data-image="https://source.unsplash.com/random/300x300/?pet,grooming">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section id="categories" class="categories-section">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title slide-up">Shop by Pet</h2>
-                <p class="section-subtitle slide-up">Find the perfect products for your furry, feathery, or scaly friends</p>
-            </div>
-            <div class="categories-grid">
-                <div class="category-card dog-theme slide-up">
-                    <div class="category-image">
-                        <img src="https://source.unsplash.com/random/400x500/?dog" alt="Dogs">
-                    </div>
-                    <div class="category-overlay">
-                        <h3 class="category-title">Dogs</h3>
-                        <p class="category-count">120+ Products</p>
-                        <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="category-card cat-theme slide-up">
-                    <div class="category-image">
-                        <img src="https://source.unsplash.com/random/400x500/?cat" alt="Cats">
-                    </div>
-                    <div class="category-overlay">
-                        <h3 class="category-title">Cats</h3>
-                        <p class="category-count">95+ Products</p>
-                        <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="category-card bird-theme slide-up">
-                    <div class="category-image">
-                        <img src="https://source.unsplash.com/random/400x500/?bird,pet" alt="Birds">
-                    </div>
-                    <div class="category-overlay">
-                        <h3 class="category-title">Birds</h3>
-                        <p class="category-count">60+ Products</p>
-                        <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="category-card slide-up">
-                    <div class="category-image">
-                        <img src="https://source.unsplash.com/random/400x500/?fish,aquarium" alt="Fish">
-                    </div>
-                    <div class="category-overlay">
-                        <h3 class="category-title">Fish</h3>
-                        <p class="category-count">45+ Products</p>
-                        <a href="#" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

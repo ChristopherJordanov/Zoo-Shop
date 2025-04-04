@@ -52,3 +52,15 @@ class Products(models.Model):
     in_stock = models.SmallIntegerField(
         validators=[MinValueValidator(0)]
     )
+
+
+class Profile(models.Model):
+    full_name = models.CharField(
+        max_length=150,
+        validators=[MinLengthValidator(4)]
+    )
+    email = models.EmailField(
+        max_length=50,
+        unique=True
+    )
+    password = models.CharField(max_length=100)

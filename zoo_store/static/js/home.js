@@ -463,7 +463,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const newsletterForm = document.querySelector(".newsletter-form")
 	if (newsletterForm) {
 	newsletterForm.addEventListener("submit", (e) => {
-		e.preventDefault()
 		const emailInput = newsletterForm.querySelector('input[type="email"]')
 		const email = emailInput.value
 
