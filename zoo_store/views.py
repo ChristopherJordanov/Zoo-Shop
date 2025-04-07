@@ -75,11 +75,6 @@ def bird_page(request):
     return render(request, "birds.html")
 
 
-@login_required
-def account_page(request):
-    return render(request, "account.html")
-
-
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from .models import CheckoutInfo
@@ -219,3 +214,49 @@ def subscribe(request):
         return render(request, "index.html", {"subscribed": True})
 
     return render(request, "index.html")
+
+
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')  # ✅ redirect to homepage
+    return render(request, "login_register.html")
+
+
+def register_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        # Create and save the user
+        user = User.objects.create_user(username=username, email=email, password=password)
+
+        # Optionally log them in immediately
+        login(request, user)
+
+        # Send a welcome email
+        send_mail(
+            subject="Welcome to PetPals!",
+            message=f"Hi {username}, thanks for registering 🐾",
+            from_email="petpalsservice1@gmail.com",
+            recipient_list=[email],
+            fail_silently=True
+        )
+
+        return redirect('index')  # send to homepage
+    return render(request, "login_register.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('index.html')
+
+
+@login_required(login_url='login')
+def account_view(request):
+    return render(request, 'account.html')

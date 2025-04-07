@@ -25,9 +25,14 @@
                 <a href="#contact-us">Contact Us</a>
             </div>
             <div class="nav-actions">
-                <button class="nav-button" id="loginButton">
-                    <i class="fas fa-user"></i> Login
-                </button>
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-button">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
+                {% endif %}
                 <div class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>

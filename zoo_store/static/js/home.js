@@ -476,7 +476,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Smooth scrolling
 	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 	anchor.addEventListener("click", function (e) {
-		e.preventDefault()
 
 		const targetId = this.getAttribute("href")
 		if (targetId === "#" || !document.querySelector(targetId)) return
@@ -512,7 +511,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const contactUsLink = document.querySelector('a[href="#contact-us"]')
 	if (contactUsLink) {
 	contactUsLink.addEventListener("click", (e) => {
-		e.preventDefault()
 
 		// First scroll to testimonials section to ensure it's visible
 		document.getElementById("testimonials").scrollIntoView({
@@ -529,196 +527,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 	}
 
-	// Logo link functionality
-	const logoLink = document.getElementById("logoLink")
-	if (logoLink) {
-	logoLink.addEventListener("click", (e) => {
-		// Let the default behavior handle the navigation to index page
-		// No need to prevent default since we want the URL template tag to work
-	})
-	}
-
 	// Initialize cart count on page load
 	updateCartCount()
 
-	// Login Modal Functionality
-	const loginButton = document.getElementById("loginButton")
-	const loginModal = document.getElementById("loginModal")
-	const closeLoginModal = document.getElementById("closeLoginModal")
-	const loginTabs = document.querySelectorAll(".login-tab")
-	const loginForms = document.querySelectorAll(".login-form")
-	const loginForm = document.getElementById("loginForm")
-	const registerForm = document.getElementById("registerForm")
-	const togglePasswordButtons = document.querySelectorAll(".toggle-password")
-
-	// Check if user is logged in
-	function checkLoginStatus() {
-	const currentUser = JSON.parse(localStorage.getItem("currentUser"))
-	if (currentUser) {
-		loginButton.innerHTML = `<i class="fas fa-user"></i> My Account`
-		loginButton.addEventListener("click", () => {
-		})
-	} else {
-		loginButton.innerHTML = `<i class="fas fa-user"></i> Login`
-		loginButton.addEventListener("click", openLoginModal)
-	}
-	}
-
-	// Open login modal
-	function openLoginModal() {
-	loginModal.classList.add("active")
-	document.body.style.overflow = "hidden"
-	}
-
-	// Close login modal
-	function closeLoginModalFunc() {
-	loginModal.classList.remove("active")
-	document.body.style.overflow = ""
-	}
-
-	// Toggle between login and register tabs
-	loginTabs.forEach((tab) => {
-	tab.addEventListener("click", () => {
-		const tabName = tab.getAttribute("data-tab")
-
-		// Update active tab
-		loginTabs.forEach((t) => t.classList.remove("active"))
-		tab.classList.add("active")
-
-		// Show corresponding form
-		loginForms.forEach((form) => form.classList.remove("active"))
-		document.getElementById(`${tabName}Form`).classList.add("active")
-	})
-	})
-
-	// Toggle password visibility
-	togglePasswordButtons.forEach((button) => {
-	button.addEventListener("click", function () {
-		const passwordInput = this.previousElementSibling
-		const type = passwordInput.getAttribute("type")
-
-		if (type === "password") {
-		passwordInput.setAttribute("type", "text")
-		this.innerHTML = '<i class="fas fa-eye-slash"></i>'
-		} else {
-		passwordInput.setAttribute("type", "password")
-		this.innerHTML = '<i class="fas fa-eye"></i>'
-		}
-	})
-	})
-
-	// Handle login form submission
-	if (loginForm) {
-	loginForm.addEventListener("submit", (e) => {
-		e.preventDefault()
-
-		const email = document.getElementById("loginEmail").value
-		const password = document.getElementById("loginPassword").value
-
-		// Get users from localStorage
-		const users = JSON.parse(localStorage.getItem("users")) || []
-
-		// Find user with matching email and password
-		const user = users.find((u) => u.email === email && u.password === password)
-
-		if (user) {
-		// Store current user in localStorage
-		localStorage.setItem("currentUser", JSON.stringify(user))
-
-		// Show success message
-		showToast("Login successful!")
-
-		// Close modal
-		closeLoginModalFunc()
-
-		// Update login button
-		checkLoginStatus()
-
-		// Redirect to account page
-		// Inside login success
-		setTimeout(() => {
-			window.location.href = "/account/";
-		}, 1000);
-		} else {
-		showToast("Invalid email or password", "error")
-		}
-	})
-	}
-
-	// Handle register form submission
-	if (registerForm) {
-	registerForm.addEventListener("submit", (e) => {
-		e.preventDefault()
-
-		const name = document.getElementById("registerName").value
-		const email = document.getElementById("registerEmail").value
-		const password = document.getElementById("registerPassword").value
-		const confirmPassword = document.getElementById("confirmPassword").value
-
-		// Validate passwords match
-		if (password !== confirmPassword) {
-		showToast("Passwords do not match", "error")
-		return
-		}
-
-		// Get existing users from localStorage
-		const users = JSON.parse(localStorage.getItem("users")) || []
-
-		// Check if email already exists
-		if (users.some((user) => user.email === email)) {
-		showToast("Email already registered", "error")
-		return
-		}
-
-		// Create new user
-		const newUser = {
-		id: Date.now().toString(),
-		name,
-		email,
-		password,
-		orders: [],
-		}
-
-		// Add user to users array
-		users.push(newUser)
-
-		// Save users to localStorage
-		localStorage.setItem("users", JSON.stringify(users))
-
-		// Set current user
-		localStorage.setItem("currentUser", JSON.stringify(newUser))
-
-		// Show success message
-		showToast("Registration successful!")
-
-		// Close modal
-		closeLoginModalFunc()
-
-		// Update login button
-		checkLoginStatus()
-
-		// Inside login success
-		setTimeout(() => {
-			window.location.href = "/account/";
-		}, 1000);
-
-	})
-	}
-
-	// Event listeners for login modal
-	if (loginButton && loginModal && closeLoginModal) {
-	loginButton.addEventListener("click", openLoginModal)
-	closeLoginModal.addEventListener("click", closeLoginModalFunc)
-
-	// Close modal when clicking outside
-	window.addEventListener("click", (e) => {
-		if (e.target === loginModal) {
-		closeLoginModalFunc()
-		}
-	})
-	}
-
-	// Check login status on page load
-	checkLoginStatus()
+	
 })
 
