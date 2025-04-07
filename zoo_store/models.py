@@ -55,6 +55,7 @@ class Products(models.Model):
 
 
 class Profile(models.Model):
+    username = models.CharField(max_length=50)
     full_name = models.CharField(
         max_length=150,
         validators=[MinLengthValidator(4)]
@@ -63,4 +64,3 @@ class Profile(models.Model):
         max_length=50,
         unique=True
     )
-    password = models.CharField(max_length=100)

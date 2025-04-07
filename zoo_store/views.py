@@ -8,13 +8,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.template.defaultfilters import slugify
+from django.utils.crypto import get_random_string
 from django.utils.html import format_html
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
-from zoo_store.models import CheckoutInfo
+from zoo_store.models import CheckoutInfo, Profile
 from django.utils import timezone
 
 
@@ -220,41 +222,60 @@ def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')  # ✅ redirect to homepage
+            return redirect('index')  # or wherever you want to go
+        else:
+            # Optional: pass a message to the template
+            return render(request, "login_register.html", {"error": "Invalid credentials"})
+
     return render(request, "login_register.html")
 
 
 def register_view(request):
     if request.method == "POST":
-        username = request.POST.get("username")
+        full_name = request.POST.get("full_name")
         email = request.POST.get("email")
         password = request.POST.get("password")
 
-        # Create and save the user
+        # Generate unique username
+        base_username = slugify(full_name)  # e.g. chris-jord
+        username = base_username
+        while User.objects.filter(username=username).exists():
+            username = f"{base_username}-{get_random_string(4)}"
+
+        # Create Django user
         user = User.objects.create_user(username=username, email=email, password=password)
 
-        # Optionally log them in immediately
+        # Create Profile
+        Profile.objects.create(
+            username=user,
+            full_name=full_name,
+            email=email
+        )
+
+        # Log user in
         login(request, user)
 
-        # Send a welcome email
+        # Send welcome email
         send_mail(
             subject="Welcome to PetPals!",
-            message=f"Hi {username}, thanks for registering 🐾",
+            message=f"Hi {full_name}, thanks for registering with PetPals!",
             from_email="petpalsservice1@gmail.com",
             recipient_list=[email],
             fail_silently=True
         )
 
-        return redirect('index')  # send to homepage
+        return redirect('index')
+
     return render(request, "login_register.html")
 
 
 def logout_view(request):
     logout(request)
-    return redirect('index.html')
+    return redirect('index')
 
 
 @login_required(login_url='login')
