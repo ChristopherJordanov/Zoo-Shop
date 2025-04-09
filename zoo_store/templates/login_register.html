@@ -31,6 +31,9 @@
                 </div>
                 
                 <div class="forms-container">
+                    {% if error %}
+                        <p class="error-msg" style="color: red;">{{ error }}</p>
+                    {% endif %}
                     <form id="loginForm" class="login-form active" method="post" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="form-group">

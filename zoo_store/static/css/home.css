@@ -250,15 +250,25 @@ button {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
+}
+
+.account-button {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-left: -20px;
+    transition: var(--transition-medium);
 }
 
 .cart-icon {
-    position: relative;
     font-size: 1.3rem;
     color: var(--text-color);
+    position: relative;
+    margin-left: 20px;
     cursor: pointer;
-    transition: var(--transition-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart-icon:hover {

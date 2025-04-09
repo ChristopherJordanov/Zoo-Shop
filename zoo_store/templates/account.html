@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - PetZoo</title>
+    <title>Order History - PetZoo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/home.css">
@@ -13,16 +13,16 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container navbar-content">
-            <a href="{% url 'index'}" class="logo" id="logoLink">
+            <a href="{% url 'index' %}" class="logo" id="logoLink">
                 <i class="fas fa-paw"></i> PetZoo
             </a>
             <div class="nav-links">
-                <a href="{% url 'index'}#hero">Home</a>
-                <a href="{% url 'index'}#about">About</a>
-                <a href="{% url 'index'}#services">Services</a>
-                <a href="{% url 'index'}#products">Products</a>
-                <a href="{% url 'index'}#categories">Categories</a>
-                <a href="{% url 'index'}#testimonials">Testimonials</a>
+                <a href="{% url 'index' %}#hero">Home</a>
+                <a href="{% url 'index' %}#about">About</a>
+                <a href="{% url 'index' %}#services">Services</a>
+                <a href="{% url 'index' %}#products">Products</a>
+                <a href="{% url 'index' %}#categories">Categories</a>
+                <a href="{% url 'index' %}#testimonials">Testimonials</a>
             </div>
             <div class="nav-actions">
                 <button id="loginButton" class="nav-button">
@@ -43,105 +43,46 @@
     <section class="account-section">
         <div class="container">
             <div class="account-header">
-                <h1 class="section-title">My Account</h1>
-                <p class="section-subtitle">Manage your profile and view your orders</p>
+                <h1 class="section-title">Order History</h1>
+                <p class="section-subtitle">View your purchase history</p>
             </div>
 
             <div class="account-container">
-                <div class="account-sidebar">
-                    <div class="user-info">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <h3 id="userName">User Name</h3>
-                        <p id="userEmail">user@example.com</p>
-                    </div>
-                    <div class="account-nav">
-                        <button class="account-nav-item active" data-tab="profile">
-                            <i class="fas fa-user-circle"></i> Profile
-                        </button>
-                        <button class="account-nav-item" data-tab="orders">
-                            <i class="fas fa-shopping-bag"></i> Orders
-                        </button>
-                        <button class="account-nav-item" data-tab="settings">
-                            <i class="fas fa-cog"></i> Settings
-                        </button>
-                        <button id="logoutButton" class="account-nav-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </div>
-                </div>
-
                 <div class="account-content">
-                    <!-- Profile Tab -->
-                    <div id="profileTab" class="account-tab active">
-                        <h2>Profile Information</h2>
-                        <form id="profileForm" class="profile-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="profileName">Full Name</label>
-                                    <input type="text" id="profileName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileEmail">Email</label>
-                                    <input type="email" id="profileEmail" required disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="profilePhone">Phone Number</label>
-                                    <input type="tel" id="profilePhone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileAddress">Address</label>
-                                    <input type="text" id="profileAddress">
-                                </div>
-                            </div>
-                            <button type="submit" class="update-profile-btn">
-                                <i class="fas fa-save"></i> Update Profile
-                            </button>
-                        </form>
-                    </div>
-
                     <!-- Orders Tab -->
-                    <div id="ordersTab" class="account-tab">
+                    <div id="ordersTab" class="account-tab active">
                         <h2>Order History</h2>
                         <div id="ordersList" class="orders-list">
-                            <!-- Orders will be populated here -->
-                            <div class="empty-orders">
-                                <i class="fas fa-shopping-bag"></i>
-                                <p>You haven't placed any orders yet</p>
-                                <a href="{% url 'index' %}#products" class="shop-now-btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Settings Tab -->
-                    <div id="settingsTab" class="account-tab">
-                        <h2>Account Settings</h2>
-                        <form id="passwordForm" class="password-form">
-                            <div class="form-group">
-                                <label for="currentPassword">Current Password</label>
-                                <input type="password" id="currentPassword" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="newPassword">New Password</label>
-                                <input type="password" id="newPassword" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmNewPassword">Confirm New Password</label>
-                                <input type="password" id="confirmNewPassword" required>
-                            </div>
-                            <button type="submit" class="change-password-btn">
-                                <i class="fas fa-lock"></i> Change Password
-                            </button>
-                        </form>
-
-                        <div class="danger-zone">
-                            <h3>Danger Zone</h3>
-                            <button id="deleteAccountBtn" class="delete-account-btn">
-                                <i class="fas fa-trash-alt"></i> Delete Account
-                            </button>
+                            <!-- Orders will be populated by Django -->
+                            {% if orders %}
+                                {% for order in orders %}
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <span class="order-id">Order #{{ order.id }}</span>
+                                        <span class="order-date">{{ order.date }}</span>
+                                    </div>
+                                    <div class="order-items">
+                                        {% for item in order.items %}
+                                        <div class="order-item">
+                                            <span class="order-item-name">{{ item.name }}</span>
+                                            <span class="order-item-quantity">x{{ item.quantity }}</span>
+                                            <span class="order-item-price">${{ item.total_price }}</span>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="order-total">
+                                        <span class="order-total-label">Total ({{ order.total_items }} items):</span>
+                                        <span class="order-total-amount">${{ order.total }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="empty-orders">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <p>You haven't placed any orders yet</p>
+                                    <a href="{% url 'index' %}#products" class="shop-now-btn">Shop Now</a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -229,12 +170,6 @@
         </div>
     </div>
     <div id="cartOverlay" class="cart-overlay"></div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Item added to cart!</span>
-    </div>
 
     <script src="../static/js/home.js"></script>
     <script src="../static/js/account.js"></script>

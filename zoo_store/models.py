@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
@@ -55,6 +56,12 @@ class Products(models.Model):
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     username = models.CharField(max_length=50)
     full_name = models.CharField(
         max_length=150,

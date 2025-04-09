@@ -30,6 +30,9 @@
                         {% csrf_token %}
                         <button type="submit" class="nav-button">Logout</button>
                     </form>
+                    <a href="{% url 'account' %}" class="account-button">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
                 {% else %}
                     <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
                 {% endif %}
