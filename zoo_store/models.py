@@ -30,11 +30,6 @@ class CheckoutInfo(models.Model):
         max_length=2,
         choices=CountryChoices.choices
     )
-    name_on_card = models.CharField(max_length=100)
-    payment_token = models.CharField(max_length=255)
-    expiration_date = models.CharField(max_length=6)
-    cvv = models.CharField(max_length=5)
-    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.email}"

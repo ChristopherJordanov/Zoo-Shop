@@ -13,21 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// State - Use localStorage for cart persistence
 	let cart = JSON.parse(localStorage.getItem("cart")) || {}
 
-	// Create toast notification if it doesn't exist
-	if (!document.getElementById("toast")) {
-	const toastHTML = `
-			<div class="toast" id="toast">
-				<i class="fas fa-check-circle"></i>
-				<span id="toastMessage">Item added to cart!</span>
-			</div>
-		`
-	document.body.insertAdjacentHTML("beforeend", toastHTML)
-	}
-
-	// Get toast elements
-	const toast = document.getElementById("toast")
-	const toastMessage = document.getElementById("toastMessage")
-
 	// Get cart modal elements
 	const cartModal = document.getElementById("cartModal")
 	const closeCart = document.getElementById("closeCartBtn")
@@ -164,8 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart'
 		this.style.backgroundColor = ""
 		}, 1500)
-
-		showToast(`${product} added to your cart!`)
 	})
 	})
 
@@ -289,7 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		saveCart()
 		updateCartCount()
 		updateCartDisplay()
-		showToast("Item removed from cart")
 		})
 	})
 	}
@@ -321,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (checkoutBtn) {
 	checkoutBtn.addEventListener("click", () => {
 		if (Object.keys(cart).length === 0) {
-		showToast("Your cart is empty")
 		return
 		}
 
@@ -343,7 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (placeOrderBtn) {
 	placeOrderBtn.addEventListener("click", () => {
 		// Simulate order placement
-		showToast("Order placed successfully! Thank you for shopping with us.")
 		cart = {}
 		saveCart()
 		updateCartCount()
@@ -355,18 +335,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 	}
 
-	// Show toast notification
-	function showToast(message) {
-	if (!toast || !toastMessage) return
-
-	toastMessage.textContent = message
-	toast.classList.add("show")
-
-	setTimeout(() => {
-		toast.classList.remove("show")
-	}, 3000)
-	}
-
 	// Newsletter form submission
 	const newsletterForm = document.querySelector(".newsletter-form")
 	if (newsletterForm) {
@@ -376,7 +344,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		const email = emailInput.value
 
 		if (email) {
-		showToast(`Thank you for subscribing with ${email}!`)
 		emailInput.value = ""
 		}
 	})
@@ -420,4 +387,3 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Initialize cart count on page load
 	updateCartCount()
 })
-

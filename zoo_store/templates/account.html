@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order History - PetZoo</title>
+    <title>Order History - Fluffemo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/home.css">
@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="container navbar-content">
             <a href="{% url 'index' %}" class="logo" id="logoLink">
-                <i class="fas fa-paw"></i> PetZoo
+                <i class="fas fa-paw"></i> Fluffemo
             </a>
             <div class="nav-links">
                 <a href="{% url 'index' %}#hero">Home</a>
@@ -25,9 +25,6 @@
                 <a href="{% url 'index' %}#testimonials">Testimonials</a>
             </div>
             <div class="nav-actions">
-                <button id="loginButton" class="nav-button">
-                    <i class="fas fa-user"></i> My Account
-                </button>
                 <div id="cartIcon" class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>

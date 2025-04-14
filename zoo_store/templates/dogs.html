@@ -24,11 +24,22 @@
                 <a href="#grooming">Grooming</a>
             </div>
             <div class="nav-actions">
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-button">Logout</button>
+                    </form>
+                    <a href="{% url 'account' %}" class="account-button">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
+                {% endif %}
                 <div class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount">0</span>
+                    <span class="cart-count">0</span>
                 </div>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -695,11 +706,12 @@
 
     <!-- Newsletter Section -->
     <section class="newsletter-section">
-        <div class="newsletter-container">
-            <h2 class="newsletter-title">Join Our Pack!</h2>
-            <p class="newsletter-description">Subscribe to our newsletter for exclusive offers, new product alerts, and expert tips for caring for your furry friend.</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+        <div class="container newsletter-container">
+            <h2 class="newsletter-title slide-up">Subscribe to Our Newsletter</h2>
+            <p class="newsletter-description slide-up">Stay updated with our latest products, pet care tips, and exclusive offers.</p>
+            <form method="POST" action="{% url 'subscribe' %}" class="newsletter-form slide-up">
+                {% csrf_token %}
+                <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address" required>
                 <button type="submit" class="newsletter-button">Subscribe</button>
             </form>
         </div>
@@ -732,10 +744,10 @@
                 <div class="footer-column">
                     <h3 class="footer-title">Company</h3>
                     <ul class="footer-links">
-                        <li><a href="#{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
-                        <li><a href="#{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                        <li><a href="#{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
-                        <li><a href="#{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
+                        <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
+                        <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
+                        <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
+                        <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -792,12 +804,6 @@
 
 <!-- Cart overlay for background dimming -->
 <div class="cart-overlay"></div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage"></span>
-    </div>
 
     <script src="../static/js/dogs.js"></script>
 </body>

@@ -90,24 +90,36 @@ def cart_page(request):
 
 
 def checkout(request):
+    # 👇 If coming from the JS-based form with cartData
+    if request.method == "POST" and "cartData" in request.POST:
+        try:
+            cart_json = request.POST.get("cartData")
+            cart_dict = json.loads(cart_json)
+            request.session["cart"] = cart_dict
+            request.session.modified = True
+        except Exception as e:
+            print("Error parsing cart data:", e)
+
     print("🐾 SESSION CART DURING CHECKOUT:", request.session.get("cart"))
 
+    # 🛒 Rebuild cart from session
     cart = request.session.get("cart", {})
     cart_items = []
     total_price = 0
 
-    for item in cart.values():
+    for name, item in cart.items():  # fixed here
         item_total = item["price"] * item["quantity"]
         total_price += item_total
         cart_items.append({
-            "name": item["name"],
-            "image": item["image"],
-            "price": item["price"],
-            "quantity": item["quantity"],
+            "name": name,  # product name from key
+            "image": item.get("image", ""),
+            "price": item.get("price", 0),
+            "quantity": item.get("quantity", 1),
             "total": item_total
         })
 
-    if request.method == "POST":
+    # 💳 Form submission with billing + payment info
+    if request.method == "POST" and "firstName" in request.POST:
         data = request.POST
 
         CheckoutInfo.objects.create(
@@ -120,39 +132,36 @@ def checkout(request):
             state=data.get("state"),
             zip_code=data.get("zip"),
             country=data.get("country"),
-            name_on_card=data.get("cardName"),
-            payment_token=data.get("cardNumber"),
-            expiration_date=data.get("expDate"),
-            cvv=data.get("cvv"),
-            created_at=timezone.now()
         )
 
+        # 📨 Email with order summary
         item_lines = "\n".join(
             f"- {item['name']} x{item['quantity']} = ${item['total']:.2f}" for item in cart_items
         ) if cart_items else "No items found in your cart."
 
         message_body = f"""Hi {data.get('firstName')},
 
-    Thank you for your order! 🐾
+Thank you for your order!
 
-    Here’s what you purchased:
+Here’s what you purchased:
 
-    {item_lines}
+{item_lines}
 
-    Total: ${total_price:.2f}
+Total: ${total_price:.2f}
 
-    We'll begin processing your order shortly.
+We'll begin processing your order shortly.
 
-    – PetPals Team"""
+– PetPals Team"""
 
         send_mail(
-            subject="Your Order Confirmation 🐾",
+            subject="Your Order Confirmation",
             message=message_body,
             from_email=None,
             recipient_list=[data.get("email")],
             fail_silently=False,
         )
 
+        # 🧹 Clear cart
         request.session["cart"] = {}
         request.session.modified = True
 
@@ -162,7 +171,6 @@ def checkout(request):
         "cart_items": cart_items,
         "total_price": total_price
     })
-
 
 @csrf_exempt
 def add_to_cart(request):
@@ -200,23 +208,24 @@ def add_to_cart(request):
 
 
 @csrf_protect
-def subscribe(request):
+def subscribe_view(request):
     if request.method == "POST":
         email = request.POST.get("email")
 
-        print("✅ Subscribed with:", email)  # DEBUG CHECK
-
+        # Send a cute little welcome email
         send_mail(
-            subject="🐾 Welcome to the PetPals Newsletter!",
-            message="Thanks for joining! You'll now receive pet care tips, offers, and more 🐕‍🦺",
+            subject="Thanks for subscribing to Fluffemo 🐾",
+            message="Hey there!\n\nThanks for subscribing to Fluffemo's newsletter. Get ready for pet tips, exclusive offers, and furry goodness right in your inbox!",
             from_email="petpalsservice1@gmail.com",
             recipient_list=[email],
             fail_silently=False
         )
 
-        return render(request, "index.html", {"subscribed": True})
+        messages.success(request, "You've successfully subscribed!")
+        email = request.POST.get("email")
+        return redirect("index")  # or any page you want
 
-    return render(request, "index.html")
+    return redirect("index")
 
 
 def login_view(request):

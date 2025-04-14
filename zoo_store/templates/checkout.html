@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - PetPals</title>
+    <title>Checkout - Fluffemo</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/home.css">
@@ -123,22 +123,35 @@
                         </div>
                     </div>
 
-                    <!-- Order Summary -->
-                    <div class="checkout-summary">
-                        <h3 class="checkout-title">Order Summary</h3>
-                        <div id="checkoutItems">
-                            <!-- Order items will be dynamically added here -->
+            <!-- Order Summary -->
+            <div class="checkout-summary">
+                <h3 class="checkout-title">Order Summary</h3>
+
+                <div class="checkout-items">
+                    {% for item in cart_items %}
+                        <div class="checkout-item" style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding: 10px; background: #f7f7f7; border-radius: 8px;">
+                            <img src="{{ item.image }}" alt="{{ item.name }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px;">
+                            <div style="flex-grow: 1;">
+                                <p style="margin: 0; font-weight: 500;">{{ item.name }}</p>
+                                <p style="margin: 2px 0; font-size: 0.85rem; color: #555;">
+                                    Qty: {{ item.quantity }} · ${{ item.price|floatformat:2 }} each
+                                </p>
+                            </div>
+                            <div style="font-weight: bold;">${{ item.total|floatformat:2 }}</div>
                         </div>
-                        <div class="summary-total">
-                            <span>Total:</span>
-                            <span id="checkoutTotal">$0.00</span>
-                        </div>
-                        <button type="submit" class="place-order-btn" id="placeOrderBtn">
-                            <i class="fas fa-check-circle"></i> Place Order
-                        </button>
-                    </div>
+                    {% empty %}
+                        <p style="color: #999;">Your cart is empty.</p>
+                    {% endfor %}
                 </div>
-            </form>
+
+                <div class="summary-total" style="margin-top: 20px; font-size: 1.1rem; font-weight: bold; text-align: right;">
+                    Total: ${{ total_price|floatformat:2 }}
+                </div>
+
+                <button class="place-order-btn" id="placeOrderBtn" style="margin-top: 20px;">
+                    <i class="fas fa-check-circle"></i> Place Order
+                </button>
+            </div>
         </div>
     </section>
 

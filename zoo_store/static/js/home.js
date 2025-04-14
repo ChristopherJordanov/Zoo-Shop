@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const addToCartButtons = document.querySelectorAll(".add-to-cart-btn")
 	const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
 	const navLinks = document.querySelector(".nav-links")
-	const toast = document.getElementById("toast")
-	const toastMessage = document.getElementById("toastMessage")
 
 	// State - Use localStorage for cart persistence
 	let cart = JSON.parse(localStorage.getItem("cart")) || {}
@@ -175,8 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart'
 		this.style.backgroundColor = ""
 		}, 1500)
-
-		showToast(`${product} added to your cart!`)
 	})
 	})
 
@@ -300,7 +296,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		saveCart()
 		updateCartCount()
 		updateCartDisplay()
-		showToast("Item removed from cart")
 		})
 	})
 	}
@@ -332,7 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (checkoutBtn) {
 	checkoutBtn.addEventListener("click", () => {
 		if (Object.keys(cart).length === 0) {
-		showToast("Your cart is empty")
 		return
 		}
 
@@ -384,7 +378,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		// Simulate order placement
-		showToast("Order placed successfully! Thank you for shopping with us.")
 		cart = {}
 		saveCart()
 		updateCartCount()
@@ -394,48 +387,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		window.location.reload()
 		}, 2000)
 	})
-	}
-
-	// Show toast notification
-	function showToast(message) {
-	if (!toast) {
-		// Create toast if it doesn't exist
-		const newToast = document.createElement("div")
-		newToast.className = "toast"
-		newToast.id = "toast"
-		newToast.innerHTML = `
-		<i class="fas fa-check-circle"></i>
-		<span id="toastMessage">${message}</span>
-		`
-		document.body.appendChild(newToast)
-
-		setTimeout(() => {
-		newToast.classList.add("show")
-		}, 10)
-
-		setTimeout(() => {
-		newToast.classList.remove("show")
-		setTimeout(() => {
-			document.body.removeChild(newToast)
-		}, 300)
-		}, 3000)
-		return
-	}
-
-	if (!toastMessage) {
-		toast.innerHTML = `
-		<i class="fas fa-check-circle"></i>
-		<span id="toastMessage">${message}</span>
-		`
-	} else {
-		toastMessage.textContent = message
-	}
-
-	toast.classList.add("show")
-
-	setTimeout(() => {
-		toast.classList.remove("show")
-	}, 3000)
 	}
 
 	// Button functionality
@@ -459,24 +410,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 	}
 
-	// Newsletter form submission
-	const newsletterForm = document.querySelector(".newsletter-form")
-	if (newsletterForm) {
-	newsletterForm.addEventListener("submit", (e) => {
-		const emailInput = newsletterForm.querySelector('input[type="email"]')
-		const email = emailInput.value
-
-		if (email) {
-		showToast(`Thank you for subscribing with ${email}!`)
-		emailInput.value = ""
-		}
-	})
-	}
 
 	// Smooth scrolling
 	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 	anchor.addEventListener("click", function (e) {
-
 		const targetId = this.getAttribute("href")
 		if (targetId === "#" || !document.querySelector(targetId)) return
 
@@ -511,11 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const contactUsLink = document.querySelector('a[href="#contact-us"]')
 	if (contactUsLink) {
 	contactUsLink.addEventListener("click", (e) => {
-
 		// First scroll to testimonials section to ensure it's visible
-		document.getElementById("testimonials").scrollIntoView({
-		behavior: "smooth",
-		})
 
 		// Then scroll to the contact-us div with a slight delay to ensure proper positioning
 		setTimeout(() => {
@@ -529,7 +462,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Initialize cart count on page load
 	updateCartCount()
-
-	
 })
 
+document.addEventListener("DOMContentLoaded", () => {
+	const checkoutBtn = document.getElementById("checkoutBtn")
+	if (checkoutBtn) {
+	checkoutBtn.addEventListener("click", () => {
+		const cart = JSON.parse(localStorage.getItem("cart")) || {}
+		const cartDataInput = document.getElementById("cartData")
+		if (cartDataInput) {
+		cartDataInput.value = JSON.stringify(cart)
+		console.log("📦 Cart sent:", cartDataInput.value)
+		}
+	})
+	}
+})
+
+document.querySelectorAll(".smooth-scroll").forEach((anchor) => {
+	anchor.addEventListener("click", function (e) {
+
+	const targetId = this.getAttribute("href").substring(1)
+	const targetElement = document.getElementById(targetId)
+
+	if (targetElement) {
+		window.scrollTo({
+		top: targetElement.offsetTop - 50,
+		behavior: "smooth",
+		})
+	}
+	})
+})

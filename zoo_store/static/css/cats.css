@@ -187,6 +187,30 @@ button {
 	color: var(--secondary-light);
 }
 
+.nav-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin-right: 50px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-medium);
+    box-shadow: 0 4px 6px rgba(110, 158, 206, 0.2);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(110, 158, 206, 0.3);
+}
+
 .nav-links {
 	display: flex;
 	gap: 2.5rem;
