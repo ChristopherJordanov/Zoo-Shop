@@ -37,7 +37,18 @@
                 <a href="#treatments">Treatments</a>
             </div>
             <div class="nav-actions">
-                <div class="cart-icon">
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-button">Logout</button>
+                    </form>
+                    <a href="{% url 'account' %}" class="account-button">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
+                {% endif %}
+                <div class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
@@ -89,9 +100,13 @@
                             <span class="current-price">$19.95</span>
                             <span class="old-price">$24.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Premium Color Enhancing Flakes" data-price="19.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="food1">
+                            <button type="submit" class="add-to-cart-btn" data-id="food1" data-product="Premium Color Enhancing Flakes" data-price="19.95" data-image="https://source.unsplash.com/random/600x800/?fish,food">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -118,9 +133,13 @@
                             <span class="current-price">$22.95</span>
                             <span class="old-price">$27.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Slow-Sinking Pellet Mix" data-price="22.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="food2">
+                            <button type="submit" class="add-to-cart-btn" data-id="food2" data-product="Slow-Sinking Pellet Mix" data-price="22.95" data-image="https://source.unsplash.com/random/600x800/?fish,pellet">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -148,9 +167,13 @@
                             <span class="current-price">$15.95</span>
                             <span class="old-price">$18.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Frozen Brine Shrimp Cubes" data-price="15.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="food3">
+                            <button type="submit" class="add-to-cart-btn" data-id="food3" data-product="Frozen Brine Shrimp Cubes" data-price="15.95" data-image="https://source.unsplash.com/random/600x800/?fish,frozen">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -227,9 +250,13 @@
                             <span class="current-price">$249.95</span>
                             <span class="old-price">$299.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Modern Curved Glass Aquarium" data-price="249.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="aquarium1">
+                            <button type="submit" class="add-to-cart-btn" data-id="aquarium1" data-product="Modern Curved Glass Aquarium" data-price="249.95" data-image="https://source.unsplash.com/random/600x800/?aquarium">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -256,9 +283,13 @@
                             <span class="current-price">$89.95</span>
                             <span class="old-price">$109.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Desktop Nano Ecosystem" data-price="89.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="aquarium2">
+                            <button type="submit" class="add-to-cart-btn" data-id="aquarium2" data-product="Desktop Nano Ecosystem" data-price="89.95" data-image="https://source.unsplash.com/random/600x800/?nano,aquarium">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -286,9 +317,13 @@
                             <span class="current-price">$399.95</span>
                             <span class="old-price">$459.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Premium 75-Gallon Aquarium" data-price="399.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="aquarium3">
+                            <button type="submit" class="add-to-cart-btn" data-id="aquarium3" data-product="Premium 75-Gallon Aquarium" data-price="399.95" data-image="https://source.unsplash.com/random/600x800/?large,aquarium">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -397,9 +432,13 @@
                             <span class="current-price">$129.95</span>
                             <span class="old-price">$159.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Pro Series Canister Filter" data-price="129.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="filter1">
+                            <button type="submit" class="add-to-cart-btn" data-id="filter1" data-product="Pro Series Canister Filter" data-price="129.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,filter">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -426,9 +465,13 @@
                             <span class="current-price">$49.95</span>
                             <span class="old-price">$59.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Quiet Flow Circulation Pump" data-price="49.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="filter2">
+                            <button type="submit" class="add-to-cart-btn" data-id="filter2" data-product="Quiet Flow Circulation Pump" data-price="49.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,pump">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -456,9 +499,13 @@
                             <span class="current-price">$179.95</span>
                             <span class="old-price">$199.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Marine Pro Protein Skimmer" data-price="179.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="filter3">
+                            <button type="submit" class="add-to-cart-btn" data-id="filter3" data-product="Marine Pro Protein Skimmer" data-price="179.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,skimmer">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -498,9 +545,13 @@
                             <span class="current-price">$39.95</span>
                             <span class="old-price">$49.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Dragon Stone Rock Set" data-price="39.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="decor1">
+                            <button type="submit" class="add-to-cart-btn" data-id="decor1" data-product="Dragon Stone Rock Set" data-price="39.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,rock">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -527,9 +578,13 @@
                             <span class="current-price">$34.95</span>
                             <span class="old-price">$44.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Beginner Plant Collection" data-price="34.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="decor2">
+                            <button type="submit" class="add-to-cart-btn" data-id="decor2" data-product="Beginner Plant Collection" data-price="34.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,plant">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -557,9 +612,13 @@
                             <span class="current-price">$29.95</span>
                             <span class="old-price">$39.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Ancient Temple Ruins" data-price="29.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="decor3">
+                            <button type="submit" class="add-to-cart-btn" data-id="decor3" data-product="Ancient Temple Ruins" data-price="29.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,ornament">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -599,9 +658,13 @@
                             <span class="current-price">$19.95</span>
                             <span class="old-price">$24.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Complete Water Conditioner" data-price="19.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="treatment1">
+                            <button type="submit" class="add-to-cart-btn" data-id="treatment1" data-product="Complete Water Conditioner" data-price="19.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,water">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -628,9 +691,13 @@
                             <span class="current-price">$34.95</span>
                             <span class="old-price">$39.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Master Test Kit" data-price="34.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="treatment2">
+                            <button type="submit" class="add-to-cart-btn" data-id="treatment2" data-product="Master Test Kit" data-price="34.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,test">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="product-card">
@@ -658,117 +725,49 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn disabled" data-product="Beneficial Bacteria Starter" data-price="24.95">
-                            <i class="fas fa-shopping-cart"></i> Sign in to Add to Cart
-                        </button>
+                        <form method="post" action="{% url 'add_to_cart' %}" data-cart-form>
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="treatment3">
+                            <button type="submit" class="add-to-cart-btn" data-id="treatment3" data-product="Beneficial Bacteria Starter" data-price="24.95" data-image="https://source.unsplash.com/random/600x800/?aquarium,bacteria">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Auth Modal -->
-    <div class="auth-modal" id="authModal">
-        <div class="auth-modal-content">
-            <span class="close-modal" id="closeAuthModal">&times;</span>
-            <div class="auth-container">
-                <div class="auth-tabs">
-                    <div class="auth-tab active" data-tab="login">Sign In</div>
-                    <div class="auth-tab" data-tab="register">Register</div>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
                 </div>
-                
-                <div class="auth-form active" id="loginForm">
-                    <div class="auth-header">
-                        <h2>Sign In to AquaticWonders</h2>
-                        <p>Access your account to manage orders and view personalized recommendations</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginEmail">Email Address</label>
-                        <input type="email" id="loginEmail" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <div class="password-input-container">
-                            <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required>
-                            <button type="button" class="toggle-password">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-options">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Remember me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <button type="button" class="auth-button" id="loginButton">Sign In</button>
-                    <div class="social-login">
-                        <p>Or sign in with</p>
-                        <div class="social-login-buttons">
-                            <button type="button" class="social-btn google">
-                                <i class="fab fa-google"></i> Google
-                            </button>
-                            <button type="button" class="social-btn facebook">
-                                <i class="fab fa-facebook-f"></i> Facebook
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="auth-form" id="registerForm">
-                    <div class="auth-header">
-                        <h2>Create an Account</h2>
-                        <p>Join AquaticWonders to shop our premium fish products and receive exclusive offers</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerName">Full Name</label>
-                        <input type="text" id="registerName" name="name" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerEmail">Email Address</label>
-                        <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerPassword">Password</label>
-                        <div class="password-input-container">
-                            <input type="password" id="registerPassword" name="password" placeholder="Create a password" required>
-                            <button type="button" class="toggle-password">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <div class="password-input-container">
-                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-                            <button type="button" class="toggle-password">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="remember-me">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
-                        </div>
-                    </div>
-                    <button type="button" class="auth-button" id="registerButton">Create Account</button>
-                    <div class="social-login">
-                        <p>Or register with</p>
-                        <div class="social-login-buttons">
-                            <button type="button" class="social-btn google">
-                                <i class="fab fa-google"></i> Google
-                            </button>
-                            <button type="button" class="social-btn facebook">
-                                <i class="fab fa-facebook-f"></i> Facebook
-                            </button>
-                        </div>
-                    </div>
+                <div class="cart-actions">
+                    <form id="checkoutForm" action="{% url 'checkout' %}" method="POST" style="width: 100%;">
+                        {% csrf_token %}
+                        <input type="hidden" name="cartData" id="cartData">
+                        <button type="submit" class="checkout-btn" id="checkoutBtn">
+                            <i class="fas fa-shopping-bag"></i> Checkout
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Cart overlay for background dimming -->
+    <div class="cart-overlay"></div>
 
     <!-- Toast notification -->
     <div class="toast" id="toast">
@@ -781,8 +780,9 @@
             <div class="newsletter-container">
                 <h2 class="newsletter-title">Join Our Aquatic Enthusiasts Club</h2>
                 <p class="newsletter-description">Subscribe to receive updates on new arrivals, special offers, and exclusive discounts for your aquatic friends.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                <form class="newsletter-form" method="POST" action="{% url 'subscribe' %}" data-django-form>
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Enter your email address" class="newsletter-input" required>
                     <button type="submit" class="newsletter-button">Subscribe</button>
                 </form>
             </div>
@@ -860,5 +860,64 @@
     </footer>
 
     <script src="../static/js/fish.js"></script>
+    
+    <!-- Debug script to ensure cart functionality works -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("Debug script loaded");
+        
+        // Check if cart icon exists
+        const cartIcon = document.getElementById("cartIcon");
+        console.log("Cart icon found:", !!cartIcon);
+        
+        if (cartIcon) {
+            // Add a direct click handler
+            cartIcon.addEventListener("click", function() {
+                console.log("Cart icon clicked from debug script");
+                
+                // Check if cart modal exists
+                const cartModal = document.getElementById("cartModal");
+                console.log("Cart modal found:", !!cartModal);
+                
+                if (cartModal) {
+                    // Force display the cart modal
+                    cartModal.style.display = "block";
+                    cartModal.classList.add("open");
+                    
+                    // Check if cart overlay exists
+                    const cartOverlay = document.querySelector(".cart-overlay");
+                    console.log("Cart overlay found:", !!cartOverlay);
+                    
+                    if (cartOverlay) {
+                        cartOverlay.classList.add("open");
+                    }
+                    
+                    document.body.style.overflow = "hidden";
+                }
+            });
+        }
+        
+        // Check button alignment
+        const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+        console.log("Add to cart buttons found:", addToCartButtons.length);
+        
+        // Apply direct styling to buttons
+        addToCartButtons.forEach(button => {
+            button.style.width = "100%";
+            button.style.padding = "0.75rem 1.5rem";
+            button.style.backgroundColor = "#00bcd4";
+            button.style.color = "white";
+            button.style.border = "none";
+            button.style.borderRadius = "4px";
+            button.style.fontWeight = "600";
+            button.style.cursor = "pointer";
+            button.style.display = "flex";
+            button.style.alignItems = "center";
+            button.style.justifyContent = "center";
+            button.style.gap = "0.5rem";
+            button.style.marginTop = "1rem";
+        });
+    });
+    </script>
 </body>
 </html>

@@ -92,32 +92,25 @@
                 <p class="category-description">Nourish your feline companion with our selection of premium, nutrient-rich foods crafted from the finest ingredients.</p>
             </div>
             <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-badge">Best Seller</div>
+                <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,food" alt="Royal Feast Dry Cat Food">
+                        <img src="../static/images/register_pets.png" alt="Grooming Kit">
+                        <span class="product-badge">Sale</span>
                         <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
+                            <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Dry Food</div>
-                        <h3 class="product-title">Royal Feast Dry Cat Food</h3>
-                        <p class="product-description">Premium blend of free-range chicken and wild-caught salmon with essential nutrients for optimal health.</p>
-                        <div class="star-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
+                        <span class="product-category">Grooming</span>
+                        <h3 class="product-title">Professional Grooming Kit</h3>
+                        <p>Complete set of professional-grade grooming tools for all pet types.</p>
                         <div class="product-price">
-                            <span class="current-price">$49.95</span>
-                            <span class="old-price">$59.95</span>
+                            <span class="current-price">$39.99</span>
+                            <span class="old-price">$49.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Royal Feast Dry Cat Food" data-price="49.95">
+                        <button class="add-to-cart-btn" data-product="Professional Grooming Kit" data-price="39.99" data-image="../static/images/register_pets.png">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -691,13 +684,14 @@
     </section>
 
     <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <div id="cartModal" class="cart-modal">
         <div class="cart-modal-content">
             <div class="cart-modal-header">
                 <h3>Your Cart</h3>
-                <button class="close-cart-btn" id="closeCartBtn"><i class="fas fa-times"></i></button>
+                <button id="closeCartBtn" class="close-cart-btn"><i class="fas fa-times"></i></button>
             </div>
-            <div class="cart-items" id="cartItems">
+            <div id="cartItems" class="cart-items">
                 <!-- Cart items will be added here dynamically -->
             </div>
             <div class="cart-summary">
@@ -808,4 +802,3 @@
     <script src="../static/js/cats.js"></script>
 </body>
 </html>
-

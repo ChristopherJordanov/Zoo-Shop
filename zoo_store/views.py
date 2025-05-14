@@ -61,8 +61,8 @@ def contact(request):
         email_message = EmailMessage(
             subject=f"Contact Form: {subject}",
             body=full_message,
-            from_email="petpalsservice1@gmail.com",
-            to=["petpalsservice1@gmail.com"],
+            from_email="fluffemoservice@gmail.com",
+            to=["fluffemoservice@gmail.com"],
             reply_to=[email],
         )
 

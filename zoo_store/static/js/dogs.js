@@ -1,28 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Cart functionality
+    console.log("Dogs page script loaded")
+
+    // Elements
     const cartIcon = document.getElementById("cartIcon")
     const cartModal = document.getElementById("cartModal")
     const closeCart = document.getElementById("closeCart")
     const cartItems = document.getElementById("cartItems")
     const cartTotal = document.getElementById("cartTotal")
-    const cartCount = document.getElementById("cartCount")
+    const cartCount = document.querySelector(".cart-count")
     const clearCartBtn = document.getElementById("clearCart")
     const checkoutBtn = document.getElementById("checkoutBtn")
     const addToCartButtons = document.querySelectorAll(".add-to-cart-btn")
     const mobileMenuBtn = document.getElementById("mobileMenuBtn")
 
-    // Create cart overlay
-    const cartOverlay = document.createElement("div")
+    // Debug logging to check if elements are found
+    console.log("Cart icon found:", !!cartIcon)
+    console.log("Cart modal found:", !!cartModal)
+    console.log("Close cart button found:", !!closeCart)
+    console.log("Cart count element found:", !!cartCount)
+
+    // Create cart overlay if it doesn't exist
+    let cartOverlay = document.querySelector(".cart-overlay")
+    if (!cartOverlay) {
+    console.log("Creating cart overlay")
+    cartOverlay = document.createElement("div")
     cartOverlay.className = "cart-overlay"
     document.body.appendChild(cartOverlay)
+    }
 
-    // Initialize cart from localStorage
+    // Initialize cart from localStorage - for visual display only
     let cart = JSON.parse(localStorage.getItem("cart")) || {}
+    console.log("Initial cart state:", cart)
+    updateCartCount() // Add this line to update cart count on page load
 
-    // Update cart count on page load
-    updateCartCount()
-
-    // Add to cart functionality
+    // Add to cart functionality - now just updates UI and adds hidden input to Django form
     addToCartButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const productId = button.dataset.id
@@ -30,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const price = Number.parseFloat(button.dataset.price)
         const image = button.dataset.image
 
+        // Visual update only
         addToCart(productId, name, price, image)
 
         // Button animation
@@ -40,6 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
         button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart'
         button.style.backgroundColor = ""
         }, 1500)
+
+        // If this button is inside a form, don't prevent the default Django form submission
+        const form = button.closest("form")
+        if (form && !button.dataset.preventSubmit) {
+        // Let Django handle the form submission
+        }
     })
     })
 
@@ -66,24 +84,50 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = ""
     })
 
-    // Clear cart button
+    // Clear cart button - now just clears visual display
     if (clearCartBtn) {
     clearCartBtn.addEventListener("click", () => {
         clearCart()
+
+        // If there's a Django form for clearing cart, submit it
+        const djangoClearForm = document.getElementById("django-clear-cart-form")
+        if (djangoClearForm) {
+        djangoClearForm.submit()
+        }
     })
     }
 
-    // Checkout button
+    // Checkout button - MODIFIED to let Django handle checkout
     if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
+    checkoutBtn.addEventListener("click", (e) => {
+        // Don't prevent default - let Django handle the checkout
+        // e.preventDefault() - REMOVED
+        console.log("Checkout button clicked")
+
         if (Object.keys(cart).length === 0) {
+        alert("Your cart is empty!")
+        e.preventDefault() // Only prevent if cart is empty
         return
         }
 
-        // Simulate a redirect after a short delay
-        setTimeout(() => {
-        alert("This would redirect to a checkout page in a real implementation.")
-        }, 1500)
+        // Instead of creating a custom form, we'll update hidden inputs in the existing Django form
+        const checkoutForm = checkoutBtn.closest("form")
+        if (checkoutForm) {
+        // Find or create a hidden input for cart data
+        let cartDataInput = checkoutForm.querySelector('input[name="cartData"]')
+        if (!cartDataInput) {
+            cartDataInput = document.createElement("input")
+            cartDataInput.type = "hidden"
+            cartDataInput.name = "cartData"
+            checkoutForm.appendChild(cartDataInput)
+        }
+
+        // Update the cart data input
+        cartDataInput.value = JSON.stringify(cart)
+
+        // Let Django handle the form submission
+        // form.submit() - REMOVED, let the natural click event handle it
+        }
     })
     }
 
@@ -113,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     })
 
-    // Helper Functions
+    // Helper Functions - now just for visual display
     function addToCart(productId, name, price, image) {
     if (cart[productId]) {
         cart[productId].quantity += 1
@@ -129,6 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
     saveCart()
     updateCartCount()
     renderCartItems()
+
+    // Notify Django about cart changes via hidden form if it exists
+    updateDjangoCartForm()
     }
 
     function removeFromCart(productId) {
@@ -137,6 +184,9 @@ document.addEventListener("DOMContentLoaded", () => {
         saveCart()
         updateCartCount()
         renderCartItems()
+
+        // Notify Django about cart changes via hidden form if it exists
+        updateDjangoCartForm()
     }
     }
 
@@ -151,6 +201,9 @@ document.addEventListener("DOMContentLoaded", () => {
         saveCart()
         updateCartCount()
         renderCartItems()
+
+        // Notify Django about cart changes via hidden form if it exists
+        updateDjangoCartForm()
     }
     }
 
@@ -159,6 +212,24 @@ document.addEventListener("DOMContentLoaded", () => {
     saveCart()
     updateCartCount()
     renderCartItems()
+
+    // Notify Django about cart changes via hidden form if it exists
+    updateDjangoCartForm()
+    }
+
+    // Update any Django cart forms with current cart data
+    function updateDjangoCartForm() {
+    const djangoCartForms = document.querySelectorAll(".django-cart-form")
+    djangoCartForms.forEach((form) => {
+        let cartDataInput = form.querySelector('input[name="cartData"]')
+        if (!cartDataInput) {
+        cartDataInput = document.createElement("input")
+        cartDataInput.type = "hidden"
+        cartDataInput.name = "cartData"
+        form.appendChild(cartDataInput)
+        }
+        cartDataInput.value = JSON.stringify(cart)
+    })
     }
 
     function saveCart() {
@@ -166,14 +237,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateCartCount() {
-    const count = Object.values(cart).reduce((total, item) => total + item.quantity, 0)
-    if (cartCount) {
-        cartCount.textContent = count
-        cartCount.style.transform = "scale(1.5)"
-        setTimeout(() => {
-        cartCount.style.transform = "scale(1)"
-        }, 300)
+    const cartCountElement = document.querySelector(".cart-count")
+    if (!cartCountElement) {
+        console.error("Cart count element not found")
+        return
     }
+
+    const totalItems = Object.values(cart).reduce((total, item) => total + item.quantity, 0)
+    console.log("Updating cart count to:", totalItems)
+
+    cartCountElement.textContent = totalItems
+    cartCountElement.style.transform = "scale(1.5)"
+    setTimeout(() => {
+        cartCountElement.style.transform = "scale(1)"
+    }, 300)
     }
 
     function calculateTotal() {
