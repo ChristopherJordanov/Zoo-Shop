@@ -11,22 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const clearCartBtn = document.getElementById("clearCart")
     const checkoutBtn = document.getElementById("checkoutBtn")
     const addToCartButtons = document.querySelectorAll(".add-to-cart-btn")
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn")
+    const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
+    const cartOverlay = document.querySelector(".cart-overlay")
 
     // Debug logging to check if elements are found
     console.log("Cart icon found:", !!cartIcon)
     console.log("Cart modal found:", !!cartModal)
     console.log("Close cart button found:", !!closeCart)
     console.log("Cart count element found:", !!cartCount)
-
-    // Create cart overlay if it doesn't exist
-    let cartOverlay = document.querySelector(".cart-overlay")
-    if (!cartOverlay) {
-    console.log("Creating cart overlay")
-    cartOverlay = document.createElement("div")
-    cartOverlay.className = "cart-overlay"
-    document.body.appendChild(cartOverlay)
-    }
+    console.log("Cart overlay found:", !!cartOverlay)
 
     // Initialize cart from localStorage - for visual display only
     let cart = JSON.parse(localStorage.getItem("cart")) || {}
@@ -63,25 +56,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cart icon click - open cart modal
     if (cartIcon) {
-    cartIcon.addEventListener("click", () => {
+    cartIcon.addEventListener("click", (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        console.log("Cart icon clicked")
         openCartModal()
     })
     }
 
     // Close cart modal
     if (closeCart) {
-    closeCart.addEventListener("click", () => {
-        cartModal.classList.remove("open")
-        cartOverlay.classList.remove("open")
-        document.body.style.overflow = ""
+    closeCart.addEventListener("click", (e) => {
+        e.preventDefault()
+        closeCartModal()
     })
     }
 
     // Click outside to close cart modal
+    if (cartOverlay) {
     cartOverlay.addEventListener("click", () => {
-    cartModal.classList.remove("open")
-    cartOverlay.classList.remove("open")
-    document.body.style.overflow = ""
+        closeCartModal()
+    })
+    }
+
+    // Add event listener to handle ESC key to close cart
+    document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && cartModal.classList.contains("open")) {
+        closeCartModal()
+    }
     })
 
     // Clear cart button - now just clears visual display
@@ -176,6 +178,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Notify Django about cart changes via hidden form if it exists
     updateDjangoCartForm()
+
+    // Open the cart modal when adding items
+    openCartModal()
     }
 
     function removeFromCart(productId) {
@@ -327,10 +332,23 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     }
 
+    // Function to close cart modal
+    function closeCartModal() {
+    console.log("Closing cart modal")
+    cartModal.classList.remove("open")
+    cartOverlay.classList.remove("open")
+    document.body.style.overflow = "" // Reset body overflow to allow scrolling
+    }
+
+    // Function to open cart modal
     function openCartModal() {
+    console.log("Opening cart modal")
     renderCartItems()
     cartModal.classList.add("open")
     cartOverlay.classList.add("open")
-    document.body.style.overflow = "hidden"
+    document.body.style.overflow = "hidden" // Prevent scrolling when cart is open
     }
+
+    // Initialize cart display
+    renderCartItems()
 })
