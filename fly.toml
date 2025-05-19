@@ -1,4 +1,4 @@
-app = "Zoo-Shop"
+app = "zoo-shop"
 
 [build]
   builder = "paketobuildpacks/builder:base"
