@@ -4,4 +4,6 @@ app = "zoo-shop"
   builder = "paketobuildpacks/builder:base"
 
 [env]
+  DJANGO_SETTINGS_MODULE = "config.settings"
+  PYTHONUNBUFFERED = "1"
   MISE_PYTHON_COMPILE = "1"
