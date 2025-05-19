@@ -1,26 +1,27 @@
-# Use official Python image
-FROM python:3.11-slim
+ARG PYTHON_VERSION=3.12-slim
 
-# Set environment variables
+FROM python:${PYTHON_VERSION}
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set work directory
-WORKDIR /app
+# install psycopg2 dependencies.
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies
-COPY requirements.txt /app/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN mkdir -p /code
 
-# Copy project files
-COPY . /app/
+WORKDIR /code
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+COPY requirements.txt /tmp/requirements.txt
+RUN set -ex && \
+    pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    rm -rf /root/.cache/
+COPY . /code
 
-# Port to expose
 EXPOSE 8000
 
-# Run app with Gunicorn
-CMD gunicorn zoo_store.wsgi:application --bind 0.0.0.0:8000
+CMD ["gunicorn","--bind",":8000","--workers","2","config.wsgi"]
