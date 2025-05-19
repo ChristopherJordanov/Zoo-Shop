@@ -52,7 +52,7 @@
                         <button type="submit" class="nav-button">Logout</button>
                     </form>
                     <a href="{% url 'account' %}" class="account-button">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fas fa-user"></i>
                     </a>
                 {% else %}
                     <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
@@ -94,35 +94,31 @@
             <div class="product-grid">
                 <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="../static/images/register_pets.png" alt="Grooming Kit">
+                        <img src="../static/images/cats/catfood1.jpg" alt="Premium Cat Food">
                         <span class="product-badge">Sale</span>
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <span class="product-category">Grooming</span>
-                        <h3 class="product-title">Professional Grooming Kit</h3>
-                        <p>Complete set of professional-grade grooming tools for all pet types.</p>
+                        <span class="product-category">Dry Food</span>
+                        <h3 class="product-title">Premium Dry Cat Food</h3>
+                        <p class="product-description">Nutrient-rich formula with real chicken as the first ingredient for optimal health.</p>
                         <div class="product-price">
                             <span class="current-price">$39.99</span>
                             <span class="old-price">$49.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Professional Grooming Kit" data-price="39.99" data-image="../static/images/register_pets.png">
+                        <button class="add-to-cart-btn" data-id="food1" data-product="Premium Dry Cat Food" data-price="39.99" data-image="../static/images/cats/catfood1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,food,gourmet" alt="Gourmet Wet Cat Food">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catfood2.jpg" alt="Gourmet Wet Cat Food">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Wet Food</div>
@@ -139,7 +135,7 @@
                             <span class="current-price">$36.95</span>
                             <span class="old-price">$42.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gourmet Wet Food Collection" data-price="36.95">
+                        <button class="add-to-cart-btn" data-id="food2" data-product="Gourmet Wet Food Collection" data-price="36.95" data-image="../static/images/cats/catfood2.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -147,12 +143,10 @@
                 <div class="product-card">
                     <div class="product-badge">New</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,treats" alt="Organic Cat Treats">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catfood3.jpg" alt="Organic Cat Treats">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Treats</div>
@@ -169,7 +163,7 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Organic Gourmet Cat Treats" data-price="24.95">
+                        <button class="add-to-cart-btn" data-id="food3" data-product="Organic Gourmet Cat Treats" data-price="24.95" data-image="../static/images/cats/catfood3.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -222,12 +216,10 @@
                 <div class="product-card">
                     <div class="product-badge">Best Seller</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,toy,feather" alt="Interactive Feather Wand">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/cattoy1.1.jpg" alt="Interactive Feather Wand">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Interactive Toys</div>
@@ -244,19 +236,17 @@
                             <span class="current-price">$19.95</span>
                             <span class="old-price">$24.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Interactive Feather Wand" data-price="19.95">
+                        <button class="add-to-cart-btn" data-id="toy1" data-product="Interactive Feather Wand" data-price="19.95" data-image="../static/images/cats/cattoy1.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,ball,toy" alt="Catnip Balls">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/cattoy2.1.jpg" alt="Catnip Balls">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Catnip Toys</div>
@@ -273,7 +263,7 @@
                             <span class="current-price">$14.95</span>
                             <span class="old-price">$17.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Catnip Joy Balls" data-price="14.95">
+                        <button class="add-to-cart-btn" data-id="toy2" data-product="Catnip Joy Balls" data-price="14.95" data-image="../static/images/cats/cattoy2.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -281,12 +271,10 @@
                 <div class="product-card">
                     <div class="product-badge">New</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,puzzle,toy" alt="Interactive Puzzle Toy">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/cattoy3.1.jpg" alt="Interactive Puzzle Toy">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Puzzle Toys</div>
@@ -303,78 +291,9 @@
                             <span class="current-price">$29.95</span>
                             <span class="old-price">$34.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Puzzle Adventure Toy" data-price="29.95">
+                        <button class="add-to-cart-btn" data-id="toy3" data-product="Puzzle Adventure Toy" data-price="29.95" data-image="../static/images/cats/cattoy3.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="category-header">
-                <span class="category-tag">Customer Reviews</span>
-                <h2 class="category-title">What Cat Parents Say</h2>
-                <p class="category-description">Hear from our satisfied customers about their experiences with our premium cat products.</p>
-            </div>
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <p class="testimonial-content">My Persian cat absolutely loves the Royal Feast food. Her coat has never looked more luxurious, and she eagerly awaits every meal. The quality is exceptional!</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://source.unsplash.com/random/100x100/?woman" alt="Sophia Williams">
-                        </div>
-                        <div class="author-info">
-                            <h4>Sophia Williams</h4>
-                            <p>Persian Cat Owner</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-content">The Interactive Feather Wand is a hit! The craftsmanship is excellent, and my cats are completely mesmerized by it. Worth every penny for the hours of entertainment it provides.</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://source.unsplash.com/random/100x100/?man" alt="James Thompson">
-                        </div>
-                        <div class="author-info">
-                            <h4>James Thompson</h4>
-                            <p>Bengal Cat Owner</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-content">The customer service at PurrfectPets is amazing! When I had questions about which bed would suit my Maine Coon, they provided perfect recommendations. My cat loves his new bed!</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://source.unsplash.com/random/100x100/?woman,portrait" alt="Emma Richardson">
-                        </div>
-                        <div class="author-info">
-                            <h4>Emma Richardson</h4>
-                            <p>Maine Coon Owner</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
                     </div>
                 </div>
             </div>
@@ -392,12 +311,10 @@
                 <div class="product-card">
                     <div class="product-badge">Top Rated</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,bed" alt="Plush Cat Bed">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catbed1.1.jpg" alt="Plush Cat Bed">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Luxury Beds</div>
@@ -414,19 +331,17 @@
                             <span class="current-price">$59.95</span>
                             <span class="old-price">$69.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Plush Dreams Cat Bed" data-price="59.95">
+                        <button class="add-to-cart-btn" data-id="bed1" data-product="Plush Dreams Cat Bed" data-price="59.95" data-image="../static/images/cats/catbed1.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,cushion" alt="Cat Cushion">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catbed2.1.jpg" alt="Cat Cushion">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Cushions</div>
@@ -443,7 +358,7 @@
                             <span class="current-price">$39.95</span>
                             <span class="old-price">$44.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Cozy Cloud Cushion" data-price="39.95">
+                        <button class="add-to-cart-btn" data-id="bed2" data-product="Cozy Cloud Cushion" data-price="39.95" data-image="../static/images/cats/catbed2.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -451,12 +366,10 @@
                 <div class="product-card">
                     <div class="product-badge">New</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,hammock" alt="Window Hammock">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catbed3.1.jpg" alt="Window Hammock">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Window Beds</div>
@@ -473,7 +386,7 @@
                             <span class="current-price">$34.95</span>
                             <span class="old-price">$39.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Window Hammock" data-price="34.95">
+                        <button class="add-to-cart-btn" data-id="bed3" data-product="Window Hammock" data-price="34.95" data-image="../static/images/cats/catbed3.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -493,12 +406,10 @@
                 <div class="product-card">
                     <div class="product-badge">Best Value</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,carrier" alt="Cat Carrier">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catcollar1.1.jpg" alt="Cat Carrier">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Carriers</div>
@@ -515,19 +426,17 @@
                             <span class="current-price">$69.95</span>
                             <span class="old-price">$79.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Comfort Travel Carrier" data-price="69.95">
+                        <button class="add-to-cart-btn" data-id="carrier1" data-product="Comfort Travel Carrier" data-price="69.95" data-image="../static/images/cats/catcollar1.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,playpen" alt="Cat Playpen">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catcollar2.1.jpg" alt="Cat Playpen">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Playpens</div>
@@ -544,7 +453,7 @@
                             <span class="current-price">$79.95</span>
                             <span class="old-price">$89.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Portable Playpen" data-price="79.95">
+                        <button class="add-to-cart-btn" data-id="carrier2" data-product="Portable Playpen" data-price="79.95" data-image="../static/images/cats/catcollar2.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -552,12 +461,10 @@
                 <div class="product-card">
                     <div class="product-badge">New</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,backpack" alt="Cat Backpack">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catbed3.1.jpg" alt="Cat Backpack">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Backpacks</div>
@@ -574,7 +481,7 @@
                             <span class="current-price">$89.95</span>
                             <span class="old-price">$99.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Adventure Backpack" data-price="89.95">
+                        <button class="add-to-cart-btn" data-id="carrier3" data-product="Adventure Backpack" data-price="89.95" data-image="../static/images/cats/catbed3.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -594,12 +501,10 @@
                 <div class="product-card">
                     <div class="product-badge">Best Seller</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,brush" alt="Cat Brush">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catgroom1.jpg" alt="Cat Brush">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Brushes</div>
@@ -616,19 +521,17 @@
                             <span class="current-price">$24.95</span>
                             <span class="old-price">$29.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Gentle Grooming Brush" data-price="24.95">
+                        <button class="add-to-cart-btn" data-id="groom1" data-product="Gentle Grooming Brush" data-price="24.95" data-image="../static/images/cats/catgroom1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,shampoo" alt="Cat Shampoo">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catgroom2.jpg" alt="Cat Shampoo">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Bath Products</div>
@@ -644,7 +547,7 @@
                             <span class="current-price">$19.95</span>
                             <span class="old-price">$22.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Natural Cat Shampoo" data-price="19.95">
+                        <button class="add-to-cart-btn" data-id="groom2" data-product="Natural Cat Shampoo" data-price="19.95" data-image="../static/images/cats/catgroom2.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -652,12 +555,10 @@
                 <div class="product-card">
                     <div class="product-badge">New</div>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x800/?cat,nail" alt="Nail Trimmer">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="far fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                        <img src="../static/images/cats/catgroom3.jpg" alt="Nail Trimmer">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Nail Care</div>
@@ -674,7 +575,7 @@
                             <span class="current-price">$29.95</span>
                             <span class="old-price">$34.95</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Professional Nail Trimmer" data-price="29.95">
+                        <button class="add-to-cart-btn" data-id="groom3" data-product="Professional Nail Trimmer" data-price="29.95" data-image="../static/images/cats/catgroom3.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -699,13 +600,24 @@
                     <span>Total:</span>
                     <span id="cartTotal">$0.00</span>
                 </div>
-                <form id="checkoutForm" action="{% url 'checkout' %}" method="POST">
-                    {% csrf_token %}
+                <form id="checkoutForm" action="checkout.html" method="GET">
                     <input type="hidden" name="cartData" id="cartData">
                     <button type="submit" class="checkout-btn" id="checkoutBtn">
                         <i class="fas fa-shopping-bag"></i> Checkout
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-detail-modal" id="productDetailModal">
+        <div class="product-detail-content">
+            <button class="product-detail-close" id="closeProductDetail">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product-detail-body" id="productDetailBody">
+                <!-- Product details will be loaded here dynamically -->
             </div>
         </div>
     </div>
@@ -721,8 +633,7 @@
         <div class="container newsletter-container">
             <h2 class="newsletter-title slide-up">Subscribe to Our Newsletter</h2>
             <p class="newsletter-description slide-up">Stay updated with our latest products, pet care tips, and exclusive offers.</p>
-            <form method="POST" action="{% url 'subscribe' %}" class="newsletter-form slide-up">
-                {% csrf_token %}
+            <form class="newsletter-form slide-up">
                 <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address" required>
                 <button type="submit" class="newsletter-button">Subscribe</button>
             </form>

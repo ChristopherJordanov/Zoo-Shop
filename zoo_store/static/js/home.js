@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// Button animation
 		const originalText = this.innerHTML
 		this.innerHTML = '<i class="fas fa-check"></i> Added to Cart'
-		this.style.backgroundColor = "var(--primary-dark)"
+		this.style.backgroundColor = "#d35400"
 
 		setTimeout(() => {
 		this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart'
@@ -410,7 +410,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 	}
 
-
 	// Smooth scrolling
 	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 	anchor.addEventListener("click", function (e) {
@@ -462,6 +461,199 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Initialize cart count on page load
 	updateCartCount()
+
+	// Elements for Quick View
+	const productCards = document.querySelectorAll(".product-card")
+	const quickViewModal = document.createElement("div")
+	quickViewModal.className = "quick-view-modal"
+	document.body.appendChild(quickViewModal)
+
+	// Add quick view button to each product card
+	productCards.forEach((card) => {
+	const productImage = card.querySelector(".product-image")
+	const productTitle = card.querySelector(".product-title").textContent
+	const productPrice = card.querySelector(".current-price").textContent
+	const productOldPrice = card.querySelector(".old-price")?.textContent || ""
+	const productCategory = card.querySelector(".product-category").textContent
+	const productDesc = card.querySelector(".product-info p").textContent
+	const productImg = card.querySelector(".product-image img").src
+	const addToCartBtn = card.querySelector(".add-to-cart-btn")
+	const productData = addToCartBtn.dataset
+
+	// Create quick view button
+	const quickViewBtn = document.createElement("button")
+	quickViewBtn.className = "quick-view-btn"
+	quickViewBtn.innerHTML = '<i class="fas fa-eye"></i> Quick View'
+	productImage.appendChild(quickViewBtn)
+
+	// Quick view button click handler
+	quickViewBtn.addEventListener("click", (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+		openQuickView(productTitle, productPrice, productOldPrice, productCategory, productDesc, productImg, productData)
+	})
+	})
+
+	// Function to open quick view modal
+	function openQuickView(title, price, oldPrice, category, description, image, productData) {
+	// Create modal content
+	quickViewModal.innerHTML = `
+		<div class="quick-view-content">
+		<button class="close-quick-view">
+			<i class="fas fa-times"></i>
+		</button>
+		<div class="quick-view-header">
+			<div class="quick-view-category">${category}</div>
+		</div>
+		<div class="quick-view-body">
+			<div class="quick-view-image">
+			<img src="${image}" alt="${title}">
+			</div>
+			<div class="quick-view-details">
+			<h2 class="quick-view-title">${title}</h2>
+			<div class="quick-view-price">
+				<span class="quick-view-current-price">${price}</span>
+				${oldPrice ? `<span class="quick-view-old-price">${oldPrice}</span>` : ""}
+			</div>
+			<p class="quick-view-description">${description}</p>
+			
+			<div class="quick-view-specs">
+				<div class="spec-row">
+				<div class="spec-label">Weight</div>
+				<div class="spec-value">500g</div>
+				</div>
+				<div class="spec-row">
+				<div class="spec-label">Ingredients</div>
+				<div class="spec-value">Premium meat, vegetables, essential nutrients</div>
+				</div>
+				<div class="spec-row">
+				<div class="spec-label">Protein Content</div>
+				<div class="spec-value">15%</div>
+				</div>
+				<div class="spec-row">
+				<div class="spec-label">Shelf Life</div>
+				<div class="spec-value">18 months</div>
+				</div>
+				<div class="spec-row">
+				<div class="spec-label">Feeding Instructions</div>
+				<div class="spec-value">Feed 1-2 tablespoons daily</div>
+				</div>
+			</div>
+			
+			<div class="quick-view-tags">
+				<span class="quick-view-tag">All Natural</span>
+				<span class="quick-view-tag">No Preservatives</span>
+				<span class="quick-view-tag">All Dog Ages</span>
+			</div>
+			
+			<div class="quick-view-quantity">
+				<span class="quick-view-quantity-label">Quantity</span>
+				<div class="quantity-controls">
+				<button class="quantity-btn quantity-decrease">-</button>
+				<input type="text" class="quantity-input" value="1" readonly>
+				<button class="quantity-btn quantity-increase">+</button>
+				</div>
+			</div>
+			
+			<div class="quick-view-actions">
+				<button class="quick-view-add-to-cart" 
+				data-product="${productData.product}" 
+				data-price="${productData.price}" 
+				data-image="${image}">
+				<i class="fas fa-shopping-cart"></i> Add to Cart
+				</button>
+			</div>
+			</div>
+		</div>
+		</div>
+	`
+
+	// Show modal
+	quickViewModal.classList.add("active")
+	document.body.style.overflow = "hidden"
+
+	// Close button functionality
+	const closeBtn = quickViewModal.querySelector(".close-quick-view")
+	closeBtn.addEventListener("click", closeQuickView)
+
+	// Close when clicking outside the content
+	quickViewModal.addEventListener("click", (e) => {
+		if (e.target === quickViewModal) {
+		closeQuickView()
+		}
+	})
+
+	// Quantity controls
+	const quantityInput = quickViewModal.querySelector(".quantity-input")
+	const decreaseBtn = quickViewModal.querySelector(".quantity-decrease")
+	const increaseBtn = quickViewModal.querySelector(".quantity-increase")
+
+	decreaseBtn.addEventListener("click", () => {
+		const value = Number.parseInt(quantityInput.value)
+		if (value > 1) {
+		quantityInput.value = value - 1
+		}
+	})
+
+	increaseBtn.addEventListener("click", () => {
+		const value = Number.parseInt(quantityInput.value)
+		quantityInput.value = value + 1
+	})
+
+	// Add to cart functionality
+	const addToCartBtn = quickViewModal.querySelector(".quick-view-add-to-cart")
+	addToCartBtn.addEventListener("click", function () {
+		const product = this.getAttribute("data-product")
+		const price = Number.parseFloat(this.getAttribute("data-price"))
+		const image = this.getAttribute("data-image")
+		const quantity = Number.parseInt(quantityInput.value)
+
+		// Check if product is already in cart
+		if (cart[product]) {
+		cart[product].quantity += quantity
+		} else {
+		cart[product] = {
+			price: price,
+			image: image,
+			quantity: quantity,
+		}
+		}
+
+		// Save to localStorage
+		saveCart()
+		updateCartCount()
+		updateCartDisplay()
+
+		// Close modal after adding to cart
+		closeQuickView()
+
+		// Show confirmation
+		const toast = document.createElement("div")
+		toast.className = "toast"
+		toast.innerHTML = `
+		<i class="fas fa-check-circle"></i>
+		<span>${product} added to cart</span>
+		`
+		document.body.appendChild(toast)
+
+		setTimeout(() => {
+		toast.classList.add("show")
+		}, 100)
+
+		setTimeout(() => {
+		toast.classList.remove("show")
+		setTimeout(() => {
+			document.body.removeChild(toast)
+		}, 300)
+		}, 3000)
+	})
+	}
+
+	// Function to close quick view modal
+	function closeQuickView() {
+	quickViewModal.classList.remove("active")
+	document.body.style.overflow = ""
+	}
 })
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -480,7 +672,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelectorAll(".smooth-scroll").forEach((anchor) => {
 	anchor.addEventListener("click", function (e) {
-
 	const targetId = this.getAttribute("href").substring(1)
 	const targetElement = document.getElementById(targetId)
 

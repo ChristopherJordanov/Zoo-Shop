@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FeatheredFriends - Premium Bird Products</title>
-    <link rel="stylesheet" href="../static/css/birds.css">
+    <title>FeatherFriends - Premium Bird Products</title>
+    <!-- Fix the CSS path to load the bird.css file directly -->
+    <link rel="stylesheet" href="../../static/css/birds.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Remove the inline style overrides since they're now in the main CSS file -->
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container navbar-content">
             <a href="{% url 'index' %}" class="logo">
-                <i class="fas fa-dove"></i>
-                FeatheredFriends
+                <i class="fas fa-feather-alt"></i>
+                FeatherFriends
             </a>
             <div class="nav-links">
                 <a href="#food">Food</a>
@@ -53,11 +55,11 @@
             <div class="decorative-item bird1" style="top: 15%; left: 10%;">
                 <i class="fas fa-dove"></i>
             </div>
-            <div class="decorative-item leaf1" style="top: 25%; right: 15%;">
-                <i class="fas fa-leaf"></i>
-            </div>
-            <div class="decorative-item feather1" style="bottom: 20%; left: 20%;">
+            <div class="decorative-item feather1" style="top: 25%; right: 15%;">
                 <i class="fas fa-feather"></i>
+            </div>
+            <div class="decorative-item nest1" style="bottom: 20%; left: 20%;">
+                <i class="fas fa-home"></i>
             </div>
             <div class="decorative-item cloud1" style="top: 40%; right: 25%;">
                 <i class="fas fa-cloud"></i>
@@ -65,11 +67,11 @@
             <div class="decorative-item bird2" style="bottom: 30%; right: 10%;">
                 <i class="fas fa-dove"></i>
             </div>
-            <div class="decorative-item leaf2" style="top: 60%; left: 15%;">
-                <i class="fas fa-leaf"></i>
-            </div>
-            <div class="decorative-item feather2" style="top: 10%; right: 30%;">
+            <div class="decorative-item feather2" style="top: 60%; left: 15%;">
                 <i class="fas fa-feather"></i>
+            </div>
+            <div class="decorative-item nest2" style="top: 10%; right: 30%;">
+                <i class="fas fa-home"></i>
             </div>
             <div class="decorative-item cloud2" style="bottom: 15%; left: 30%;">
                 <i class="fas fa-cloud"></i>
@@ -81,8 +83,8 @@
             <div class="decorative-item cloud1" style="top: 70%; right: 40%;">
                 <i class="fas fa-cloud"></i>
             </div>
-            <div class="decorative-item feather1" style="bottom: 40%; right: 20%;">
-                <i class="fas fa-feather"></i>
+            <div class="decorative-item nest1" style="bottom: 40%; right: 20%;">
+                <i class="fas fa-home"></i>
             </div>
             <div class="decorative-item cloud2" style="top: 20%; left: 40%;">
                 <i class="fas fa-cloud"></i>
@@ -90,20 +92,20 @@
             <div class="decorative-item bird2" style="top: 50%; left: 50%;">
                 <i class="fas fa-dove"></i>
             </div>
-            <div class="decorative-item leaf1" style="bottom: 25%; left: 60%;">
-                <i class="fas fa-leaf"></i>
+            <div class="decorative-item feather1" style="bottom: 25%; left: 60%;">
+                <i class="fas fa-feather"></i>
             </div>
             <div class="decorative-item cloud1" style="top: 30%; left: 70%;">
                 <i class="fas fa-cloud"></i>
             </div>
-            <div class="decorative-item feather2" style="top: 65%; right: 65%;">
-                <i class="fas fa-feather"></i>
+            <div class="decorative-item nest2" style="top: 65%; right: 65%;">
+                <i class="fas fa-home"></i>
             </div>
         </div>
 
         <div class="container hero-content">
             <h1 class="hero-title">Premium Products for Your Feathered Friends</h1>
-            <p class="hero-subtitle">Discover high-quality food, cages, and accessories that your birds will love and thrive with.</p>
+            <p class="hero-subtitle">Discover high-quality food, cages, and accessories that your birds will love.</p>
             <a href="#food" class="cta-button">
                 Shop Now
                 <i class="fas fa-arrow-right"></i>
@@ -117,27 +119,22 @@
             <div class="category-header">
                 <span class="category-tag">Nutrition</span>
                 <h2 class="category-title">Premium Bird Food</h2>
-                <p class="category-description">Nutritious and balanced meals made with high-quality ingredients to keep your feathered friends healthy and vibrant.</p>
+                <p class="category-description">Nutritious and balanced meals made with high-quality ingredients to keep your feathered friends healthy and happy.</p>
             </div>
             <div class="product-grid">
                 <!-- Product 1 -->
                 <div class="product-card">
                     <span class="product-badge">Best Seller</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,seed" alt="Premium Bird Seed Mix">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdfood1.avif" alt="Premium Seed Mix">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Seed Mix</div>
-                        <h3 class="product-title">Premium Songbird Seed Mix</h3>
-                        <p class="product-description">High-quality blend of seeds, nuts, and dried fruits for optimal nutrition and energy.</p>
+                        <div class="product-category">Seeds</div>
+                        <h3 class="product-title">Premium Seed Mix</h3>
+                        <p class="product-description">High-quality blend of seeds and grains for optimal nutrition and health.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -149,7 +146,7 @@
                             <span class="current-price">$12.99</span>
                             <span class="old-price">$15.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="food1" data-product="Premium Songbird Seed Mix" data-price="12.99" data-image="https://source.unsplash.com/random/600x600/?bird,seed">
+                        <button class="add-to-cart-btn" data-id="food1" data-product="Premium Seed Mix" data-price="12.99" data-image="../static/images/birds/birdfood1.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -159,20 +156,15 @@
                 <!-- Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,pellets" alt="Nutritional Pellets">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdfood2.avif" alt="Organic Pellets">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Pellets</div>
-                        <h3 class="product-title">Complete Nutrition Pellets</h3>
-                        <p class="product-description">Scientifically formulated pellets with essential vitamins and minerals for daily health.</p>
+                        <h3 class="product-title">Organic Pellets</h3>
+                        <p class="product-description">Nutritionally complete pellets made with organic ingredients for daily feeding.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -181,9 +173,9 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$9.99</span>
+                            <span class="current-price">$14.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="food2" data-product="Complete Nutrition Pellets" data-price="9.99" data-image="https://source.unsplash.com/random/600x600/?bird,pellets">
+                        <button class="add-to-cart-btn" data-id="food2" data-product="Organic Pellets" data-price="14.99" data-image="../static/images/birds/birdfood2.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -194,20 +186,15 @@
                 <div class="product-card">
                     <span class="product-badge">New</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,treats" alt="Bird Treats">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdfood3.avif" alt="Fruit & Nut Blend">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Treats</div>
-                        <h3 class="product-title">Organic Fruit & Nut Treats</h3>
-                        <p class="product-description">Delicious, natural treats packed with nutrients to reward and supplement your bird's diet.</p>
+                        <h3 class="product-title">Fruit & Nut Blend</h3>
+                        <p class="product-description">Delicious mix of dried fruits and nuts for treats and training rewards.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -216,10 +203,10 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$14.99</span>
-                            <span class="old-price">$17.99</span>
+                            <span class="current-price">$9.99</span>
+                            <span class="old-price">$12.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="food3" data-product="Organic Fruit & Nut Treats" data-price="14.99" data-image="https://source.unsplash.com/random/600x600/?bird,treats">
+                        <button class="add-to-cart-btn" data-id="food3" data-product="Fruit & Nut Blend" data-price="9.99" data-image="../static/images/birds/birdfood3.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -234,8 +221,8 @@
         <div class="container">
             <div class="category-header text-center">
                 <span class="category-tag">Why Choose Us</span>
-                <h2 class="category-title">The FeatheredFriends Difference</h2>
-                <p class="category-description">We're committed to providing the highest quality products and exceptional service for you and your avian companions.</p>
+                <h2 class="category-title">The FeatherFriends Difference</h2>
+                <p class="category-description">We're committed to providing the highest quality products and exceptional service for you and your feathered friends.</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -270,20 +257,15 @@
                 <div class="product-card">
                     <span class="product-badge">Best Seller</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,cage" alt="Bird Cage">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdcage1.avif" alt="Deluxe Bird Cage">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Standard Cages</div>
-                        <h3 class="product-title">Deluxe Parakeet Cage</h3>
-                        <p class="product-description">Spacious cage with multiple perches, feeding stations, and easy-clean removable bottom tray.</p>
+                        <div class="product-category">Cages</div>
+                        <h3 class="product-title">Deluxe Bird Cage</h3>
+                        <p class="product-description">Spacious cage with multiple perches, feeding stations, and easy-clean design.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -292,10 +274,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$79.99</span>
-                            <span class="old-price">$99.99</span>
+                            <span class="current-price">$89.99</span>
+                            <span class="old-price">$109.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="cage1" data-product="Deluxe Parakeet Cage" data-price="79.99" data-image="https://source.unsplash.com/random/600x600/?bird,cage">
+                        <button class="add-to-cart-btn" data-id="cage1" data-product="Deluxe Bird Cage" data-price="89.99" data-image="../static/images/birds/birdcage1.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -305,20 +287,15 @@
                 <!-- Cage Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,aviary" alt="Bird Aviary">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdcage2.avif" alt="Travel Cage">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Aviaries</div>
-                        <h3 class="product-title">Indoor Flight Aviary</h3>
-                        <p class="product-description">Spacious flight cage with multiple levels, perches, and play areas for exercise and enrichment.</p>
+                        <div class="product-category">Travel</div>
+                        <h3 class="product-title">Portable Travel Cage</h3>
+                        <p class="product-description">Lightweight, secure cage designed for safe and comfortable travel with your bird.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -327,9 +304,9 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$149.99</span>
+                            <span class="current-price">$49.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="cage2" data-product="Indoor Flight Aviary" data-price="149.99" data-image="https://source.unsplash.com/random/600x600/?bird,aviary">
+                        <button class="add-to-cart-btn" data-id="cage2" data-product="Portable Travel Cage" data-price="49.99" data-image="../static/images/birds/birdcage2.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -340,20 +317,15 @@
                 <div class="product-card">
                     <span class="product-badge">Premium</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,stand" alt="Bird Cage with Stand">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdcage3.avif" alt="Aviary">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Cage Sets</div>
-                        <h3 class="product-title">Victorian Dome Cage with Stand</h3>
-                        <p class="product-description">Elegant dome-style cage with decorative stand, perfect for canaries and finches.</p>
+                        <div class="product-category">Aviaries</div>
+                        <h3 class="product-title">Outdoor Aviary</h3>
+                        <p class="product-description">Spacious outdoor aviary with weather protection and multiple perching areas.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -362,10 +334,10 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$199.99</span>
-                            <span class="old-price">$249.99</span>
+                            <span class="current-price">$249.99</span>
+                            <span class="old-price">$299.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="cage3" data-product="Victorian Dome Cage with Stand" data-price="199.99" data-image="https://source.unsplash.com/random/600x600/?bird,stand">
+                        <button class="add-to-cart-btn" data-id="cage3" data-product="Outdoor Aviary" data-price="249.99" data-image="../static/images/birds/birdcage3.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -380,28 +352,23 @@
         <div class="container">
             <div class="category-header">
                 <span class="category-tag">Enrichment</span>
-                <h2 class="category-title">Bird Toys & Playthings</h2>
-                <p class="category-description">Keep your birds mentally stimulated and physically active with our selection of engaging toys and activities.</p>
+                <h2 class="category-title">Bird Toys</h2>
+                <p class="category-description">Keep your birds mentally stimulated and physically active with our selection of engaging toys.</p>
             </div>
             <div class="product-grid">
                 <!-- Toy Product 1 -->
                 <div class="product-card">
                     <span class="product-badge">Popular</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,toy" alt="Bird Toy Set">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdtoy1.avif" alt="Foraging Toy">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Toy Sets</div>
-                        <h3 class="product-title">Activity Play Set</h3>
-                        <p class="product-description">Set of 5 different toys with bells, mirrors, and chewable parts for hours of entertainment.</p>
+                        <div class="product-category">Foraging</div>
+                        <h3 class="product-title">Foraging Puzzle Toy</h3>
+                        <p class="product-description">Interactive puzzle that encourages natural foraging behaviors and mental stimulation.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -410,10 +377,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$24.99</span>
-                            <span class="old-price">$29.99</span>
+                            <span class="current-price">$19.99</span>
+                            <span class="old-price">$24.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="toy1" data-product="Activity Play Set" data-price="24.99" data-image="https://source.unsplash.com/random/600x600/?bird,toy">
+                        <button class="add-to-cart-btn" data-id="toy1" data-product="Foraging Puzzle Toy" data-price="19.99" data-image="../static/images/birds/birdtoy1.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -423,20 +390,15 @@
                 <!-- Toy Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,swing" alt="Bird Swing">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdtoy2.avif" alt="Swing Set">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Swings</div>
+                        <div class="product-category">Activity</div>
                         <h3 class="product-title">Natural Wood Swing Set</h3>
-                        <p class="product-description">Set of 3 different sized swings made from natural, bird-safe wood for exercise and play.</p>
+                        <p class="product-description">Set of wooden swings and ladders for exercise and entertainment.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -445,9 +407,9 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$19.99</span>
+                            <span class="current-price">$14.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="toy2" data-product="Natural Wood Swing Set" data-price="19.99" data-image="https://source.unsplash.com/random/600x600/?bird,swing">
+                        <button class="add-to-cart-btn" data-id="toy2" data-product="Natural Wood Swing Set" data-price="14.99" data-image="../static/images/birds/birdtoy2.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -458,20 +420,15 @@
                 <div class="product-card">
                     <span class="product-badge">New</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,ladder" alt="Bird Ladder">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdtoy3.avif" alt="Chew Toy">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Climbing Toys</div>
-                        <h3 class="product-title">Colorful Rope Ladder</h3>
-                        <p class="product-description">Flexible, colorful rope ladder that encourages climbing and provides foot exercise.</p>
+                        <div class="product-category">Chewing</div>
+                        <h3 class="product-title">Colorful Chew Toy Set</h3>
+                        <p class="product-description">Set of safe, colorful materials for birds to chew and shred, promoting beak health.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -481,9 +438,9 @@
                         </div>
                         <div class="product-price">
                             <span class="current-price">$12.99</span>
-                            <span class="old-price">$15.99</span>
+                            <span class="old-price">$16.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="toy3" data-product="Colorful Rope Ladder" data-price="12.99" data-image="https://source.unsplash.com/random/600x600/?bird,ladder">
+                        <button class="add-to-cart-btn" data-id="toy3" data-product="Colorful Chew Toy Set" data-price="12.99" data-image="../static/images/birds/birdtoy3.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -506,20 +463,15 @@
                 <div class="product-card">
                     <span class="product-badge">Best Seller</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,perch" alt="Bird Perches">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdacc1.avif" alt="Natural Perches">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Perches</div>
                         <h3 class="product-title">Natural Branch Perch Set</h3>
-                        <p class="product-description">Set of 3 natural wood perches in varying diameters to promote foot health and exercise.</p>
+                        <p class="product-description">Set of varying thickness natural wood perches for foot exercise and comfort.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -528,10 +480,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$14.99</span>
+                            <span class="current-price">$16.99</span>
                             <span class="old-price">$19.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="acc1" data-product="Natural Branch Perch Set" data-price="14.99" data-image="https://source.unsplash.com/random/600x600/?bird,perch">
+                        <button class="add-to-cart-btn" data-id="acc1" data-product="Natural Branch Perch Set" data-price="16.99" data-image="../static/images/birds/birdacc1.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -541,20 +493,15 @@
                 <!-- Accessory Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,feeder" alt="Bird Feeder">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdacc2.avif" alt="Food Dishes">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Feeders</div>
-                        <h3 class="product-title">No-Mess Seed Feeder</h3>
-                        <p class="product-description">Innovative feeder design that prevents seed scatter and waste while keeping food fresh.</p>
+                        <h3 class="product-title">Stainless Steel Food Dishes</h3>
+                        <p class="product-description">Set of durable, easy-to-clean stainless steel dishes for food and water.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -563,9 +510,9 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$9.99</span>
+                            <span class="current-price">$12.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="acc2" data-product="No-Mess Seed Feeder" data-price="9.99" data-image="https://source.unsplash.com/random/600x600/?bird,feeder">
+                        <button class="add-to-cart-btn" data-id="acc2" data-product="Stainless Steel Food Dishes" data-price="12.99" data-image="../static/images/birds/birdacc2.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -576,20 +523,15 @@
                 <div class="product-card">
                     <span class="product-badge">Popular</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,bath" alt="Bird Bath">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdacc3.avif" alt="Cage Cover">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Baths</div>
-                        <h3 class="product-title">Clip-On Bird Bath</h3>
-                        <p class="product-description">Easy to install bath that attaches to cage bars, providing a refreshing bathing spot for your bird.</p>
+                        <div class="product-category">Covers</div>
+                        <h3 class="product-title">Breathable Cage Cover</h3>
+                        <p class="product-description">Lightweight, breathable cover to provide darkness and security for restful sleep.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -598,10 +540,10 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$16.99</span>
-                            <span class="old-price">$21.99</span>
+                            <span class="current-price">$24.99</span>
+                            <span class="old-price">$29.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="acc3" data-product="Clip-On Bird Bath" data-price="16.99" data-image="https://source.unsplash.com/random/600x600/?bird,bath">
+                        <button class="add-to-cart-btn" data-id="acc3" data-product="Breathable Cage Cover" data-price="24.99" data-image="../static/images/birds/birdacc3.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -617,27 +559,22 @@
             <div class="category-header">
                 <span class="category-tag">Care</span>
                 <h2 class="category-title">Bird Health & Wellness</h2>
-                <p class="category-description">Keep your feathered friends in top condition with our selection of health supplements, grooming tools, and care products.</p>
+                <p class="category-description">Keep your feathered friends healthy with our selection of supplements, grooming tools, and health products.</p>
             </div>
             <div class="product-grid">
                 <!-- Health Product 1 -->
                 <div class="product-card">
                     <span class="product-badge">Essential</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,vitamin" alt="Bird Vitamins">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdhealth1.avif" alt="Vitamin Supplement">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Supplements</div>
-                        <h3 class="product-title">Complete Avian Multivitamin</h3>
-                        <p class="product-description">Liquid vitamin supplement that supports immune health, feather quality, and overall vitality.</p>
+                        <h3 class="product-title">Complete Vitamin Supplement</h3>
+                        <p class="product-description">Liquid vitamin and mineral supplement to ensure optimal nutrition and health.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -646,10 +583,10 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$18.99</span>
-                            <span class="old-price">$22.99</span>
+                            <span class="current-price">$14.99</span>
+                            <span class="old-price">$17.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="health1" data-product="Complete Avian Multivitamin" data-price="18.99" data-image="https://source.unsplash.com/random/600x600/?bird,vitamin">
+                        <button class="add-to-cart-btn" data-id="health1" data-product="Complete Vitamin Supplement" data-price="14.99" data-image="../static/images/birds/birdhealth1.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -659,20 +596,15 @@
                 <!-- Health Product 2 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,grooming" alt="Bird Grooming Kit">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdhealth2.avif" alt="Grooming Kit">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
                         <div class="product-category">Grooming</div>
-                        <h3 class="product-title">Professional Grooming Kit</h3>
-                        <p class="product-description">Complete set of bird-safe nail clippers, wing trimmers, and grooming tools for at-home care.</p>
+                        <h3 class="product-title">Bird Grooming Kit</h3>
+                        <p class="product-description">Complete set of safe grooming tools including nail clippers and gentle brushes.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -681,9 +613,9 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$34.99</span>
+                            <span class="current-price">$29.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="health2" data-product="Professional Grooming Kit" data-price="34.99" data-image="https://source.unsplash.com/random/600x600/?bird,grooming">
+                        <button class="add-to-cart-btn" data-id="health2" data-product="Bird Grooming Kit" data-price="29.99" data-image="../static/images/birds/birdhealth2.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -694,20 +626,15 @@
                 <div class="product-card">
                     <span class="product-badge">Popular</span>
                     <div class="product-image">
-                        <img src="https://source.unsplash.com/random/600x600/?bird,cleaner" alt="Cage Cleaner">
-                        <div class="product-actions">
-                            <button class="product-action-btn">
-                                <i class="far fa-heart"></i>
-                            </button>
-                            <button class="product-action-btn">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
+                        <img src="../static/images/birds/birdhealth3.avif" alt="First Aid Kit">
+                        <button class="quick-view-btn">
+                            <i class="fas fa-eye"></i> Quick View
+                        </button>
                     </div>
                     <div class="product-info">
-                        <div class="product-category">Cleaning</div>
-                        <h3 class="product-title">Natural Cage Cleaner</h3>
-                        <p class="product-description">Bird-safe, plant-based cleaner that effectively removes droppings and disinfects without harmful chemicals.</p>
+                        <div class="product-category">First Aid</div>
+                        <h3 class="product-title">Bird First Aid Kit</h3>
+                        <p class="product-description">Essential supplies for minor injuries and emergencies, with detailed instructions.</p>
                         <div class="star-rating">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -716,10 +643,10 @@
                             <i class="far fa-star"></i>
                         </div>
                         <div class="product-price">
-                            <span class="current-price">$12.99</span>
-                            <span class="old-price">$15.99</span>
+                            <span class="current-price">$34.99</span>
+                            <span class="old-price">$39.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-id="health3" data-product="Natural Cage Cleaner" data-price="12.99" data-image="https://source.unsplash.com/random/600x600/?bird,cleaner">
+                        <button class="add-to-cart-btn" data-id="health3" data-product="Bird First Aid Kit" data-price="34.99" data-image="../static/images/birds/birdhealth3.avif">
                             <i class="fas fa-shopping-cart"></i>
                             Add to Cart
                         </button>
@@ -728,82 +655,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="container newsletter-container">
-            <h2 class="newsletter-title slide-up">Subscribe to Our Newsletter</h2>
-            <p class="newsletter-description slide-up">Stay updated with our latest products, bird care tips, and exclusive offers.</p>
-            <form method="POST" action="{% url 'subscribe' %}" class="newsletter-form slide-up">
-                {% csrf_token %}
-                <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address" required>
-                <button type="submit" class="newsletter-button">Subscribe</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <a href="#" class="footer-logo">FeatheredFriends</a>
-                    <p class="footer-description">Premium products for your avian companions. Quality, care, and comfort for birds of all types and sizes.</p>
-                    <div class="footer-social">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">Shop</h3>
-                    <ul class="footer-links">
-                        <li><a href="#food"><i class="fas fa-chevron-right"></i> Bird Food</a></li>
-                        <li><a href="#cages"><i class="fas fa-chevron-right"></i> Cages & Aviaries</a></li>
-                        <li><a href="#toys"><i class="fas fa-chevron-right"></i> Toys & Enrichment</a></li>
-                        <li><a href="#accessories"><i class="fas fa-chevron-right"></i> Accessories</a></li>
-                        <li><a href="#health"><i class="fas fa-chevron-right"></i> Health & Wellness</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
-                        <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                        <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
-                        <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3 class="footer-title">Contact</h3>
-                    <div class="contact-info">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        <div class="contact-details">
-                            123 Aviary Lane<br>
-                            Birdville, CA 90210
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <i class="fas fa-phone-alt contact-icon"></i>
-                        <div class="contact-details">
-                            (800) BIRD-123<br>
-                            Mon-Fri: 9am-5pm
-                        </div>
-                    </div>
-                    <div class="contact-info">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <div class="contact-details">
-                            info@featheredfriends.com
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 FeatheredFriends. All rights reserved. | Terms & Conditions | Privacy Policy</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
@@ -835,6 +686,18 @@
 
     <!-- Cart overlay for background dimming -->
     <div class="cart-overlay"></div>
+
+    <!-- Product Detail Modal -->
+    <div class="product-detail-modal" id="productDetailModal">
+        <div class="product-detail-content">
+            <button class="product-detail-close" id="closeProductDetail">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product-detail-body" id="productDetailBody">
+                <!-- Product details will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
 
     <script src="../static/js/birds.js"></script>
 </body>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -73,7 +73,7 @@
     <section id="about" class="about-section">
         <div class="container about-content">
             <div class="about-image slide-up">
-                <img src="https://source.unsplash.com/random/600x600/?pet,owner" alt="About Fluffemo">
+                <img src="../static/images/logo.png" alt="About Fluffemo">
             </div>
             <div class="about-text">
                 <h2 class="section-title slide-up">About Fluffemo</h2>
@@ -242,22 +242,23 @@
                 <div class="product-card slide-up">
                     <div class="product-image">
                         <img src="../static/images/dogfood1.jpg" alt="Premium Dog Food">
-                        <span class="product-badge">Best Seller</span>
+                        <span class="product-badge">SALE</span>
                         <div class="product-actions">
                             <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+                    <!-- For the first product (Premium Organic Dog Food) -->
                     <div class="product-info">
-                        <span class="product-category">Dog Food</span>
-                        <h3 class="product-title">Premium Organic Dog Food</h3>
-                        <p>Nutritionally complete dry dog food made with organic ingredients.</p>
+                        <span class="product-category">DRY FOOD</span>
+                        <h3 class="product-title">Royal Canin Premium Dry Food</h3>
+                        <p>High-protein, grain-free formula with real meat as the first ingredient.</p>
                         <div class="product-price">
-                            <span class="current-price">$29.99</span>
-                            <span class="old-price">$34.99</span>
+                            <span class="current-price">$49.99</span>
+                            <span class="old-price">$59.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Premium Organic Dog Food" data-price="29.99" data-image="../static/images/dogfood1.jpg">
+                        <button class="add-to-cart-btn" data-product="Royal Canin Premium Dry Food" data-price="49.99" data-image="../static/images/dogfood1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -265,21 +266,22 @@
                 <!-- Product 2 -->
                 <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="../static/images/register_pets.png" alt="Interactive Cat Toy">
+                        <img src="../static/images/cats/cattoy1.1.jpg" alt="Interactive Cat Toy">
                         <div class="product-actions">
                             <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+                    <!-- For the second product (Interactive Cat Toy) -->
                     <div class="product-info">
-                        <span class="product-category">Cat Toys</span>
+                        <span class="product-category">CAT TOYS</span>
                         <h3 class="product-title">Interactive Laser Cat Toy</h3>
-                        <p>Automatic rotating laser toy to keep your cat entertained for hours.</p>
+                        <p>Automatic rotating laser toy that provides hours of entertainment and exercise for your cat.</p>
                         <div class="product-price">
                             <span class="current-price">$19.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Interactive Laser Cat Toy" data-price="19.99" data-image="../static/images/register_pets.png">
+                        <button class="add-to-cart-btn" data-product="Interactive Laser Cat Toy" data-price="19.99" data-image="../static/images/cats/cattoy1.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -287,23 +289,24 @@
                 <!-- Product 3 -->
                 <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="../static/images/register_pets.png" alt="Luxury Pet Bed">
-                        <span class="product-badge">New</span>
+                        <img src="../static/images/cats/catbed1.1.jpg" alt="Luxury Pet Bed">
+                        <span class="product-badge">NEW</span>
                         <div class="product-actions">
                             <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+                    <!-- For the third product (Orthopedic Pet Bed) -->
                     <div class="product-info">
-                        <span class="product-category">Pet Bedding</span>
+                        <span class="product-category">PET BEDDING</span>
                         <h3 class="product-title">Orthopedic Pet Bed</h3>
-                        <p>Memory foam pet bed providing superior comfort and joint support.</p>
+                        <p>Luxurious memory foam bed that provides superior comfort and joint support for pets of all sizes.</p>
                         <div class="product-price">
                             <span class="current-price">$49.99</span>
                             <span class="old-price">$59.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Orthopedic Pet Bed" data-price="49.99" data-image="../static/images/register_pets.png">
+                        <button class="add-to-cart-btn" data-product="Orthopedic Pet Bed" data-price="49.99" data-image="../static/images/cats/catbed1.1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -311,21 +314,22 @@
                 <!-- Product 4 -->
                 <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="../static/images/register_pets.png" alt="Bird Cage">
+                        <img src="../static/images/birds/birdcage1.avif" alt="Bird Cage">
                         <div class="product-actions">
                             <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+                    <!-- For the fourth product (Bird Cage) -->
                     <div class="product-info">
-                        <span class="product-category">Bird Supplies</span>
+                        <span class="product-category">BIRD SUPPLIES</span>
                         <h3 class="product-title">Deluxe Bird Cage</h3>
-                        <p>Spacious and secure cage with multiple perches and feeding stations.</p>
+                        <p>Spacious and secure cage with multiple perches, feeding stations, and easy-clean removable bottom tray.</p>
                         <div class="product-price">
                             <span class="current-price">$79.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Deluxe Bird Cage" data-price="79.99" data-image="../static/images/register_pets.png">
+                        <button class="add-to-cart-btn" data-product="Deluxe Bird Cage" data-price="79.99" data-image="../static/images/birds/birdcage1.avif">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -333,22 +337,23 @@
                 <!-- Product 5 -->
                 <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="../static/images/register_pets.png" alt="Aquarium Kit">
+                        <img src="../static/images/fish/fishtank1.avif" alt="Aquarium Kit">
                         <div class="product-actions">
                             <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+                    <!-- For the fifth product (Aquarium Kit) -->
                     <div class="product-info">
-                        <span class="product-category">Fish Supplies</span>
+                        <span class="product-category">FISH SUPPLIES</span>
                         <h3 class="product-title">Complete Aquarium Kit</h3>
-                        <p>All-in-one aquarium kit with filter, lighting, and decorations.</p>
+                        <p>All-in-one aquarium kit with LED lighting, powerful filtration system, and decorative plants for a thriving aquatic environment.</p>
                         <div class="product-price">
                             <span class="current-price">$89.99</span>
                             <span class="old-price">$99.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Complete Aquarium Kit" data-price="89.99" data-image="../static/images/register_pets.png">
+                        <button class="add-to-cart-btn" data-product="Complete Aquarium Kit" data-price="89.99" data-image="../static/images/fish/fishtank1.avif">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -356,23 +361,24 @@
                 <!-- Product 6 -->
                 <div class="product-card slide-up">
                     <div class="product-image">
-                        <img src="../static/images/register_pets.png" alt="Grooming Kit">
-                        <span class="product-badge">Sale</span>
+                        <img src="../static/images/dogs/doggroom1.jpg" alt="Grooming Kit">
+                        <span class="product-badge">SALE</span>
                         <div class="product-actions">
                             <button class="product-action-btn"><i class="fas fa-heart"></i></button>
                             <button class="product-action-btn"><i class="fas fa-eye"></i></button>
                             <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
                         </div>
                     </div>
+                    <!-- For the sixth product (Grooming Kit) -->
                     <div class="product-info">
-                        <span class="product-category">Grooming</span>
+                        <span class="product-category">GROOMING</span>
                         <h3 class="product-title">Professional Grooming Kit</h3>
-                        <p>Complete set of professional-grade grooming tools for all pet types.</p>
+                        <p>Complete set of professional-grade grooming tools including clippers, scissors, combs and nail trimmers for all pet types.</p>
                         <div class="product-price">
                             <span class="current-price">$39.99</span>
                             <span class="old-price">$49.99</span>
                         </div>
-                        <button class="add-to-cart-btn" data-product="Professional Grooming Kit" data-price="39.99" data-image="../static/images/register_pets.png">
+                        <button class="add-to-cart-btn" data-product="Professional Grooming Kit" data-price="39.99" data-image="../static/images/dogs/doggroom1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
