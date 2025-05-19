@@ -1,7 +1,0 @@
-app = "Zoo-Shop"
-
-[build]
-  builder = "paketobuildpacks/builder:base"
-
-[env]
-  MISE_PYTHON_COMPILE = "1"
