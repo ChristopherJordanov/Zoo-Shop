@@ -600,7 +600,7 @@
                     <span>Total:</span>
                     <span id="cartTotal">$0.00</span>
                 </div>
-                <form id="checkoutForm" action="checkout.html" method="GET">
+                <form id="checkoutForm" action="{% url 'checkout' %}" method="GET">
                     <input type="hidden" name="cartData" id="cartData">
                     <button type="submit" class="checkout-btn" id="checkoutBtn">
                         <i class="fas fa-shopping-bag"></i> Checkout
@@ -622,11 +622,6 @@
         </div>
     </div>
 
-    <!-- Toast notification -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Item added to cart!</span>
-    </div>
 
     <!-- Newsletter Section -->
     <section class="newsletter-section">
@@ -698,8 +693,7 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
-                            info@purrfectpets.com<br>
-                            support@purrfectpets.com
+                            fluffemoservice@gmail.com
                         </div>
                     </div>
                 </div>

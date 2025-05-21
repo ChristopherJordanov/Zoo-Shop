@@ -35,21 +35,6 @@ class CheckoutInfo(models.Model):
         return f"{self.first_name} {self.last_name} - {self.email}"
 
 
-class Products(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.DecimalField(
-        max_digits=4,
-        decimal_places=2,
-        validators=[MinValueValidator(0.00)]
-    )
-    description = models.TextField(
-        validators=[MinLengthValidator(5)]
-    )
-    in_stock = models.SmallIntegerField(
-        validators=[MinValueValidator(0)]
-    )
-
-
 class Profile(models.Model):
     user = models.OneToOneField(
         User,
@@ -66,3 +51,37 @@ class Profile(models.Model):
         max_length=50,
         unique=True
     )
+
+
+class Order(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='orders'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    total_price = models.DecimalField(
+        max_digits=8,
+        decimal_places=2
+    )
+
+    def __str__(self):
+        return f"Order #{self.id} from {self.user.username}"
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        related_name='items'
+    )
+    name = models.CharField(max_length=100)
+    image = models.URLField()
+    quantity = models.PositiveIntegerField()
+    price = models.DecimalField(
+        max_digits=5,
+        decimal_places=2
+    )
+
+    def total(self):
+        return self.price * self.quantity

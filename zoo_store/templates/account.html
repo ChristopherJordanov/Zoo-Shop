@@ -50,26 +50,25 @@
                     <div id="ordersTab" class="account-tab active">
                         <h2>Order History</h2>
                         <div id="ordersList" class="orders-list">
-                            <!-- Orders will be populated by Django -->
                             {% if orders %}
                                 {% for order in orders %}
                                 <div class="order-card">
                                     <div class="order-header">
                                         <span class="order-id">Order #{{ order.id }}</span>
-                                        <span class="order-date">{{ order.date }}</span>
+                                        <span class="order-date">{{ order.created_at }}</span>
                                     </div>
                                     <div class="order-items">
-                                        {% for item in order.items %}
+                                        {% for item in order.orderitem_set.all %}
                                         <div class="order-item">
                                             <span class="order-item-name">{{ item.name }}</span>
                                             <span class="order-item-quantity">x{{ item.quantity }}</span>
-                                            <span class="order-item-price">${{ item.total_price }}</span>
+                                            <span class="order-item-price">${{ item.price|floatformat:2 }}</span>
                                         </div>
                                         {% endfor %}
                                     </div>
                                     <div class="order-total">
-                                        <span class="order-total-label">Total ({{ order.total_items }} items):</span>
-                                        <span class="order-total-amount">${{ order.total }}</span>
+                                        <span class="order-total-label">Total:</span>
+                                        <span class="order-total-amount">${{ order.total_price|floatformat:2 }}</span>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -93,7 +92,7 @@
             <div class="footer-content">
                 <div>
                     <a href="#" class="footer-logo">
-                        <i class="fas fa-paw"></i> PetZoo
+                        <i class="fas fa-paw"></i> Fluffemo
                     </a>
                     <p class="footer-description">
                         Your one-stop shop for all pet needs. Quality products, expert advice, and a community of pet lovers.
@@ -137,12 +136,12 @@
                     </div>
                     <div class="contact-info">
                         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="contact-details">info@petzoo.com</div>
+                        <div class="contact-details">fluffemoservice@gmail.com</div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2023 PetZoo. All Rights Reserved.
+                &copy; 2023 Fluffemo. All Rights Reserved.
             </div>
         </div>
     </footer>

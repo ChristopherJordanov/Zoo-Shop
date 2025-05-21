@@ -16,7 +16,7 @@ from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import render
-from zoo_store.models import CheckoutInfo, Profile
+from zoo_store.models import CheckoutInfo, Profile, OrderItem, Order
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -90,7 +90,7 @@ def cart_page(request):
 
 
 def checkout(request):
-    # 👇 If coming from the JS-based form with cartData
+    # Step 1: Load cart data from session or JS
     if request.method == "POST" and "cartData" in request.POST:
         try:
             cart_json = request.POST.get("cartData")
@@ -100,28 +100,27 @@ def checkout(request):
         except Exception as e:
             print("Error parsing cart data:", e)
 
-    print("🐾 SESSION CART DURING CHECKOUT:", request.session.get("cart"))
-
-    # 🛒 Rebuild cart from session
+    # Step 2: Parse the cart from session
     cart = request.session.get("cart", {})
     cart_items = []
     total_price = 0
 
-    for name, item in cart.items():  # fixed here
+    for name, item in cart.items():
         item_total = item["price"] * item["quantity"]
         total_price += item_total
         cart_items.append({
-            "name": name,  # product name from key
+            "name": name,
             "image": item.get("image", ""),
             "price": item.get("price", 0),
             "quantity": item.get("quantity", 1),
             "total": item_total
         })
 
-    # 💳 Form submission with billing + payment info
+    # Step 3: Handle full checkout (submit customer info + finalize order)
     if request.method == "POST" and "firstName" in request.POST:
         data = request.POST
 
+        # 3a. Save checkout info
         CheckoutInfo.objects.create(
             first_name=data.get("firstName"),
             last_name=data.get("lastName"),
@@ -134,7 +133,20 @@ def checkout(request):
             country=data.get("country"),
         )
 
-        # 📨 Email with order summary
+        # 3b. Save order and items if user is logged in
+        if request.user.is_authenticated:
+            order = Order.objects.create(user=request.user, total_price=total_price)
+
+            for item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    name=item["name"],
+                    image=item["image"],
+                    quantity=item["quantity"],
+                    price=item["price"],
+                )
+
+        # 3c. Send confirmation email
         item_lines = "\n".join(
             f"- {item['name']} x{item['quantity']} = ${item['total']:.2f}" for item in cart_items
         ) if cart_items else "No items found in your cart."
@@ -161,12 +173,13 @@ We'll begin processing your order shortly.
             fail_silently=False,
         )
 
-        # 🧹 Clear cart
+        # 3d. Clear cart
         request.session["cart"] = {}
         request.session.modified = True
 
         return redirect("index")
 
+    # Step 4: Show checkout form
     return render(request, "checkout.html", {
         "cart_items": cart_items,
         "total_price": total_price
@@ -295,4 +308,5 @@ def logout_view(request):
 
 @login_required(login_url='login')
 def account_view(request):
-    return render(request, 'account.html')
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, "account.html", {"orders": orders})
