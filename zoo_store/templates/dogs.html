@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bg">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WoofWonders - Premium Dog Products</title>
+<title>WoofWonders - Премиум продукти за кучета</title>
 <link rel="stylesheet" href="../static/css/dogs.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -17,23 +17,23 @@
             WoofWonders
         </a>
         <div class="nav-links">
-            <a href="#food">Food</a>
-            <a href="#toys">Toys</a>
-            <a href="#beds">Beds</a>
-            <a href="#leashes">Leashes</a>
-            <a href="#grooming">Grooming</a>
+            <a href="#food">Храна</a>
+            <a href="#toys">Играчки</a>
+            <a href="#beds">Легла</a>
+            <a href="#leashes">Каишки</a>
+            <a href="#grooming">Грижа</a>
         </div>
         <div class="nav-actions">
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="nav-button">Logout</button>
+                    <button type="submit" class="nav-button">Изход</button>
                 </form>
                 <a href="{% url 'account' %}" class="account-button">
                     <i class="fa-solid fa-user"></i>
                 </a>
             {% else %}
-                <a href="{% url 'login' %}" class="nav-button">Login/Register</a>
+                <a href="{% url 'login' %}" class="nav-button">Вход/Регистрация</a>
             {% endif %}
             <div class="cart-icon" id="cartIcon">
                 <i class="fas fa-shopping-cart"></i>
@@ -77,10 +77,10 @@
     </div>
 
     <div class="container hero-content">
-        <h1 class="hero-title">Premium Products for Your Furry Friends</h1>
-        <p class="hero-subtitle">Discover high-quality food, toys, and accessories that your dogs will love.</p>
+        <h1 class="hero-title">Премиум продукти за вашите пухкави приятели</h1>
+        <p class="hero-subtitle">Открийте висококачествена храна, играчки и аксесоари, които кучетата ви ще обичат.</p>
         <a href="#food" class="cta-button">
-            Shop Now
+            Пазарувай сега
             <i class="fas fa-arrow-right"></i>
         </a>
     </div>
@@ -90,31 +90,31 @@
 <section class="category-section bg-light" id="food">
     <div class="container">
         <div class="category-header">
-            <span class="category-tag">Nutrition</span>
-            <h2 class="category-title">Premium Dog Food</h2>
-            <p class="category-description">Nutritious and delicious meals made with high-quality ingredients to keep your furry friend healthy and happy.</p>
+            <span class="category-tag">Хранене</span>
+            <h2 class="category-title">Премиум храна за кучета</h2>
+            <p class="category-description">Питателни и вкусни ястия, направени с висококачествени съставки, за да поддържат вашия пухкав приятел здрав и щастлив.</p>
         </div>
         <div class="product-grid">
             <!-- Product 1 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">SALE</span>
-                    <img src="../static/images/dogs/dogfood1.jpg" alt="Royal Canin Premium Dry Food">
-                    <button class="quick-view-btn" data-id="food1" data-product="Royal Canin Premium Dry Food" data-price="49.99" data-image="../static/images/dogs/dogfood1.jpg" data-category="Dry Food" data-title="Royal Canin Premium Dry Food" data-description="High-protein, grain-free formula with real meat as the first ingredient.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">РАЗПРОДАЖБА</span>
+                    <img src="../static/images/dogs/dogfood1.jpg" alt="Royal Canin Premium суха храна">
+                    <button class="quick-view-btn" data-id="food1" data-product="Royal Canin Premium суха храна" data-price="49.99" data-image="../static/images/dogs/dogfood1.jpg" data-category="Суха храна" data-title="Royal Canin Premium суха храна" data-description="Високопротеинова, безглутенова формула с истинско месо като първа съставка.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">DRY FOOD</div>
-                    <h3 class="product-title">Royal Canin Premium Dry Food</h3>
-                    <p class="product-description">High-protein, grain-free formula with real meat as the first ingredient.</p>
+                    <div class="product-category">СУХА ХРАНА</div>
+                    <h3 class="product-title">Royal Canin Premium суха храна</h3>
+                    <p class="product-description">Високопротеинова, безглутенова формула с истинско месо като първа съставка.</p>
                     <div class="product-price">
                         <span class="current-price">$49.99</span>
                         <span class="old-price">$59.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="food1" data-product="Royal Canin Premium Dry Food" data-price="49.99" data-image="../static/images/dogs/dogfood1.jpg">
+                    <button class="add-to-cart-btn" data-id="food1" data-product="Royal Canin Premium суха храна" data-price="49.99" data-image="../static/images/dogs/dogfood1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -122,21 +122,21 @@
             <!-- Product 2 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="../static/images/dogs/dogfood2.jpg" alt="Blue Buffalo Organic Treats">
-                    <button class="quick-view-btn" data-id="food2" data-product="Blue Buffalo Organic Treats" data-price="14.99" data-image="../static/images/dogs/dogfood2.jpg" data-category="Treats" data-title="Blue Buffalo Organic Treats" data-description="Handcrafted organic treats made with human-grade ingredients.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <img src="../static/images/dogs/dogfood2.jpg" alt="Blue Buffalo органични лакомства">
+                    <button class="quick-view-btn" data-id="food2" data-product="Blue Buffalo органични лакомства" data-price="14.99" data-image="../static/images/dogs/dogfood2.jpg" data-category="Лакомства" data-title="Blue Buffalo органични лакомства" data-description="Ръчно изработени органични лакомства, направени със съставки с човешко качество.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">TREATS</div>
-                    <h3 class="product-title">Blue Buffalo Organic Treats</h3>
-                    <p class="product-description">Handcrafted organic treats made with human-grade ingredients.</p>
+                    <div class="product-category">ЛАКОМСТВА</div>
+                    <h3 class="product-title">Blue Buffalo органични лакомства</h3>
+                    <p class="product-description">Ръчно изработени органични лакомства, направени със съставки с човешко качество.</p>
                     <div class="product-price">
                         <span class="current-price">$14.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="food2" data-product="Blue Buffalo Organic Treats" data-price="14.99" data-image="../static/images/dogs/dogfood2.jpg">
+                    <button class="add-to-cart-btn" data-id="food2" data-product="Blue Buffalo органични лакомства" data-price="14.99" data-image="../static/images/dogs/dogfood2.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -144,23 +144,23 @@
             <!-- Product 3 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">NEW</span>
-                    <img src="../static/images/dogs/dogfood3.jpg" alt="Purina Gourmet Wet Food">
-                    <button class="quick-view-btn" data-id="food3" data-product="Purina Gourmet Wet Food Variety Pack" data-price="24.99" data-image="../static/images/dogs/dogfood3.jpg" data-category="Wet Food" data-title="Purina Gourmet Wet Food Variety Pack" data-description="Delicious wet food with real meat chunks in savory gravy.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">НОВО</span>
+                    <img src="../static/images/dogs/dogfood3.jpg" alt="Purina гурме мокра храна">
+                    <button class="quick-view-btn" data-id="food3" data-product="Purina гурме мокра храна разнообразен пакет" data-price="24.99" data-image="../static/images/dogs/dogfood3.jpg" data-category="Мокра храна" data-title="Purina гурме мокра храна разнообразен пакет" data-description="Вкусна мокра храна с истински месни късчета в ароматен сос.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">WET FOOD</div>
-                    <h3 class="product-title">Purina Gourmet Wet Food Variety Pack</h3>
-                    <p class="product-description">Delicious wet food with real meat chunks in savory gravy.</p>
+                    <div class="product-category">МОКРА ХРАНА</div>
+                    <h3 class="product-title">Purina гурме мокра храна разнообразен пакет</h3>
+                    <p class="product-description">Вкусна мокра храна с истински месни късчета в ароматен сос.</p>
                     <div class="product-price">
                         <span class="current-price">$24.99</span>
                         <span class="old-price">$29.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="food3" data-product="Purina Gourmet Wet Food Variety Pack" data-price="24.99" data-image="../static/images/dogs/dogfood3.jpg">
+                    <button class="add-to-cart-btn" data-id="food3" data-product="Purina гурме мокра храна разнообразен пакет" data-price="24.99" data-image="../static/images/dogs/dogfood3.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -172,25 +172,25 @@
 <section class="features-section">
     <div class="container">
         <div class="category-header text-center">
-            <span class="category-tag">Why Choose Us</span>
-            <h2 class="category-title">The WoofWonders Difference</h2>
-            <p class="category-description">We're committed to providing the highest quality products and exceptional service for you and your furry friends.</p>
+            <span class="category-tag">Защо да изберете нас</span>
+            <h2 class="category-title">Разликата на WoofWonders</h2>
+            <p class="category-description">Ние се ангажираме да предоставяме най-високо качество продукти и изключителни услуги за вас и вашите пухкави приятели.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <i class="fas fa-medal feature-icon"></i>
-                <h3 class="feature-title">Premium Quality</h3>
-                <p class="feature-description">We carefully select only the highest quality products that meet our strict standards for safety, durability, and performance.</p>
+                <h3 class="feature-title">Премиум качество</h3>
+                <p class="feature-description">Внимателно подбираме само най-висококачествените продукти, които отговарят на нашите строги стандарти за безопасност, издръжливост и производителност.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-truck feature-icon"></i>
-                <h3 class="feature-title">Fast Shipping</h3>
-                <p class="feature-description">Enjoy free shipping on orders over $50 and quick delivery to your doorstep so your pup doesn't have to wait.</p>
+                <h3 class="feature-title">Бърза доставка</h3>
+                <p class="feature-description">Насладете се на безплатна доставка за поръчки над $50 и бърза доставка до вашия дом, така че вашето кученце да не чака.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-heart feature-icon"></i>
-                <h3 class="feature-title">Satisfaction Guaranteed</h3>
-                <p class="feature-description">If you or your dog aren't completely satisfied, we offer hassle-free returns within 30 days of purchase.</p>
+                <h3 class="feature-title">Гарантирано удовлетворение</h3>
+                <p class="feature-description">Ако вие или вашето куче не сте напълно доволни, предлагаме лесно връщане в рамките на 30 дни от покупката.</p>
             </div>
         </div>
     </div>
@@ -200,31 +200,31 @@
 <section class="category-section bg-accent" id="toys">
     <div class="container">
         <div class="category-header">
-            <span class="category-tag">Playtime</span>
-            <h2 class="category-title">Interactive Dog Toys</h2>
-            <p class="category-description">Keep your furry friend entertained and mentally stimulated with our durable and engaging toys.</p>
+            <span class="category-tag">Време за игра</span>
+            <h2 class="category-title">Интерактивни играчки за кучета</h2>
+            <p class="category-description">Поддържайте вашия пухкав приятел забавляван и умствено стимулиран с нашите издръжливи и ангажиращи играчки.</p>
         </div>
         <div class="product-grid">
             <!-- Toy Product 1 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">SALE</span>
-                    <img src="../static/images/dogs/dogtoy1.jpg" alt="KONG Interactive Treat Ball">
-                    <button class="quick-view-btn" data-id="toy1" data-product="KONG Interactive Treat Ball" data-price="19.99" data-image="../static/images/dogs/dogtoy1.jpg" data-category="Interactive" data-title="KONG Interactive Treat Ball" data-description="Challenging toy that dispenses treats as your dog plays, providing mental stimulation.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">РАЗПРОДАЖБА</span>
+                    <img src="../static/images/dogs/dogtoy1.jpg" alt="KONG интерактивна топка за лакомства">
+                    <button class="quick-view-btn" data-id="toy1" data-product="KONG интерактивна топка за лакомства" data-price="19.99" data-image="../static/images/dogs/dogtoy1.jpg" data-category="Интерактивни" data-title="KONG интерактивна топка за лакомства" data-description="Предизвикателна играчка, която дава лакомства докато кучето ви играе, осигурявайки умствена стимулация.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">INTERACTIVE</div>
-                    <h3 class="product-title">KONG Interactive Treat Ball</h3>
-                    <p class="product-description">Challenging toy that dispenses treats as your dog plays, providing mental stimulation.</p>
+                    <div class="product-category">ИНТЕРАКТИВНИ</div>
+                    <h3 class="product-title">KONG интерактивна топка за лакомства</h3>
+                    <p class="product-description">Предизвикателна играчка, която дава лакомства докато кучето ви играе, осигурявайки умствена стимулация.</p>
                     <div class="product-price">
                         <span class="current-price">$19.99</span>
                         <span class="old-price">$24.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="toy1" data-product="KONG Interactive Treat Ball" data-price="19.99" data-image="../static/images/dogs/dogtoy1.jpg">
+                    <button class="add-to-cart-btn" data-id="toy1" data-product="KONG интерактивна топка за лакомства" data-price="19.99" data-image="../static/images/dogs/dogtoy1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -232,21 +232,21 @@
             <!-- Toy Product 2 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="../static/images/dogs/dogtoy2.jpg" alt="Mammoth Heavy Duty Rope Set">
-                    <button class="quick-view-btn" data-id="toy2" data-product="Mammoth Heavy Duty Rope Set" data-price="16.99" data-image="../static/images/dogs/dogtoy2.jpg" data-category="Chew Toys" data-title="Mammoth Heavy Duty Rope Set" data-description="Set of 3 durable rope toys perfect for tugging, tossing, and chewing.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <img src="../static/images/dogs/dogtoy2.jpg" alt="Mammoth здрав въжен комплект">
+                    <button class="quick-view-btn" data-id="toy2" data-product="Mammoth здрав въжен комплект" data-price="16.99" data-image="../static/images/dogs/dogtoy2.jpg" data-category="Играчки за дъвчене" data-title="Mammoth здрав въжен комплект" data-description="Комплект от 3 издръжливи въжени играчки, перфектни за дърпане, хвърляне и дъвчене.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">CHEW TOYS</div>
-                    <h3 class="product-title">Mammoth Heavy Duty Rope Set</h3>
-                    <p class="product-description">Set of 3 durable rope toys perfect for tugging, tossing, and chewing.</p>
+                    <div class="product-category">ИГРАЧКИ ЗА ДЪВЧЕНЕ</div>
+                    <h3 class="product-title">Mammoth здрав въжен комплект</h3>
+                    <p class="product-description">Комплект от 3 издръжливи въжени играчки, перфектни за дърпане, хвърляне и дъвчене.</p>
                     <div class="product-price">
                         <span class="current-price">$16.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="toy2" data-product="Mammoth Heavy Duty Rope Set" data-price="16.99" data-image="../static/images/dogs/dogtoy2.jpg">
+                    <button class="add-to-cart-btn" data-id="toy2" data-product="Mammoth здрав въжен комплект" data-price="16.99" data-image="../static/images/dogs/dogtoy2.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -254,23 +254,23 @@
             <!-- Toy Product 3 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">NEW</span>
-                    <img src="../static/images/dogs/dogtoy3.jpg" alt="Outward Hound Plush Squeaky Toy">
-                    <button class="quick-view-btn" data-id="toy3" data-product="Outward Hound Plush Squeaky Toy" data-price="12.99" data-image="../static/images/dogs/dogtoy3.jpg" data-category="Plush Toys" data-title="Outward Hound Plush Squeaky Toy" data-description="Soft plush toy with multiple squeakers for endless entertainment.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">НОВО</span>
+                    <img src="../static/images/dogs/dogtoy3.jpg" alt="Outward Hound плюшена пищяща играчка">
+                    <button class="quick-view-btn" data-id="toy3" data-product="Outward Hound плюшена пищяща играчка" data-price="12.99" data-image="../static/images/dogs/dogtoy3.jpg" data-category="Плюшени играчки" data-title="Outward Hound плюшена пищяща играчка" data-description="Мека плюшена играчка с множество пищялки за безкрайно забавление.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">PLUSH TOYS</div>
-                    <h3 class="product-title">Outward Hound Plush Squeaky Toy</h3>
-                    <p class="product-description">Soft plush toy with multiple squeakers for endless entertainment.</p>
+                    <div class="product-category">ПЛЮШЕНИ ИГРАЧКИ</div>
+                    <h3 class="product-title">Outward Hound плюшена пищяща играчка</h3>
+                    <p class="product-description">Мека плюшена играчка с множество пищялки за безкрайно забавление.</p>
                     <div class="product-price">
                         <span class="current-price">$12.99</span>
                         <span class="old-price">$15.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="toy3" data-product="Outward Hound Plush Squeaky Toy" data-price="12.99" data-image="../static/images/dogs/dogtoy3.jpg">
+                    <button class="add-to-cart-btn" data-id="toy3" data-product="Outward Hound плюшена пищяща играчка" data-price="12.99" data-image="../static/images/dogs/dogtoy3.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -282,31 +282,31 @@
 <section class="category-section bg-light" id="beds">
     <div class="container">
         <div class="category-header">
-            <span class="category-tag">Comfort</span>
-            <h2 class="category-title">Cozy Dog Beds</h2>
-            <p class="category-description">Give your furry friend the perfect place to rest with our comfortable and stylish dog beds.</p>
+            <span class="category-tag">Комфорт</span>
+            <h2 class="category-title">Уютни легла за кучета</h2>
+            <p class="category-description">Дайте на вашия пухкав приятел перфектното място за почивка с нашите удобни и стилни легла за кучета.</p>
         </div>
         <div class="product-grid">
             <!-- Bed Product 1 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">PREMIUM</span>
-                    <img src="../static/images/dogs/dogbed1.1.jpg" alt="PetFusion Orthopedic Bed">
-                    <button class="quick-view-btn" data-id="bed1" data-product="PetFusion Orthopedic Memory Foam Bed" data-price="89.99" data-image="../static/images/dogs/dogbed1.1.jpg" data-category="Orthopedic" data-title="PetFusion Orthopedic Memory Foam Bed" data-description="Premium memory foam bed that provides joint support for senior dogs.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">ПРЕМИУМ</span>
+                    <img src="../static/images/dogs/dogbed1.1.jpg" alt="PetFusion ортопедично легло">
+                    <button class="quick-view-btn" data-id="bed1" data-product="PetFusion ортопедично легло с мемори пяна" data-price="89.99" data-image="../static/images/dogs/dogbed1.1.jpg" data-category="Ортопедични" data-title="PetFusion ортопедично легло с мемори пяна" data-description="Премиум легло с мемори пяна, което осигурява подкрепа на ставите за възрастни кучета.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">ORTHOPEDIC</div>
-                    <h3 class="product-title">PetFusion Orthopedic Memory Foam Bed</h3>
-                    <p class="product-description">Premium memory foam bed that provides joint support for senior dogs.</p>
+                    <div class="product-category">ОРТОПЕДИЧНИ</div>
+                    <h3 class="product-title">PetFusion ортопедично легло с мемори пяна</h3>
+                    <p class="product-description">Премиум легло с мемори пяна, което осигурява подкрепа на ставите за възрастни кучета.</p>
                     <div class="product-price">
                         <span class="current-price">$89.99</span>
                         <span class="old-price">$109.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="bed1" data-product="PetFusion Orthopedic Memory Foam Bed" data-price="89.99" data-image="../static/images/dogs/dogbed1.1.jpg">
+                    <button class="add-to-cart-btn" data-id="bed1" data-product="PetFusion ортопедично легло с мемори пяна" data-price="89.99" data-image="../static/images/dogs/dogbed1.1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -314,21 +314,21 @@
             <!-- Bed Product 2 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="../static/images/dogs/dogbed2.1.jpg" alt="Best Friends Calming Donut Bed">
-                    <button class="quick-view-btn" data-id="bed2" data-product="Best Friends Calming Donut Cuddler Bed" data-price="59.99" data-image="../static/images/dogs/dogbed2.1.jpg" data-category="Calming" data-title="Best Friends Calming Donut Cuddler Bed" data-description="Soft, round bed with raised edges that create a sense of security for anxious dogs.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <img src="../static/images/dogs/dogbed2.1.jpg" alt="Best Friends успокояващо кръгло легло">
+                    <button class="quick-view-btn" data-id="bed2" data-product="Best Friends успокояващо кръгло легло" data-price="59.99" data-image="../static/images/dogs/dogbed2.1.jpg" data-category="Успокояващи" data-title="Best Friends успокояващо кръгло легло" data-description="Мекo, кръгло легло с повдигнати краища, които създават усещане за сигурност при тревожни кучета.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">CALMING</div>
-                    <h3 class="product-title">Best Friends Calming Donut Cuddler Bed</h3>
-                    <p class="product-description">Soft, round bed with raised edges that create a sense of security for anxious dogs.</p>
+                    <div class="product-category">УСПОКОЯВАЩИ</div>
+                    <h3 class="product-title">Best Friends успокояващо кръгло легло</h3>
+                    <p class="product-description">Мекo, кръгло легло с повдигнати краища, които създават усещане за сигурност при тревожни кучета.</p>
                     <div class="product-price">
                         <span class="current-price">$59.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="bed2" data-product="Best Friends Calming Donut Cuddler Bed" data-price="59.99" data-image="../static/images/dogs/dogbed2.1.jpg">
+                    <button class="add-to-cart-btn" data-id="bed2" data-product="Best Friends успокояващо кръгло легло" data-price="59.99" data-image="../static/images/dogs/dogbed2.1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -336,23 +336,23 @@
             <!-- Bed Product 3 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">WASHABLE</span>
-                    <img src="../static/images/dogs/dogbed3.1.jpg" alt="FurHaven Luxury Sofa Bed">
-                    <button class="quick-view-btn" data-id="bed3" data-product="FurHaven Luxury Dog Sofa Bed" data-price="79.99" data-image="../static/images/dogs/dogbed3.1.jpg" data-category="Furniture" data-title="FurHaven Luxury Dog Sofa Bed" data-description="Stylish sofa-style bed with bolstered sides and a waterproof base.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">ПЕРЯЩО СЕ</span>
+                    <img src="../static/images/dogs/dogbed3.1.jpg" alt="FurHaven луксозно диван-легло">
+                    <button class="quick-view-btn" data-id="bed3" data-product="FurHaven луксозно диван-легло за кучета" data-price="79.99" data-image="../static/images/dogs/dogbed3.1.jpg" data-category="Мебели" data-title="FurHaven луксозно диван-легло за кучета" data-description="Стилно диван-легло с повдигнати страни и водоустойчива основа.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">FURNITURE</div>
-                    <h3 class="product-title">FurHaven Luxury Dog Sofa Bed</h3>
-                    <p class="product-description">Stylish sofa-style bed with bolstered sides and a waterproof base.</p>
+                    <div class="product-category">МЕБЕЛИ</div>
+                    <h3 class="product-title">FurHaven луксозно диван-легло за кучета</h3>
+                    <p class="product-description">Стилно диван-легло с повдигнати страни и водоустойчива основа.</p>
                     <div class="product-price">
                         <span class="current-price">$79.99</span>
                         <span class="old-price">$94.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="bed3" data-product="FurHaven Luxury Dog Sofa Bed" data-price="79.99" data-image="../static/images/dogs/dogbed3.1.jpg">
+                    <button class="add-to-cart-btn" data-id="bed3" data-product="FurHaven луксозно диван-легло за кучета" data-price="79.99" data-image="../static/images/dogs/dogbed3.1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -364,31 +364,31 @@
 <section class="category-section bg-accent" id="leashes">
     <div class="container">
         <div class="category-header">
-            <span class="category-tag">Walking</span>
-            <h2 class="category-title">Durable Leashes & Collars</h2>
-            <p class="category-description">Keep your dog safe and stylish with our collection of high-quality leashes, collars, and harnesses.</p>
+            <span class="category-tag">Разходки</span>
+            <h2 class="category-title">Издръжливи каишки и нашийници</h2>
+            <p class="category-description">Поддържайте кучето си в безопасност и стил с нашата колекция от висококачествени каишки, нашийници и нагръдници.</p>
         </div>
         <div class="product-grid">
             <!-- Leash Product 1 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">REFLECTIVE</span>
-                    <img src="../static/images/dogs/dogleash1.jpg" alt="Ruffwear Reflective Leash">
-                    <button class="quick-view-btn" data-id="leash1" data-product="Ruffwear Reflective Nylon Leash" data-price="24.99" data-image="../static/images/dogs/dogleash1.jpg" data-category="Leashes" data-title="Ruffwear Reflective Nylon Leash" data-description="Strong nylon leash with reflective stitching for nighttime visibility and safety.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">ОТРАЗЯВАЩА</span>
+                    <img src="../static/images/dogs/dogleash1.jpg" alt="Ruffwear отразяваща каишка">
+                    <button class="quick-view-btn" data-id="leash1" data-product="Ruffwear отразяваща найлонова каишка" data-price="24.99" data-image="../static/images/dogs/dogleash1.jpg" data-category="Каишки" data-title="Ruffwear отразяваща найлонова каишка" data-description="Здрава найлонова каишка с отразяващи шевове за видимост и безопасност през нощта.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">LEASHES</div>
-                    <h3 class="product-title">Ruffwear Reflective Nylon Leash</h3>
-                    <p class="product-description">Strong nylon leash with reflective stitching for nighttime visibility and safety.</p>
+                    <div class="product-category">КАИШКИ</div>
+                    <h3 class="product-title">Ruffwear отразяваща найлонова каишка</h3>
+                    <p class="product-description">Здрава найлонова каишка с отразяващи шевове за видимост и безопасност през нощта.</p>
                     <div class="product-price">
                         <span class="current-price">$24.99</span>
                         <span class="old-price">$29.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="leash1" data-product="Ruffwear Reflective Nylon Leash" data-price="24.99" data-image="../static/images/dogs/dogleash1.jpg">
+                    <button class="add-to-cart-btn" data-id="leash1" data-product="Ruffwear отразяваща найлонова каишка" data-price="24.99" data-image="../static/images/dogs/dogleash1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -396,21 +396,21 @@
             <!-- Leash Product 2 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="../static/images/dogs/dogleash2.avif" alt="Mighty Paw Leather Collar">
-                    <button class="quick-view-btn" data-id="leash2" data-product="Mighty Paw Premium Leather Collar" data-price="34.99" data-image="../static/images/dogs/dogleash2.avif" data-category="Collars" data-title="Mighty Paw Premium Leather Collar" data-description="Handcrafted genuine leather collar with durable metal hardware and personalized tag.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <img src="../static/images/dogs/dogleash2.avif" alt="Mighty Paw кожен нашийник">
+                    <button class="quick-view-btn" data-id="leash2" data-product="Mighty Paw премиум кожен нашийник" data-price="34.99" data-image="../static/images/dogs/dogleash2.avif" data-category="Нашийници" data-title="Mighty Paw премиум кожен нашийник" data-description="Ръчно изработен нашийник от естествена кожа с издръжливи метални детайли и персонализиран таг.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">COLLARS</div>
-                    <h3 class="product-title">Mighty Paw Premium Leather Collar</h3>
-                    <p class="product-description">Handcrafted genuine leather collar with durable metal hardware and personalized tag.</p>
+                    <div class="product-category">НАШИЙНИЦИ</div>
+                    <h3 class="product-title">Mighty Paw премиум кожен нашийник</h3>
+                    <p class="product-description">Ръчно изработен нашийник от естествена кожа с издръжливи метални детайли и персонализиран таг.</p>
                     <div class="product-price">
                         <span class="current-price">$34.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="leash2" data-product="Mighty Paw Premium Leather Collar" data-price="34.99" data-image="../static/images/dogs/dogleash2.avif">
+                    <button class="add-to-cart-btn" data-id="leash2" data-product="Mighty Paw премиум кожен нашийник" data-price="34.99" data-image="../static/images/dogs/dogleash2.avif">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -418,23 +418,23 @@
             <!-- Leash Product 3 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">NO-PULL</span>
-                    <img src="../static/images/dogs/dogleash3.avif" alt="PetSafe No-Pull Harness">
-                    <button class="quick-view-btn" data-id="leash3" data-product="PetSafe No-Pull Training Harness" data-price="39.99" data-image="../static/images/dogs/dogleash3.avif" data-category="Harnesses" data-title="PetSafe No-Pull Training Harness" data-description="Comfortable harness designed to reduce pulling and provide better control during walks.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">БЕЗ ДЪРПАНЕ</span>
+                    <img src="../static/images/dogs/dogleash3.avif" alt="PetSafe нагръдник без дърпане">
+                    <button class="quick-view-btn" data-id="leash3" data-product="PetSafe дресировъчен нагръдник без дърпане" data-price="39.99" data-image="../static/images/dogs/dogleash3.avif" data-category="Нагръдници" data-title="PetSafe дресировъчен нагръдник без дърпане" data-description="Удобен нагръдник, проектиран да намали дърпането и да осигури по-добър контрол по време на разходки.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">HARNESSES</div>
-                    <h3 class="product-title">PetSafe No-Pull Training Harness</h3>
-                    <p class="product-description">Comfortable harness designed to reduce pulling and provide better control during walks.</p>
+                    <div class="product-category">НАГРЪДНИЦИ</div>
+                    <h3 class="product-title">PetSafe дресировъчен нагръдник без дърпане</h3>
+                    <p class="product-description">Удобен нагръдник, проектиран да намали дърпането и да осигури по-добър контрол по време на разходки.</p>
                     <div class="product-price">
                         <span class="current-price">$39.99</span>
                         <span class="old-price">$45.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="leash3" data-product="PetSafe No-Pull Training Harness" data-price="39.99" data-image="../static/images/dogs/dogleash3.avif">
+                    <button class="add-to-cart-btn" data-id="leash3" data-product="PetSafe дресировъчен нагръдник без дърпане" data-price="39.99" data-image="../static/images/dogs/dogleash3.avif">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -446,31 +446,31 @@
 <section class="category-section bg-light" id="grooming">
     <div class="container">
         <div class="category-header">
-            <span class="category-tag">Care</span>
-            <h2 class="category-title">Grooming Essentials</h2>
-            <p class="category-description">Keep your dog looking and feeling their best with our premium grooming products and tools.</p>
+            <span class="category-tag">Грижа</span>
+            <h2 class="category-title">Основни принадлежности за грижа</h2>
+            <p class="category-description">Поддържайте кучето си с най-добър външен вид и самочувствие с нашите премиум продукти и инструменти за грижа.</p>
         </div>
         <div class="product-grid">
             <!-- Grooming Product 1 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">BEST SELLER</span>
-                    <img src="../static/images/dogs/doggroom1.jpg" alt="FURminator Slicker Brush">
-                    <button class="quick-view-btn" data-id="groom1" data-product="FURminator Self-Cleaning Slicker Brush" data-price="22.99" data-image="../static/images/dogs/doggroom1.jpg" data-category="Brushes" data-title="FURminator Self-Cleaning Slicker Brush" data-description="Effective brush that removes loose fur and tangles with a self-cleaning button for easy maintenance.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">НАЙ-ПРОДАВАНА</span>
+                    <img src="../static/images/dogs/doggroom1.jpg" alt="FURminator четка">
+                    <button class="quick-view-btn" data-id="groom1" data-product="FURminator самопочистваща се четка" data-price="22.99" data-image="../static/images/dogs/doggroom1.jpg" data-category="Четки" data-title="FURminator самопочистваща се четка" data-description="Ефективна четка, която отстранява отпадналата козина и заплетенията с бутон за самопочистване за лесна поддръжка.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">BRUSHES</div>
-                    <h3 class="product-title">FURminator Self-Cleaning Slicker Brush</h3>
-                    <p class="product-description">Effective brush that removes loose fur and tangles with a self-cleaning button for easy maintenance.</p>
+                    <div class="product-category">ЧЕТКИ</div>
+                    <h3 class="product-title">FURminator самопочистваща се четка</h3>
+                    <p class="product-description">Ефективна четка, която отстранява отпадналата козина и заплетенията с бутон за самопочистване за лесна поддръжка.</p>
                     <div class="product-price">
                         <span class="current-price">$22.99</span>
                         <span class="old-price">$27.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="groom1" data-product="FURminator Self-Cleaning Slicker Brush" data-price="22.99" data-image="../static/images/dogs/doggroom1.jpg">
+                    <button class="add-to-cart-btn" data-id="groom1" data-product="FURminator самопочистваща се четка" data-price="22.99" data-image="../static/images/dogs/doggroom1.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -478,21 +478,21 @@
             <!-- Grooming Product 2 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="../static/images/dogs/doggroom2.jpg" alt="Earthbath Oatmeal Shampoo">
-                    <button class="quick-view-btn" data-id="groom2" data-product="Earthbath Oatmeal & Aloe Dog Shampoo" data-price="18.99" data-image="../static/images/dogs/doggroom2.jpg" data-category="Bath" data-title="Earthbath Oatmeal & Aloe Dog Shampoo" data-description="Gentle, hypoallergenic formula that soothes dry, itchy skin and leaves coat soft and shiny.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <img src="../static/images/dogs/doggroom2.jpg" alt="Earthbath овесен шампоан">
+                    <button class="quick-view-btn" data-id="groom2" data-product="Earthbath овесен шампоан с алое" data-price="18.99" data-image="../static/images/dogs/doggroom2.jpg" data-category="Баня" data-title="Earthbath овесен шампоан с алое за кучета" data-description="Нежна, хипоалергенна формула, която успокоява сухата, сърбяща кожа и оставя козината мека и лъскава.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">BATH</div>
-                    <h3 class="product-title">Earthbath Oatmeal & Aloe Dog Shampoo</h3>
-                    <p class="product-description">Gentle, hypoallergenic formula that soothes dry, itchy skin and leaves coat soft and shiny.</p>
+                    <div class="product-category">БАНЯ</div>
+                    <h3 class="product-title">Earthbath овесен шампоан с алое за кучета</h3>
+                    <p class="product-description">Нежна, хипоалергенна формула, която успокоява сухата, сърбяща кожа и оставя козината мека и лъскава.</p>
                     <div class="product-price">
                         <span class="current-price">$18.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="groom2" data-product="Earthbath Oatmeal & Aloe Dog Shampoo" data-price="18.99" data-image="../static/images/dogs/doggroom2.jpg">
+                    <button class="add-to-cart-btn" data-id="groom2" data-product="Earthbath овесен шампоан с алое за кучета" data-price="18.99" data-image="../static/images/dogs/doggroom2.jpg">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -500,23 +500,23 @@
             <!-- Grooming Product 3 -->
             <div class="product-card">
                 <div class="product-image">
-                    <span class="product-badge">PROFESSIONAL</span>
-                    <img src="../static/images/dogs/doggroom3.avif" alt="Safari Professional Nail Clippers">
-                    <button class="quick-view-btn" data-id="groom3" data-product="Safari Professional Nail Clippers Set" data-price="15.99" data-image="../static/images/dogs/doggroom3.avif" data-category="Nail Care" data-title="Safari Professional Nail Clippers Set" data-description="Sharp, precise clippers with safety guard and nail file for professional-quality nail trims at home.">
-                        <i class="fas fa-eye"></i> Quick View
+                    <span class="product-badge">ПРОФЕСИОНАЛНИ</span>
+                    <img src="../static/images/dogs/doggroom3.avif" alt="Safari професионални ножици за нокти">
+                    <button class="quick-view-btn" data-id="groom3" data-product="Safari професионален комплект ножици за нокти" data-price="15.99" data-image="../static/images/dogs/doggroom3.avif" data-category="Грижа за нокти" data-title="Safari професионален комплект ножици за нокти" data-description="Остри, прецизни ножици със защитна предпазка и пиличка за нокти за професионално подстригване на нокти в домашни условия.">
+                        <i class="fas fa-eye"></i> Бърз преглед
                     </button>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">NAIL CARE</div>
-                    <h3 class="product-title">Safari Professional Nail Clippers Set</h3>
-                    <p class="product-description">Sharp, precise clippers with safety guard and nail file for professional-quality nail trims at home.</p>
+                    <div class="product-category">ГРИЖА ЗА НОКТИ</div>
+                    <h3 class="product-title">Safari професионален комплект ножици за нокти</h3>
+                    <p class="product-description">Остри, прецизни ножици със защитна предпазка и пиличка за нокти за професионално подстригване на нокти в домашни условия.</p>
                     <div class="product-price">
                         <span class="current-price">$15.99</span>
                         <span class="old-price">$19.99</span>
                     </div>
-                    <button class="add-to-cart-btn" data-id="groom3" data-product="Safari Professional Nail Clippers Set" data-price="15.99" data-image="../static/images/dogs/doggroom3.avif">
+                    <button class="add-to-cart-btn" data-id="groom3" data-product="Safari професионален комплект ножици за нокти" data-price="15.99" data-image="../static/images/dogs/doggroom3.avif">
                         <i class="fas fa-shopping-cart"></i>
-                        Add to Cart
+                        Добави в количката
                     </button>
                 </div>
             </div>
@@ -527,12 +527,12 @@
 <!-- Newsletter Section -->
 <section class="newsletter-section">
     <div class="container newsletter-container">
-        <h2 class="newsletter-title slide-up">Subscribe to Our Newsletter</h2>
-        <p class="newsletter-description slide-up">Stay updated with our latest products, pet care tips, and exclusive offers.</p>
+        <h2 class="newsletter-title slide-up">Абонирайте се за нашия бюлетин</h2>
+        <p class="newsletter-description slide-up">Бъдете в крак с нашите най-нови продукти, съвети за грижа за домашни любимци и ексклузивни оферти.</p>
         <form method="POST" action="{% url 'subscribe' %}" class="newsletter-form slide-up">
             {% csrf_token %}
-            <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address" required>
-            <button type="submit" class="newsletter-button">Subscribe</button>
+            <input type="email" name="email" class="newsletter-input" placeholder="Въведете вашия имейл адрес" required>
+            <button type="submit" class="newsletter-button">Абонирай се</button>
         </form>
     </div>
 </section>
@@ -543,7 +543,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <a href="#" class="footer-logo">WoofWonders</a>
-                <p class="footer-description">Premium products for your furry friends. Quality, comfort, and joy for dogs of all sizes and breeds.</p>
+                <p class="footer-description">Премиум продукти за вашите пухкави приятели. Качество, комфорт и радост за кучета от всички размери и породи.</p>
                 <div class="footer-social">
                     <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
@@ -552,38 +552,38 @@
                 </div>
             </div>
             <div class="footer-column">
-                <h3 class="footer-title">Shop</h3>
+                <h3 class="footer-title">Магазин</h3>
                 <ul class="footer-links">
-                    <li><a href="#food"><i class="fas fa-chevron-right"></i> Dog Food</a></li>
-                    <li><a href="#toys"><i class="fas fa-chevron-right"></i> Dog Toys</a></li>
-                    <li><a href="#beds"><i class="fas fa-chevron-right"></i> Dog Beds</a></li>
-                    <li><a href="#leashes"><i class="fas fa-chevron-right"></i> Leashes & Collars</a></li>
-                    <li><a href="#grooming"><i class="fas fa-chevron-right"></i> Grooming</a></li>
+                    <li><a href="#food"><i class="fas fa-chevron-right"></i> Храна за кучета</a></li>
+                    <li><a href="#toys"><i class="fas fa-chevron-right"></i> Играчки за кучета</a></li>
+                    <li><a href="#beds"><i class="fas fa-chevron-right"></i> Легла за кучета</a></li>
+                    <li><a href="#leashes"><i class="fas fa-chevron-right"></i> Каишки и нашийници</a></li>
+                    <li><a href="#grooming"><i class="fas fa-chevron-right"></i> Грижа</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3 class="footer-title">Company</h3>
+                <h3 class="footer-title">Компания</h3>
                 <ul class="footer-links">
-                    <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Cats</a></li>
-                    <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Dogs</a></li>
-                    <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Birds</a></li>
-                    <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Fish</a></li>
+                    <li><a href="{% url 'cats' %}"><i class="fas fa-angle-right"></i> Котки</a></li>
+                    <li><a href="{% url 'dogs' %}"><i class="fas fa-angle-right"></i> Кучета</a></li>
+                    <li><a href="{% url 'birds' %}"><i class="fas fa-angle-right"></i> Птици</a></li>
+                    <li><a href="{% url 'fish' %}"><i class="fas fa-angle-right"></i> Риби</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3 class="footer-title">Contact</h3>
+                <h3 class="footer-title">Контакт</h3>
                 <div class="contact-info">
                     <i class="fas fa-map-marker-alt contact-icon"></i>
                     <div class="contact-details">
-                        123 Bark Avenue<br>
-                        Dogtown, CA 90210
+                        ул. Лая 123<br>
+                        Песград, БГ 1000
                     </div>
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-phone-alt contact-icon"></i>
                     <div class="contact-details">
-                        (800) WOOF-123<br>
-                        Mon-Fri: 9am-5pm
+                        (02) БАУ-123<br>
+                        Пон-Пет: 9:00-17:00
                     </div>
                 </div>
                 <div class="contact-info">
@@ -595,7 +595,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 WoofWonders. All rights reserved. | Terms & Conditions | Privacy Policy</p>
+            <p>&copy; 2023 WoofWonders. Всички права запазени. | Условия за ползване | Политика за поверителност</p>
         </div>
     </div>
 </footer>
@@ -604,7 +604,7 @@
 <div class="cart-modal" id="cartModal">
     <div class="cart-modal-content">
         <div class="cart-modal-header">
-            <h3>Your Cart</h3>
+            <h3>Вашата количка</h3>
             <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
         </div>
         <div class="cart-items" id="cartItems">
@@ -612,7 +612,7 @@
         </div>
         <div class="cart-summary">
             <div class="cart-total">
-                <span>Total:</span>
+                <span>Общо:</span>
                 <span id="cartTotal">$0.00</span>
             </div>
             <div class="cart-actions">
@@ -620,7 +620,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="cartData" id="cartData">
                     <button type="submit" class="checkout-btn" id="checkoutBtn">
-                        <i class="fas fa-shopping-bag"></i> Checkout
+                        <i class="fas fa-shopping-bag"></i> Плащане
                     </button>
                 </form>
             </div>

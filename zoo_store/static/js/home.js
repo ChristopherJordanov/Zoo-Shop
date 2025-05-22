@@ -17,8 +17,44 @@ const addToCartButtons = document.querySelectorAll(".add-to-cart-btn")
 const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
 const navLinks = document.querySelector(".nav-links")
 
+// Admin elements
+const adminViewBtn = document.getElementById("adminViewBtn")
+const adminPasswordModal = document.getElementById("adminPasswordModal")
+const closeAdminPasswordModal = document.getElementById("closeAdminPasswordModal")
+const adminPasswordInput = document.getElementById("adminPassword")
+const submitAdminPassword = document.getElementById("submitAdminPassword")
+const adminPasswordError = document.getElementById("adminPasswordError")
+const productsGrid = document.getElementById("products-grid")
+const productsSection = document.querySelector(".products-section .container")
+
 // State - Use localStorage for cart persistence
 let cart = JSON.parse(localStorage.getItem("cart")) || {}
+
+// Admin state
+let isAdminMode = false
+const correctPassword = "123dk"
+
+// Get removed products from localStorage
+const removedProducts = JSON.parse(localStorage.getItem("removedProducts")) || []
+
+// Get added products from localStorage
+const addedProducts = JSON.parse(localStorage.getItem("addedProducts")) || []
+
+// Hide removed products on page load
+hideRemovedProducts()
+
+// Load added products on page load
+if (productsGrid) {
+	loadAddedProducts()
+} else {
+	// If productsGrid isn't available yet, wait for DOM to be fully loaded
+	window.addEventListener("load", () => {
+	const productsGridDelayed = document.getElementById("products-grid")
+	if (productsGridDelayed) {
+		loadAddedProducts()
+	}
+	})
+}
 
 // Fix product card heights and button alignment
 function fixProductCardAlignment() {
@@ -223,12 +259,12 @@ function updateCartDisplay() {
 
 	if (cartKeys.length === 0) {
 	cartItems.innerHTML = `
-		<div class="empty-cart">
-		<i class="fas fa-shopping-cart"></i>
-		<p>Your cart is empty</p>
-		<a href="#products" class="continue-shopping">Continue Shopping</a>
-		</div>
-	`
+				<div class="empty-cart">
+				<i class="fas fa-shopping-cart"></i>
+				<p>Your cart is empty</p>
+				<a href="#products" class="continue-shopping">Continue Shopping</a>
+				</div>
+			`
 	cartTotal.textContent = "$0.00"
 	return
 	}
@@ -245,24 +281,24 @@ function updateCartDisplay() {
 	const displayName = item.name || productKey
 
 	cartHTML += `
-		<div class="cart-item">
-		<div class="cart-item-image">
-			<img src="${item.image}" alt="${displayName}">
-		</div>
-		<div class="cart-item-details">
-			<h4 class="cart-item-title">${displayName}</h4>
-			<p class="cart-item-price">$${item.price.toFixed(2)}</p>
-			<div class="cart-item-quantity">
-			<button class="quantity-btn decrease-quantity" data-product="${productKey}">-</button>
-			<span class="quantity-value">${item.quantity}</span>
-			<button class="quantity-btn increase-quantity" data-product="${productKey}">+</button>
-			</div>
-		</div>
-		<button class="remove-item" data-product="${productKey}">
-			<i class="fas fa-trash-alt"></i>
-		</button>
-		</div>
-	`
+				<div class="cart-item">
+				<div class="cart-item-image">
+					<img src="${item.image}" alt="${displayName}">
+				</div>
+				<div class="cart-item-details">
+					<h4 class="cart-item-title">${displayName}</h4>
+					<p class="cart-item-price">$${item.price.toFixed(2)}</p>
+					<div class="cart-item-quantity">
+					<button class="quantity-btn decrease-quantity" data-product="${productKey}">-</button>
+					<span class="quantity-value">${item.quantity}</span>
+					<button class="quantity-btn increase-quantity" data-product="${productKey}">+</button>
+					</div>
+				</div>
+				<button class="remove-item" data-product="${productKey}">
+					<i class="fas fa-trash-alt"></i>
+				</button>
+				</div>
+			`
 	})
 
 	cartItems.innerHTML = cartHTML
@@ -316,11 +352,11 @@ function updateCheckoutSummary() {
 	total += itemTotal
 
 	checkoutHTML += `
-		<div class="summary-item">
-			<span>${productName} x ${item.quantity}</span>
-			<span>$${itemTotal.toFixed(2)}</span>
-		</div>
-		`
+				<div class="summary-item">
+					<span>${productName} x ${item.quantity}</span>
+					<span>$${itemTotal.toFixed(2)}</span>
+				</div>
+				`
 	})
 
 	checkoutItems.innerHTML = checkoutHTML
@@ -475,13 +511,17 @@ document.body.appendChild(quickViewModal)
 // Add quick view button to each product card
 productCards.forEach((card) => {
 	const productImage = card.querySelector(".product-image")
-	const productTitle = card.querySelector(".product-title").textContent
-	const productPrice = card.querySelector(".current-price").textContent
+	if (!productImage) return
+
+	const productTitle = card.querySelector(".product-title")?.textContent
+	const productPrice = card.querySelector(".current-price")?.textContent
 	const productOldPrice = card.querySelector(".old-price")?.textContent || ""
-	const productCategory = card.querySelector(".product-category").textContent
-	const productDesc = card.querySelector(".product-info p").textContent
-	const productImg = card.querySelector(".product-image img").src
+	const productCategory = card.querySelector(".product-category")?.textContent
+	const productDesc = card.querySelector(".product-info p")?.textContent
+	const productImg = card.querySelector(".product-image img")?.src
 	const addToCartBtn = card.querySelector(".add-to-cart-btn")
+	if (!addToCartBtn) return
+
 	const productData = addToCartBtn.dataset
 
 	// Create quick view button
@@ -502,75 +542,75 @@ productCards.forEach((card) => {
 function openQuickView(title, price, oldPrice, category, description, image, productData) {
 	// Create modal content
 	quickViewModal.innerHTML = `
-		<div class="quick-view-content">
-		<button class="close-quick-view">
-			<i class="fas fa-times"></i>
-		</button>
-		<div class="quick-view-header">
-			<div class="quick-view-category">${category}</div>
-		</div>
-		<div class="quick-view-body">
-			<div class="quick-view-image">
-			<img src="${image}" alt="${title}">
+			<div class="quick-view-content">
+			<button class="close-quick-view">
+				<i class="fas fa-times"></i>
+			</button>
+			<div class="quick-view-header">
+				<div class="quick-view-category">${category}</div>
 			</div>
-			<div class="quick-view-details">
-			<h2 class="quick-view-title">${title}</h2>
-			<div class="quick-view-price">
-				<span class="quick-view-current-price">${price}</span>
-				${oldPrice ? `<span class="quick-view-old-price">${oldPrice}</span>` : ""}
-			</div>
-			<p class="quick-view-description">${description}</p>
-			
-			<div class="quick-view-specs">
-				<div class="spec-row">
-				<div class="spec-label">Weight</div>
-				<div class="spec-value">500g</div>
+			<div class="quick-view-body">
+				<div class="quick-view-image">
+				<img src="${image}" alt="${title}">
 				</div>
-				<div class="spec-row">
-				<div class="spec-label">Ingredients</div>
-				<div class="spec-value">Premium meat, vegetables, essential nutrients</div>
+				<div class="quick-view-details">
+				<h2 class="quick-view-title">${title}</h2>
+				<div class="quick-view-price">
+					<span class="quick-view-current-price">${price}</span>
+					${oldPrice ? `<span class="quick-view-old-price">${oldPrice}</span>` : ""}
 				</div>
-				<div class="spec-row">
-				<div class="spec-label">Protein Content</div>
-				<div class="spec-value">15%</div>
+				<p class="quick-view-description">${description}</p>
+				
+				<div class="quick-view-specs">
+					<div class="spec-row">
+					<div class="spec-label">Weight</div>
+					<div class="spec-value">500g</div>
+					</div>
+					<div class="spec-row">
+					<div class="spec-label">Ingredients</div>
+					<div class="spec-value">Premium meat, vegetables, essential nutrients</div>
+					</div>
+					<div class="spec-row">
+					<div class="spec-label">Protein Content</div>
+					<div class="spec-value">15%</div>
+					</div>
+					<div class="spec-row">
+					<div class="spec-label">Shelf Life</div>
+					<div class="spec-value">18 months</div>
+					</div>
+					<div class="spec-row">
+					<div class="spec-label">Feeding Instructions</div>
+					<div class="spec-value">Feed 1-2 tablespoons daily</div>
+					</div>
 				</div>
-				<div class="spec-row">
-				<div class="spec-label">Shelf Life</div>
-				<div class="spec-value">18 months</div>
+				
+				<div class="quick-view-tags">
+					<span class="quick-view-tag">All Natural</span>
+					<span class="quick-view-tag">No Preservatives</span>
+					<span class="quick-view-tag">All Dog Ages</span>
 				</div>
-				<div class="spec-row">
-				<div class="spec-label">Feeding Instructions</div>
-				<div class="spec-value">Feed 1-2 tablespoons daily</div>
+				
+				<div class="quick-view-quantity">
+					<span class="quick-view-quantity-label">Quantity</span>
+					<div class="quantity-controls">
+					<button class="quantity-btn quantity-decrease">-</button>
+					<input type="text" class="quantity-input" value="1" readonly>
+					<button class="quantity-btn quantity-increase">+</button>
+					</div>
+				</div>
+				
+				<div class="quick-view-actions">
+					<button class="quick-view-add-to-cart" 
+					data-product="${productData.product}" 
+					data-price="${productData.price}" 
+					data-image="${image}">
+					<i class="fas fa-shopping-cart"></i> Add to Cart
+					</button>
+				</div>
 				</div>
 			</div>
-			
-			<div class="quick-view-tags">
-				<span class="quick-view-tag">All Natural</span>
-				<span class="quick-view-tag">No Preservatives</span>
-				<span class="quick-view-tag">All Dog Ages</span>
 			</div>
-			
-			<div class="quick-view-quantity">
-				<span class="quick-view-quantity-label">Quantity</span>
-				<div class="quantity-controls">
-				<button class="quantity-btn quantity-decrease">-</button>
-				<input type="text" class="quantity-input" value="1" readonly>
-				<button class="quantity-btn quantity-increase">+</button>
-				</div>
-			</div>
-			
-			<div class="quick-view-actions">
-				<button class="quick-view-add-to-cart" 
-				data-product="${productData.product}" 
-				data-price="${productData.price}" 
-				data-image="${image}">
-				<i class="fas fa-shopping-cart"></i> Add to Cart
-				</button>
-			</div>
-			</div>
-		</div>
-		</div>
-	`
+		`
 
 	// Show modal
 	quickViewModal.classList.add("active")
@@ -636,9 +676,9 @@ function openQuickView(title, price, oldPrice, category, description, image, pro
 	const toast = document.createElement("div")
 	toast.className = "toast"
 	toast.innerHTML = `
-		<i class="fas fa-check-circle"></i>
-		<span>${product} added to cart</span>
-		`
+				<i class="fas fa-check-circle"></i>
+				<span>${product} added to cart</span>
+				`
 	document.body.appendChild(toast)
 
 	setTimeout(() => {
@@ -658,6 +698,611 @@ function openQuickView(title, price, oldPrice, category, description, image, pro
 function closeQuickView() {
 	quickViewModal.classList.remove("active")
 	document.body.style.overflow = ""
+}
+
+// Show admin password modal
+if (adminViewBtn) {
+	adminViewBtn.addEventListener("click", () => {
+	adminPasswordModal.classList.add("active")
+	adminPasswordInput.value = ""
+	adminPasswordError.textContent = ""
+	document.body.style.overflow = "hidden"
+	})
+}
+
+// Close admin password modal
+if (closeAdminPasswordModal) {
+	closeAdminPasswordModal.addEventListener("click", () => {
+	adminPasswordModal.classList.remove("active")
+	document.body.style.overflow = ""
+	})
+}
+
+// Submit admin password
+if (submitAdminPassword) {
+	submitAdminPassword.addEventListener("click", validateAdminPassword)
+
+	// Also allow Enter key to submit
+	adminPasswordInput.addEventListener("keyup", (e) => {
+	if (e.key === "Enter") {
+		validateAdminPassword()
+	}
+	})
+}
+
+// Validate admin password
+function validateAdminPassword() {
+	const password = adminPasswordInput.value
+
+	if (password === correctPassword) {
+	// Password is correct
+	adminPasswordModal.classList.remove("active")
+	document.body.style.overflow = ""
+	enableAdminMode()
+	} else {
+	// Password is incorrect
+	adminPasswordError.textContent = "Incorrect password. Please try again."
+	adminPasswordInput.value = ""
+	adminPasswordInput.focus()
+	}
+}
+
+// Enable admin mode
+function enableAdminMode() {
+	isAdminMode = true
+
+	// Add admin controls to products section
+	addAdminControls()
+
+	// Add remove buttons to each product
+	addRemoveButtons()
+
+	// Show success toast
+	showToast("Admin mode enabled", "success")
+}
+
+// Add admin controls to products section
+function addAdminControls() {
+	// Check if admin controls already exist
+	if (document.querySelector(".admin-product-controls")) {
+	document.querySelector(".admin-product-controls").style.display = "block"
+	return
+	}
+
+	// Create admin controls
+	const adminControls = document.createElement("div")
+	adminControls.className = "admin-product-controls"
+	adminControls.style.display = "block" // Ensure it's visible
+	adminControls.style.textAlign = "center"
+	adminControls.style.padding = "20px"
+	adminControls.style.margin = "20px 0"
+	adminControls.style.backgroundColor = "#e7f7ed"
+	adminControls.style.border = "3px dashed #27ae60"
+	adminControls.style.borderRadius = "8px"
+
+	// Create add product button
+	const addProductBtn = document.createElement("button")
+	addProductBtn.className = "add-product-btn"
+	addProductBtn.innerHTML = '<i class="fas fa-plus"></i> ADD NEW PRODUCT'
+	addProductBtn.style.backgroundColor = "#27ae60"
+	addProductBtn.style.color = "white"
+	addProductBtn.style.border = "none"
+	addProductBtn.style.padding = "15px 30px"
+	addProductBtn.style.fontSize = "18px"
+	addProductBtn.style.fontWeight = "bold"
+	addProductBtn.style.borderRadius = "6px"
+	addProductBtn.style.cursor = "pointer"
+	addProductBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)"
+	addProductBtn.addEventListener("click", showAddProductForm)
+
+	// Add elements to DOM
+	adminControls.appendChild(addProductBtn)
+
+	// Insert admin controls in a more visible location - directly before the products grid
+	if (productsGrid && productsGrid.parentNode) {
+	productsGrid.parentNode.insertBefore(adminControls, productsGrid)
+	} else {
+	// Fallback - insert before products header
+	const productsHeader = document.querySelector(".products-header")
+	if (productsHeader && productsSection) {
+		productsSection.insertBefore(adminControls, productsHeader)
+	} else {
+		// Last resort - append to products section
+		if (productsSection) {
+		productsSection.appendChild(adminControls)
+		} else {
+		// If all else fails, add it to the body
+		document.body.appendChild(adminControls)
+		}
+	}
+	}
+
+	// Add a clear message
+	const adminMessage = document.createElement("p")
+	adminMessage.textContent = "You are in admin mode. Use the button above to add new products."
+	adminMessage.style.marginTop = "10px"
+	adminMessage.style.color = "#333"
+	adminControls.appendChild(adminMessage)
+
+	// Scroll to the admin controls to make them visible
+	setTimeout(() => {
+	adminControls.scrollIntoView({ behavior: "smooth", block: "center" })
+	}, 300)
+}
+
+// Add remove buttons to each product
+function addRemoveButtons() {
+	const productCards = document.querySelectorAll(".product-card")
+
+	productCards.forEach((card) => {
+	// Skip if this product is in the removed list
+	const productTitle = card.querySelector(".product-title")?.textContent
+	if (removedProducts.includes(productTitle)) {
+		return
+	}
+
+	// Check if remove button already exists
+	if (card.querySelector(".remove-product-btn")) {
+		card.querySelector(".remove-product-btn").style.display = "flex"
+		card.classList.add("admin-mode")
+		return
+	}
+
+	// Create remove button
+	const removeBtn = document.createElement("button")
+	removeBtn.className = "remove-product-btn"
+	removeBtn.innerHTML = '<i class="fas fa-trash"></i> Remove Product'
+	removeBtn.addEventListener("click", () => {
+		removeProduct(card)
+	})
+
+	// Add remove button to product card
+	card.appendChild(removeBtn)
+	card.classList.add("admin-mode")
+	})
+}
+
+// Hide removed products on page load
+function hideRemovedProducts() {
+	const productCards = document.querySelectorAll(".product-card")
+
+	productCards.forEach((card) => {
+	const productTitle = card.querySelector(".product-title")?.textContent
+	if (removedProducts.includes(productTitle)) {
+		card.style.display = "none"
+	}
+	})
+}
+
+// Load added products from localStorage
+function loadAddedProducts() {
+	if (!addedProducts || addedProducts.length === 0) {
+	console.log("No added products to load")
+	return
+	}
+
+	const productsGridForLoading = document.getElementById("products-grid")
+	if (!productsGridForLoading) {
+	console.error("Products grid not found in the DOM")
+	return
+	}
+
+	console.log(`Loading ${addedProducts.length} products from localStorage`)
+
+	addedProducts.forEach((product) => {
+	// Skip if this product is in the removed list
+	if (removedProducts.includes(product.title)) {
+		return
+	}
+
+	// Create new product card
+	const productCard = document.createElement("div")
+	productCard.className = "product-card slide-up active"
+
+	// Build product HTML
+	productCard.innerHTML = `
+				<div class="product-image">
+					<img src="${product.image}" alt="${product.title}">
+					${product.badge ? `<span class="product-badge">${product.badge}</span>` : ""}
+					<div class="product-actions">
+						<button class="product-action-btn"><i class="fas fa-heart"></i></button>
+						<button class="product-action-btn"><i class="fas fa-eye"></i></button>
+						<button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+					</div>
+				</div>
+				<div class="product-info">
+					<span class="product-category">${product.category}</span>
+					<h3 class="product-title">${product.title}</h3>
+					<p>${product.description}</p>
+					<div class="product-price">
+						<span class="current-price">$${Number.parseFloat(product.price).toFixed(2)}</span>
+						${product.oldPrice ? `<span class="old-price">$${Number.parseFloat(product.oldPrice).toFixed(2)}</span>` : ""}
+					</div>
+					<button class="add-to-cart-btn" data-product="${product.title}" data-price="${product.price}" data-image="${product.image}">
+						<i class="fas fa-shopping-cart"></i> Add to Cart
+					</button>
+				</div>
+			`
+
+	// Add to products grid
+	productsGridForLoading.appendChild(productCard)
+
+	// Add event listener to add to cart button
+	const addToCartBtn = productCard.querySelector(".add-to-cart-btn")
+	if (addToCartBtn) {
+		addToCartBtn.addEventListener("click", function () {
+		const product = this.getAttribute("data-product")
+		const price = Number.parseFloat(this.getAttribute("data-price"))
+		const image = this.getAttribute("data-image")
+
+		// Animate image to cart
+		animateToCart(this, image)
+
+		// Add to cart logic
+		if (cart[product]) {
+			cart[product].quantity += 1
+		} else {
+			cart[product] = {
+			name: product,
+			price: price,
+			image: image,
+			quantity: 1,
+			}
+		}
+
+		// Save to localStorage
+		saveCart()
+		updateCartCount()
+		updateCartDisplay()
+
+		// Button animation
+		const originalText = this.innerHTML
+		this.innerHTML = '<i class="fas fa-check"></i> Added to Cart'
+		this.style.backgroundColor = "#d35400"
+
+		setTimeout(() => {
+			this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart'
+			this.style.backgroundColor = ""
+		}, 1500)
+		})
+	}
+
+	// Add quick view functionality
+	const productImage = productCard.querySelector(".product-image")
+	if (productImage) {
+		const quickViewBtn = document.createElement("button")
+		quickViewBtn.className = "quick-view-btn"
+		quickViewBtn.innerHTML = '<i class="fas fa-eye"></i> Quick View'
+		productImage.appendChild(quickViewBtn)
+
+		quickViewBtn.addEventListener("click", (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+		openQuickView(
+			product.title,
+			`$${Number.parseFloat(product.price).toFixed(2)}`,
+			product.oldPrice ? `$${Number.parseFloat(product.oldPrice).toFixed(2)}` : "",
+			product.category,
+			product.description,
+			product.image,
+			{ product: product.title, price: product.price },
+		)
+		})
+	}
+	})
+
+	// Add remove buttons if in admin mode
+	if (isAdminMode) {
+	addRemoveButtons()
+	}
+
+	// Fix product card alignment
+	setTimeout(fixProductCardAlignment, 100)
+}
+
+// Remove product
+function removeProduct(productCard) {
+	// Ask for confirmation
+	if (confirm("Are you sure you want to remove this product? This action is permanent.")) {
+	// Get product title for identification
+	const productTitle = productCard.querySelector(".product-title")?.textContent
+
+	if (productTitle) {
+		// Add to removed products list if not already there
+		if (!removedProducts.includes(productTitle)) {
+		removedProducts.push(productTitle)
+		localStorage.setItem("removedProducts", JSON.stringify(removedProducts))
+		}
+
+		// Remove from addedProducts if it exists there
+		const addedProductIndex = addedProducts.findIndex((p) => p.title === productTitle)
+		if (addedProductIndex !== -1) {
+		addedProducts.splice(addedProductIndex, 1)
+		localStorage.setItem("addedProducts", JSON.stringify(addedProducts))
+		}
+	}
+
+	// Remove product with animation
+	productCard.style.opacity = "0"
+	productCard.style.transform = "scale(0.8)"
+
+	setTimeout(() => {
+		productCard.style.display = "none"
+		showToast("Product removed permanently", "success")
+	}, 300)
+	}
+}
+
+// Show add product form
+function showAddProductForm() {
+	// Create modal if it doesn't exist
+	if (!document.getElementById("addProductModal")) {
+	createAddProductModal()
+	}
+
+	// Show modal
+	document.getElementById("addProductModal").classList.add("active")
+	document.body.style.overflow = "hidden"
+}
+
+// Create add product modal
+function createAddProductModal() {
+	const modal = document.createElement("div")
+	modal.id = "addProductModal"
+	modal.className = "add-product-modal"
+
+	modal.innerHTML = `
+			<div class="add-product-content">
+				<button id="closeAddProductModal" class="close-modal">
+					<i class="fas fa-times"></i>
+				</button>
+				<div class="add-product-container">
+					<h2>Add New Product</h2>
+					<form id="addProductForm" class="add-product-form">
+						<div class="form-row">
+							<div class="form-group">
+								<label for="productTitle">Product Title</label>
+								<input type="text" id="productTitle" required>
+							</div>
+							<div class="form-group">
+								<label for="productCategory">Category</label>
+								<input type="text" id="productCategory" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="productDescription">Description</label>
+							<textarea id="productDescription" required></textarea>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="productPrice">Price ($)</label>
+								<input type="number" id="productPrice" step="0.01" min="0" required>
+							</div>
+							<div class="form-group">
+								<label for="productOldPrice">Old Price ($) (Optional)</label>
+								<input type="number" id="productOldPrice" step="0.01" min="0">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="productImage">Image URL</label>
+							<input type="text" id="productImage" value="../static/images/placeholder.jpg" required>
+						</div>
+						<div class="form-group">
+							<label for="productBadge">Badge (Optional)</label>
+							<input type="text" id="productBadge" placeholder="e.g., NEW, SALE">
+						</div>
+						<div class="add-product-actions">
+							<button type="button" class="cancel-add-product" id="cancelAddProduct">Cancel</button>
+							<button type="submit" class="submit-add-product">Add Product</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		`
+
+	document.body.appendChild(modal)
+
+	// Add event listeners
+	document.getElementById("closeAddProductModal").addEventListener("click", closeAddProductModal)
+	document.getElementById("cancelAddProduct").addEventListener("click", closeAddProductModal)
+	document.getElementById("addProductForm").addEventListener("submit", addNewProduct)
+}
+
+// Close add product modal
+function closeAddProductModal() {
+	document.getElementById("addProductModal").classList.remove("active")
+	document.body.style.overflow = ""
+}
+
+// Add new product
+function addNewProduct(e) {
+	e.preventDefault()
+
+	// Get form values
+	const title = document.getElementById("productTitle").value
+	const category = document.getElementById("productCategory").value
+	const description = document.getElementById("productDescription").value
+	const price = document.getElementById("productPrice").value
+	const oldPrice = document.getElementById("productOldPrice").value
+	const image = document.getElementById("productImage").value
+	const badge = document.getElementById("productBadge").value
+
+	// Create product object to store in localStorage
+	const newProduct = {
+	title: title,
+	category: category,
+	description: description,
+	price: price,
+	oldPrice: oldPrice || "",
+	image: image,
+	badge: badge || "",
+	}
+
+	// Add to addedProducts array
+	addedProducts.push(newProduct)
+
+	// Save to localStorage
+	localStorage.setItem("addedProducts", JSON.stringify(addedProducts))
+
+	// Create new product card
+	const productCard = document.createElement("div")
+	productCard.className = "product-card slide-up active"
+
+	// Build product HTML
+	productCard.innerHTML = `
+			<div class="product-image">
+				<img src="${image}" alt="${title}">
+				${badge ? `<span class="product-badge">${badge}</span>` : ""}
+				<div class="product-actions">
+					<button class="product-action-btn"><i class="fas fa-heart"></i></button>
+					<button class="product-action-btn"><i class="fas fa-eye"></i></button>
+					<button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
+				</div>
+			</div>
+			<div class="product-info">
+				<span class="product-category">${category}</span>
+				<h3 class="product-title">${title}</h3>
+				<p>${description}</p>
+				<div class="product-price">
+					<span class="current-price">$${Number.parseFloat(price).toFixed(2)}</span>
+					${oldPrice ? `<span class="old-price">$${Number.parseFloat(oldPrice).toFixed(2)}</span>` : ""}
+				</div>
+				<button class="add-to-cart-btn" data-product="${title}" data-price="${price}" data-image="${image}">
+					<i class="fas fa-shopping-cart"></i> Add to Cart
+				</button>
+			</div>
+		`
+
+	// Create remove button
+	const removeBtn = document.createElement("button")
+	removeBtn.className = "remove-product-btn"
+	removeBtn.innerHTML = '<i class="fas fa-trash"></i> Remove Product'
+	removeBtn.style.display = "flex"
+	removeBtn.addEventListener("click", () => {
+	removeProduct(productCard)
+	})
+
+	// Add remove button to product card
+	productCard.appendChild(removeBtn)
+	productCard.classList.add("admin-mode")
+
+	// Add product to grid
+	productsGrid.appendChild(productCard)
+
+	// Add event listener to add to cart button
+	const addToCartBtn = productCard.querySelector(".add-to-cart-btn")
+	addToCartBtn.addEventListener("click", function () {
+	const product = this.getAttribute("data-product")
+	const price = Number.parseFloat(this.getAttribute("data-price"))
+	const image = this.getAttribute("data-image")
+
+	// Animate image to cart
+	animateToCart(this, image)
+
+	// Add to cart logic
+	if (cart[product]) {
+		cart[product].quantity += 1
+	} else {
+		cart[product] = {
+		name: product,
+		price: price,
+		image: image,
+		quantity: 1,
+		}
+	}
+
+	// Save to localStorage
+	saveCart()
+	updateCartCount()
+	updateCartDisplay()
+
+	// Button animation
+	const originalText = this.innerHTML
+	this.innerHTML = '<i class="fas fa-check"></i> Added to Cart'
+	this.style.backgroundColor = "#d35400"
+
+	setTimeout(() => {
+		this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart'
+		this.style.backgroundColor = ""
+	}, 1500)
+	})
+
+	// Add quick view functionality
+	const productImage = productCard.querySelector(".product-image")
+	const quickViewBtn = document.createElement("button")
+	quickViewBtn.className = "quick-view-btn"
+	quickViewBtn.innerHTML = '<i class="fas fa-eye"></i> Quick View'
+	productImage.appendChild(quickViewBtn)
+
+	quickViewBtn.addEventListener("click", (e) => {
+	e.preventDefault()
+	e.stopPropagation()
+	openQuickView(
+		title,
+		`$${Number.parseFloat(price).toFixed(2)}`,
+		oldPrice ? `$${Number.parseFloat(oldPrice).toFixed(2)}` : "",
+		category,
+		description,
+		image,
+		{ product: title, price: price },
+	)
+	})
+
+	// Close modal
+	closeAddProductModal()
+
+	// Show success message
+	showToast("Product added successfully", "success")
+
+	// Reset form
+	document.getElementById("addProductForm").reset()
+
+	// Fix product card alignment
+	setTimeout(fixProductCardAlignment, 100)
+
+	// Scroll to the new product
+	setTimeout(() => {
+	productCard.scrollIntoView({ behavior: "smooth", block: "center" })
+	}, 300)
+}
+
+// Show toast notification
+function showToast(message, type = "info") {
+	// Remove existing toast if any
+	const existingToast = document.querySelector(".toast")
+	if (existingToast) {
+	existingToast.remove()
+	}
+
+	// Create toast element
+	const toast = document.createElement("div")
+	toast.className = `toast ${type}`
+
+	// Set icon based on type
+	let icon = "info-circle"
+	if (type === "success") icon = "check-circle"
+	if (type === "error") icon = "exclamation-circle"
+
+	toast.innerHTML = `
+			<i class="fas fa-${icon}"></i>
+			<span>${message}</span>
+		`
+
+	// Add to DOM
+	document.body.appendChild(toast)
+
+	// Show toast
+	setTimeout(() => {
+	toast.classList.add("show")
+	}, 100)
+
+	// Hide toast after 3 seconds
+	setTimeout(() => {
+	toast.classList.remove("show")
+	setTimeout(() => {
+		toast.remove()
+	}, 300)
+	}, 3000)
 }
 })
 

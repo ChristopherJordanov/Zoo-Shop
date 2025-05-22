@@ -137,27 +137,6 @@
                 </div>
                 <div class="service-card slide-up active">
                     <div class="service-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h3 class="service-title">Premium Delivery</h3>
-                    <p class="service-description">Experience our white-glove delivery service, with most orders shipped within 24 hours and carefully packaged to ensure perfect condition.</p>
-                </div>
-                <div class="service-card slide-up active">
-                    <div class="service-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 class="service-title">VIP Customer Care</h3>
-                    <p class="service-description">Enjoy dedicated support and exclusive perks for our valued clients and their animal companions, including personalized shopping assistance.</p>
-                </div>
-                <div class="service-card slide-up active">
-                    <div class="service-icon">
-                        <i class="fas fa-paw"></i>
-                    </div>
-                    <h3 class="service-title">Pet Spa Services</h3>
-                    <p class="service-description">Treat your pet to our luxurious grooming and spa treatments, designed to pamper and rejuvenate your beloved companions.</p>
-                </div>
-                <div class="service-card slide-up active">
-                    <div class="service-icon">
                         <i class="fas fa-heart"></i>
                     </div>
                     <h3 class="service-title">Satisfaction Guarantee</h3>
@@ -165,10 +144,10 @@
                 </div>
                 <div class="service-card slide-up active">
                     <div class="service-icon">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h3 class="service-title">Expert Consultation</h3>
-                    <p class="service-description">Our knowledgeable staff offers personalized recommendations for all your pet care needs, from nutrition to accessories and wellness.</p>
+                    <h3 class="service-title">VIP Customer Care</h3>
+                    <p class="service-description">Enjoy dedicated support and exclusive perks for our valued clients and their animal companions, including personalized shopping assistance.</p>
                 </div>
             </div>
         </div>
@@ -188,7 +167,6 @@
                     </div>
                     <div class="category-overlay">
                         <h3 class="category-title">Dogs</h3>
-                        <p class="category-count">120+ Products</p>
                         <a href="{% url 'dogs' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -198,7 +176,6 @@
                     </div>
                     <div class="category-overlay">
                         <h3 class="category-title">Cats</h3>
-                        <p class="category-count">95+ Products</p>
                         <a href="{% url 'cats' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -208,7 +185,6 @@
                     </div>
                     <div class="category-overlay">
                         <h3 class="category-title">Birds</h3>
-                        <p class="category-count">60+ Products</p>
                         <a href="{% url 'birds' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -218,7 +194,6 @@
                     </div>
                     <div class="category-overlay">
                         <h3 class="category-title">Fish</h3>
-                        <p class="category-count">45+ Products</p>
                         <a href="{% url 'fish' %}" class="category-link">Shop Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -235,9 +210,8 @@
             </div>
             <div class="products-header">
                 <div></div>
-                <a href="#" class="view-all slide-up">View All Products <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="products-grid">
+            <div class="products-grid" id="products-grid">
                 <!-- Product 1 -->
                 <div class="product-card slide-up">
                     <div class="product-image">
@@ -307,78 +281,6 @@
                             <span class="old-price">$59.99</span>
                         </div>
                         <button class="add-to-cart-btn" data-product="Orthopedic Pet Bed" data-price="49.99" data-image="../static/images/cats/catbed1.1.jpg">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <!-- Product 4 -->
-                <div class="product-card slide-up">
-                    <div class="product-image">
-                        <img src="../static/images/birds/birdcage1.avif" alt="Bird Cage">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    <!-- For the fourth product (Bird Cage) -->
-                    <div class="product-info">
-                        <span class="product-category">BIRD SUPPLIES</span>
-                        <h3 class="product-title">Deluxe Bird Cage</h3>
-                        <p>Spacious and secure cage with multiple perches, feeding stations, and easy-clean removable bottom tray.</p>
-                        <div class="product-price">
-                            <span class="current-price">$79.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Deluxe Bird Cage" data-price="79.99" data-image="../static/images/birds/birdcage1.avif">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <!-- Product 5 -->
-                <div class="product-card slide-up">
-                    <div class="product-image">
-                        <img src="../static/images/fish/fishtank1.avif" alt="Aquarium Kit">
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    <!-- For the fifth product (Aquarium Kit) -->
-                    <div class="product-info">
-                        <span class="product-category">FISH SUPPLIES</span>
-                        <h3 class="product-title">Complete Aquarium Kit</h3>
-                        <p>All-in-one aquarium kit with LED lighting, powerful filtration system, and decorative plants for a thriving aquatic environment.</p>
-                        <div class="product-price">
-                            <span class="current-price">$89.99</span>
-                            <span class="old-price">$99.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Complete Aquarium Kit" data-price="89.99" data-image="../static/images/fish/fishtank1.avif">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-                <!-- Product 6 -->
-                <div class="product-card slide-up">
-                    <div class="product-image">
-                        <img src="../static/images/dogs/doggroom1.jpg" alt="Grooming Kit">
-                        <span class="product-badge">SALE</span>
-                        <div class="product-actions">
-                            <button class="product-action-btn"><i class="fas fa-heart"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                            <button class="product-action-btn"><i class="fas fa-sync-alt"></i></button>
-                        </div>
-                    </div>
-                    <!-- For the sixth product (Grooming Kit) -->
-                    <div class="product-info">
-                        <span class="product-category">GROOMING</span>
-                        <h3 class="product-title">Professional Grooming Kit</h3>
-                        <p>Complete set of professional-grade grooming tools including clippers, scissors, combs and nail trimmers for all pet types.</p>
-                        <div class="product-price">
-                            <span class="current-price">$39.99</span>
-                            <span class="old-price">$49.99</span>
-                        </div>
-                        <button class="add-to-cart-btn" data-product="Professional Grooming Kit" data-price="39.99" data-image="../static/images/dogs/doggroom1.jpg">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
                         </button>
                     </div>
@@ -480,6 +382,10 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2023 Fluffemo. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> for pet lovers</p>
+            <!-- Admin View Button -->
+            <button id="adminViewBtn" class="admin-view-btn">
+                <i class="fas fa-lock"></i> Admin View
+            </button>
         </div>
     </footer>
 
@@ -591,6 +497,26 @@
                         <i class="fas fa-user-plus"></i> Register
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Password Modal -->
+    <div id="adminPasswordModal" class="admin-password-modal">
+        <div class="admin-password-content">
+            <button id="closeAdminPasswordModal" class="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="admin-password-container">
+                <h2>Admin Access</h2>
+                <p>Please enter the admin password to continue</p>
+                <div class="form-group">
+                    <input type="password" id="adminPassword" placeholder="Enter password" required>
+                </div>
+                <button id="submitAdminPassword" class="admin-submit-btn">
+                    <i class="fas fa-unlock"></i> Submit
+                </button>
+                <p id="adminPasswordError" class="admin-password-error"></p>
             </div>
         </div>
     </div>
