@@ -27,7 +27,7 @@ class CheckoutInfo(models.Model):
     state = models.CharField(max_length=50)
     zip_code = models.CharField(max_length=30)
     country = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=CountryChoices.choices
     )
 

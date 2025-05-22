@@ -163,7 +163,7 @@ Total: ${total_price:.2f}
 
 We'll begin processing your order shortly.
 
-– PetPals Team"""
+– Fluffemo Team"""
 
         send_mail(
             subject="Your Order Confirmation",
@@ -229,7 +229,7 @@ def subscribe_view(request):
         send_mail(
             subject="Thanks for subscribing to Fluffemo 🐾",
             message="Hey there!\n\nThanks for subscribing to Fluffemo's newsletter. Get ready for pet tips, exclusive offers, and furry goodness right in your inbox!",
-            from_email="petpalsservice1@gmail.com",
+            from_email="fluffemoservice@gmail.com",
             recipient_list=[email],
             fail_silently=False
         )
@@ -290,9 +290,9 @@ def register_view(request):
 
         # ✅ Send welcome email
         send_mail(
-            subject="Welcome to PetPals!",
-            message=f"Hi {full_name}, thanks for registering with PetPals!",
-            from_email="petpalsservice1@gmail.com",
+            subject="Welcome to Fluffemo!",
+            message=f"Hi {full_name}, thanks for registering with Fluffemo!",
+            from_email="fluffemoservice@gmail.com",
             recipient_list=[email],
             fail_silently=True
         )

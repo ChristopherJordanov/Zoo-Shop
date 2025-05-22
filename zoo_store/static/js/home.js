@@ -177,7 +177,8 @@ function saveCart() {
 // Add to cart functionality
 addToCartButtons.forEach((button) => {
 	button.addEventListener("click", function () {
-	const product = this.getAttribute("data-product")
+	const productId = this.getAttribute("data-id") || this.getAttribute("data-product")
+	const productName = this.getAttribute("data-product")
 	const price = Number.parseFloat(this.getAttribute("data-price"))
 	const image = this.getAttribute("data-image") || "https://source.unsplash.com/random/300x300/?pet"
 
@@ -185,11 +186,11 @@ addToCartButtons.forEach((button) => {
 	animateToCart(this, image)
 
 	// Check if product is already in cart
-	if (cart[product]) {
-		cart[product].quantity += 1
+	if (cart[productId]) {
+		cart[productId].quantity += 1
 	} else {
-		cart[product] = {
-		name: product,
+		cart[productId] = {
+		name: productName,
 		price: price,
 		image: image,
 		quantity: 1,
@@ -347,13 +348,16 @@ function updateCheckoutSummary() {
 	let checkoutHTML = ""
 	let total = 0
 
-	Object.entries(cart).forEach(([productName, item]) => {
+	Object.entries(cart).forEach(([productId, item]) => {
 	const itemTotal = item.price * item.quantity
 	total += itemTotal
 
+	// Use the product name from the item object, not the key
+	const displayName = item.name || productId
+
 	checkoutHTML += `
 				<div class="summary-item">
-					<span>${productName} x ${item.quantity}</span>
+					<span>${displayName} x ${item.quantity}</span>
 					<span>$${itemTotal.toFixed(2)}</span>
 				</div>
 				`
@@ -601,6 +605,7 @@ function openQuickView(title, price, oldPrice, category, description, image, pro
 				
 				<div class="quick-view-actions">
 					<button class="quick-view-add-to-cart" 
+					data-id="${productData.id || productData.product}"
 					data-product="${productData.product}" 
 					data-price="${productData.price}" 
 					data-image="${image}">
@@ -647,17 +652,18 @@ function openQuickView(title, price, oldPrice, category, description, image, pro
 	// Add to cart functionality
 	const addToCartBtn = quickViewModal.querySelector(".quick-view-add-to-cart")
 	addToCartBtn.addEventListener("click", function () {
-	const product = this.getAttribute("data-product")
+	const productId = this.getAttribute("data-id") || this.getAttribute("data-product")
+	const productName = this.getAttribute("data-product")
 	const price = Number.parseFloat(this.getAttribute("data-price"))
 	const image = this.getAttribute("data-image")
 	const quantity = Number.parseInt(quantityInput.value)
 
 	// Check if product is already in cart
-	if (cart[product]) {
-		cart[product].quantity += quantity
+	if (cart[productId]) {
+		cart[productId].quantity += quantity
 	} else {
-		cart[product] = {
-		name: product,
+		cart[productId] = {
+		name: productName,
 		price: price,
 		image: image,
 		quantity: quantity,
@@ -677,7 +683,7 @@ function openQuickView(title, price, oldPrice, category, description, image, pro
 	toast.className = "toast"
 	toast.innerHTML = `
 				<i class="fas fa-check-circle"></i>
-				<span>${product} added to cart</span>
+				<span>${productName} added to cart</span>
 				`
 	document.body.appendChild(toast)
 
@@ -918,7 +924,7 @@ function loadAddedProducts() {
 						<span class="current-price">$${Number.parseFloat(product.price).toFixed(2)}</span>
 						${product.oldPrice ? `<span class="old-price">$${Number.parseFloat(product.oldPrice).toFixed(2)}</span>` : ""}
 					</div>
-					<button class="add-to-cart-btn" data-product="${product.title}" data-price="${product.price}" data-image="${product.image}">
+					<button class="add-to-cart-btn" data-id="${product.title}" data-product="${product.title}" data-price="${product.price}" data-image="${product.image}">
 						<i class="fas fa-shopping-cart"></i> Add to Cart
 					</button>
 				</div>
@@ -931,7 +937,8 @@ function loadAddedProducts() {
 	const addToCartBtn = productCard.querySelector(".add-to-cart-btn")
 	if (addToCartBtn) {
 		addToCartBtn.addEventListener("click", function () {
-		const product = this.getAttribute("data-product")
+		const productId = this.getAttribute("data-id") || this.getAttribute("data-product")
+		const productName = this.getAttribute("data-product")
 		const price = Number.parseFloat(this.getAttribute("data-price"))
 		const image = this.getAttribute("data-image")
 
@@ -939,11 +946,11 @@ function loadAddedProducts() {
 		animateToCart(this, image)
 
 		// Add to cart logic
-		if (cart[product]) {
-			cart[product].quantity += 1
+		if (cart[productId]) {
+			cart[productId].quantity += 1
 		} else {
-			cart[product] = {
-			name: product,
+			cart[productId] = {
+			name: productName,
 			price: price,
 			image: image,
 			quantity: 1,
@@ -985,7 +992,7 @@ function loadAddedProducts() {
 			product.category,
 			product.description,
 			product.image,
-			{ product: product.title, price: product.price },
+			{ id: product.title, product: product.title, price: product.price },
 		)
 		})
 	}
@@ -1167,7 +1174,7 @@ function addNewProduct(e) {
 					<span class="current-price">$${Number.parseFloat(price).toFixed(2)}</span>
 					${oldPrice ? `<span class="old-price">$${Number.parseFloat(oldPrice).toFixed(2)}</span>` : ""}
 				</div>
-				<button class="add-to-cart-btn" data-product="${title}" data-price="${price}" data-image="${image}">
+				<button class="add-to-cart-btn" data-id="${title}" data-product="${title}" data-price="${price}" data-image="${image}">
 					<i class="fas fa-shopping-cart"></i> Add to Cart
 				</button>
 			</div>
@@ -1192,7 +1199,8 @@ function addNewProduct(e) {
 	// Add event listener to add to cart button
 	const addToCartBtn = productCard.querySelector(".add-to-cart-btn")
 	addToCartBtn.addEventListener("click", function () {
-	const product = this.getAttribute("data-product")
+	const productId = this.getAttribute("data-id") || this.getAttribute("data-product")
+	const productName = this.getAttribute("data-product")
 	const price = Number.parseFloat(this.getAttribute("data-price"))
 	const image = this.getAttribute("data-image")
 
@@ -1200,11 +1208,11 @@ function addNewProduct(e) {
 	animateToCart(this, image)
 
 	// Add to cart logic
-	if (cart[product]) {
-		cart[product].quantity += 1
+	if (cart[productId]) {
+		cart[productId].quantity += 1
 	} else {
-		cart[product] = {
-		name: product,
+		cart[productId] = {
+		name: productName,
 		price: price,
 		image: image,
 		quantity: 1,
@@ -1244,7 +1252,7 @@ function addNewProduct(e) {
 		category,
 		description,
 		image,
-		{ product: title, price: price },
+		{ id: title, product: title, price: price },
 	)
 	})
 
